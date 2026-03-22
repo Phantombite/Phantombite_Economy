@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    
+    <EntityContainers>
+        
+        <Container>
+            <Id>
+                <TypeId>StoreBlock</TypeId>
+                <SubtypeId>TraderStore</SubtypeId>
+            </Id>
+            <DefaultComponents>
+                <Component BuilderType="MyObjectBuilder_Inventory" SubtypeId="TraderStore" ForceCreate="true"/>
+            </DefaultComponents>
+        </Container>
+        
+        <Container>
+            <Id>
+                <TypeId>SafeZoneBlock</TypeId>
+                <SubtypeId>TraderSafeZone</SubtypeId>
+            </Id>
+            <DefaultComponents>
+                <Component BuilderType="MyObjectBuilder_Inventory" SubtypeId="TraderSafeZone" ForceCreate="true"/>
+            </DefaultComponents>
+        </Container>
+        
+        <Container>
+            <Id>
+                <TypeId>CargoContainer</TypeId>
+                <SubtypeId>TraderZoneContainer</SubtypeId>
+            </Id>
+            <DefaultComponents>
+                <Component BuilderType="MyObjectBuilder_Inventory" SubtypeId="TraderZoneContainer" ForceCreate="true"/>
+            </DefaultComponents>
+        </Container>
+
+        <Container>
+            <Id>
+                <TypeId>CargoContainer</TypeId>
+                <SubtypeId>TraderLargeBlockLargeContainer</SubtypeId>
+            </Id>
+            <DefaultComponents>
+                <Component BuilderType="MyObjectBuilder_Inventory" SubtypeId="TraderLargeBlockLargeContainer" ForceCreate="true"/>
+            </DefaultComponents>
+        </Container>
+
+        <Container>
+            <Id>
+                <TypeId>CargoContainer</TypeId>
+                <SubtypeId>TraderLargeBlockLargeIndustrialContainer</SubtypeId>
+            </Id>
+            <DefaultComponents>
+                <Component BuilderType="MyObjectBuilder_Inventory" SubtypeId="TraderLargeBlockLargeIndustrialContainer" ForceCreate="true"/>
+            </DefaultComponents>
+        </Container>
+
+        <Container>
+            <Id>
+                <TypeId>VendingMachine</TypeId>
+                <SubtypeId>TraderVendingMachine</SubtypeId>
+            </Id>
+            <DefaultComponents>
+                <Component BuilderType="MyObjectBuilder_Inventory" SubtypeId="TraderVendingMachine" ForceCreate="true"/>
+            </DefaultComponents>
+        </Container>
+
+        <!--Connector-->
+        <Container>
+            <Id>
+                <TypeId>ShipConnector</TypeId>
+                <SubtypeId>TraderConnector</SubtypeId>
+            </Id>
+            <DefaultComponents>
+                <Component BuilderType="MyObjectBuilder_Inventory" SubtypeId="TraderConnector" ForceCreate="true"/>
+            </DefaultComponents>
+        </Container>
+
+        <Container>
+            <Id>
+                <TypeId>ShipConnector</TypeId>
+                <SubtypeId>TraderConnectorSmall</SubtypeId>
+            </Id>
+            <DefaultComponents>
+                <Component BuilderType="MyObjectBuilder_Inventory" SubtypeId="TraderConnectorSmall" ForceCreate="true"/>
+            </DefaultComponents>
+        </Container>
+
+        <Container>
+            <Id>
+                <TypeId>ShipConnector</TypeId>
+                <SubtypeId>TraderConnectorMedium</SubtypeId>
+            </Id>
+            <DefaultComponents>
+                <Component BuilderType="MyObjectBuilder_Inventory" SubtypeId="TraderConnectorMedium" ForceCreate="true"/>
+            </DefaultComponents>
+        </Container>
+        
+        <Container>
+            <Id>
+                <TypeId>ShipConnector</TypeId>
+                <SubtypeId>TraderLargeBlockInsetConnector</SubtypeId>
+            </Id>
+            <DefaultComponents>
+                <Component BuilderType="MyObjectBuilder_Inventory" SubtypeId="TraderLargeBlockInsetConnector" ForceCreate="true"/>
+            </DefaultComponents>
+        </Container>
+        
+        <Container>
+            <Id>
+                <TypeId>ShipConnector</TypeId>
+                <SubtypeId>TraderLargeBlockInsetConnectorSmall</SubtypeId>
+            </Id>
+            <DefaultComponents>
+                <Component BuilderType="MyObjectBuilder_Inventory" SubtypeId="TraderLargeBlockInsetConnectorSmall" ForceCreate="true"/>
+            </DefaultComponents>
+        </Container>
+        
+        <Container>
+            <Id>
+                <TypeId>ShipConnector</TypeId>
+                <SubtypeId>TraderSmallBlockInsetConnector</SubtypeId>
+            </Id>
+            <DefaultComponents>
+                <Component BuilderType="MyObjectBuilder_Inventory" SubtypeId="TraderSmallBlockInsetConnector" ForceCreate="true"/>
+            </DefaultComponents>
+        </Container>
+        
+        <Container>
+            <Id>
+                <TypeId>ShipConnector</TypeId>
+                <SubtypeId>TraderSmallBlockInsetConnectorMedium</SubtypeId>
+            </Id>
+            <DefaultComponents>
+                <Component BuilderType="MyObjectBuilder_Inventory" SubtypeId="TraderSmallBlockInsetConnectorMedium" ForceCreate="true"/>
+            </DefaultComponents>
+        </Container>
+        
+    </EntityContainers>
+
+    <EntityComponents>
+        
+        <EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+            <Id>
+                <TypeId>Inventory</TypeId>
+                <SubtypeId>TraderStore</SubtypeId>
+            </Id>
+            <Size x="100" y="100" z="100" />
+        </EntityComponent>
+        
+        <EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+            <Id>
+                <TypeId>Inventory</TypeId>
+                <SubtypeId>TraderSafeZone</SubtypeId>
+            </Id>
+            <Size x="0.6" y="0.6" z="1.2" />
+        </EntityComponent>
+        
+        <EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+            <Id>
+                <TypeId>Inventory</TypeId>
+                <SubtypeId>TraderVendingMachine</SubtypeId>
+            </Id>
+            <Size x="100" y="100" z="100" />
+        </EntityComponent>
+
+        <!--Connector-->
+        <EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+            <Id>
+                <TypeId>Inventory</TypeId>
+                <SubtypeId>TraderConnector</SubtypeId>
+            </Id>
+            <Size x="0" y="0" z="1" />
+        </EntityComponent>
+
+        <EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+            <Id>
+                <TypeId>Inventory</TypeId>
+                <SubtypeId>TraderConnectorSmall</SubtypeId>
+            </Id>
+            <Size x="0" y="0" z="1" />
+        </EntityComponent>
+
+        <EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+            <Id>
+                <TypeId>Inventory</TypeId>
+                <SubtypeId>TraderConnectorMedium</SubtypeId>
+            </Id>
+            <Size x="0" y="0" z="1" />
+        </EntityComponent>
+
+        <EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+            <Id>
+                <TypeId>Inventory</TypeId>
+                <SubtypeId>TraderLargeBlockInsetConnector</SubtypeId>
+            </Id>
+            <Size x="0" y="0" z="1" />
+        </EntityComponent>
+
+        <EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+            <Id>
+                <TypeId>Inventory</TypeId>
+                <SubtypeId>TraderLargeBlockInsetConnectorSmall</SubtypeId>
+            </Id>
+            <Size x="0" y="0" z="1" />
+        </EntityComponent>
+
+        <EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+            <Id>
+                <TypeId>Inventory</TypeId>
+                <SubtypeId>TraderSmallBlockInsetConnector</SubtypeId>
+            </Id>
+            <Size x="0" y="0" z="1" />
+        </EntityComponent>
+
+        <EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+            <Id>
+                <TypeId>Inventory</TypeId>
+                <SubtypeId>TraderSmallBlockInsetConnectorMedium</SubtypeId>
+            </Id>
+            <Size x="0" y="0" z="1" />
+        </EntityComponent>
+    </EntityComponents>   
+</Definitions>

@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--
+	<Faction Tag="insert_tagName" Founder="insert_founderName">   Tags for NPC faction should be more than 3 letters to avoid conflicts with player made factions. Founder is the name of the NPC that owns the faction.
+		 <Id>
+		   <TypeId>MyObjectBuilder_FactionDefinition</TypeId>
+		   <SubtypeId>Insert_SubTypeName</SubtypeId>
+		 </Id>
+		<DisplayName>Insert_KeyToFractionDisplayName</DisplayName>   This is the name of the faction.
+		<AcceptHumans>false</AcceptHumans>   When true players can join this faction from the faction menu.
+		<AutoAcceptMember>false</AutoAcceptMember>   When true members will be automatically accepted to the faction.
+		<IsDefault>true</IsDefault>   When true, the faction will be created in the world by default.
+		<DiscoveredByDefault>true</DiscoveredByDefault>    When true, this field conceals the faction's identity from the player until encountered in the world.
+		<StartingBalance>100000000</StartingBalance>   Starting bank account balance for the faction.
+		<Type>None</Type>   This is the faction type associated with the faction. Types can be defined in FactionTypes.sbc
+		<FactionIcon>Textures\FactionLogo\Spiders.dds</FactionIcon>   This is the texture file used as the factions emblem, as viewed in the faction menu or from LCDs displaying the emblem.
+		<StaticReputation>true</StaticReputation>   When true the faction won't cause gain or loss of repuatation from shooting/grinding/interacting. Repuatation will be locked in place.
+		<StartingReputation>-1500</StartingReputation>   Sets the player's starting reputation with the faction. Accepts a value between -1500 and 1500. 0 is neutral.
+		<Description>Insert_Description</Description>   This is the description of the faction which can be viewed in the faction menu.
+		<BackgroundColor R="0" G="255" B="0" />   Background color for the faction icon, Note: These values don't impact SPID, SPRT, or FTSC
+		<IconColor R="0" G="0" B="0" />   Icon color for the faction icon. Note: These values don't impact SPID, SPRT, or FTSC
+
+
+		These are older tags that are no longer used, but may still work:
+		
+		<EnableFriendlyFire>false</EnableFriendlyFire>   Old option, this does does not work fully. Defaults false.
+		<DefaultRelation>Enemies</DefaultRelation>   This is the original method of setting relations between the player and an NPC faction.
+													 This was replaced by Starting Reputation, as war/peace is not influence by repuatation.
+													 Accepts a value of Enemies or Neutral.
+													 If the value is set to Enemies this faction will be hostile.
+													 If the value is set to Neutral the NPC faction will send a peace request to the player's faction.
+	</Faction>
+		-->
+    <Factions>
+        <Faction Tag="SPT" Founder="Gonner">
+            <Id>
+                <TypeId>MyObjectBuilder_FactionDefinition</TypeId>
+                <SubtypeId>SpaceTraders</SubtypeId>
+            </Id>
+            <DisplayName>Space Traders</DisplayName>
+            <IsDefault>true</IsDefault>
+            <AcceptHumans>false</AcceptHumans>
+            <AutoAcceptMember>false</AutoAcceptMember>
+            <StartingBalance>100000</StartingBalance>
+            <Type>None</Type>
+            <DiscoveredByDefault>false</DiscoveredByDefault>
+            <FactionIcon>Textures\FactionLogo\Traders\Tradericon_1.dds</FactionIcon>
+            <StaticReputation>true</StaticReputation>
+            <StartingReputation>0</StartingReputation>
+            <Description>Space Traders is a Friendly faction</Description>
+            <BackgroundColor R="0" G="0" B="0" />
+            <IconColor R="0" G="255" B="0" />
+        </Faction>
+    </Factions>
+</Definitions>

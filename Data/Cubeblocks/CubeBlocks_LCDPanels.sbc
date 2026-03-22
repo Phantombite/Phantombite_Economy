@@ -1,0 +1,1681 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <CubeBlocks>
+        <Definition xsi:type="MyObjectBuilder_TextPanelDefinition">
+            <Id>
+                <TypeId>TextPanel</TypeId>
+                <SubtypeId>TraderSmallTextPanel</SubtypeId>
+            </Id>
+            <DisplayName>Trader TextPanel</DisplayName>
+            <Icon>Textures\GUI\Icons\Cubes\TextPanel.dds</Icon>
+            <Description>Description_TextPanel</Description>
+            <CubeSize>Small</CubeSize>
+            <GuiVisible>false</GuiVisible>
+            <BlockTopology>TriangleMesh</BlockTopology>
+            <Size x="1" y="1" z="1" />
+            <ModelOffset x="0" y="0" z="0" />
+            <Model>Models\Cubes\Small\TextPanel.mwm</Model>
+            <Components>
+                <Component Subtype="InteriorPlate" Count="1" />
+                <Component Subtype="Construction" Count="4" />
+                <Component Subtype="Computer" Count="4" />
+                <Component Subtype="AdminChip" Count="100" />
+                <Component Subtype="Display" Count="3" />
+                <Component Subtype="BulletproofGlass" Count="1" />
+            </Components>
+            <CriticalComponent Subtype="AdminChip" Index="0" />
+            <MountPoints>
+                <MountPoint Side="Front" StartX="0" StartY="0" EndX="1" EndY="1" Default="true"/>
+                <MountPoint Side="Left" StartX="0" StartY="0" EndX="0.1" EndY="1" />
+                <MountPoint Side="Right" StartX="0.9" StartY="0" EndX="1" EndY="1" />
+                <MountPoint Side="Top" StartX="0" StartY="0.9" EndX="1" EndY="1" />
+                <MountPoint Side="Bottom" StartX="0" StartY="0" EndX="1" EndY="0.1" />
+            </MountPoints>
+            <BuildProgressModels>
+                <Model BuildPercentUpperBound="1.00" File="Models\Cubes\small\TextPanel_Construction_1.mwm" />
+            </BuildProgressModels>
+            <ScreenAreas>
+                <ScreenArea Name="ScreenArea" DisplayName="ScreenArea" TextureResolution="512" ScreenWidth="1" ScreenHeight="1" />
+                <ScreenArea Name="ScreenArea90" DisplayName="ScreenArea90" TextureResolution="512" ScreenWidth="1" ScreenHeight="1" />
+                <ScreenArea Name="ScreenArea180" DisplayName="ScreenArea180" TextureResolution="512" ScreenWidth="1" ScreenHeight="1" />
+                <ScreenArea Name="ScreenArea270" DisplayName="ScreenArea270" TextureResolution="512" ScreenWidth="1" ScreenHeight="1" />
+            </ScreenAreas>
+            <VoxelPlacement>
+            <!--Possible settings Both,InVoxel,OutsideVoxel,Volumetric. If volumetric set than MaxAllowed and MinAllowed will be used.-->
+            <StaticMode>
+            <PlacementMode>OutsideVoxel</PlacementMode>
+            <MaxAllowed>0.4</MaxAllowed>
+            <MinAllowed>0</MinAllowed>
+            </StaticMode>
+            <DynamicMode>
+                <PlacementMode>OutsideVoxel</PlacementMode>
+                <MaxAllowed>0.4</MaxAllowed>
+                <MinAllowed>0.01</MinAllowed>
+            </DynamicMode>
+            </VoxelPlacement>
+            <BlockPairName>TraderTextPanel</BlockPairName>
+            <MirroringY>Z</MirroringY>
+            <MirroringZ>Y</MirroringZ>
+            <EdgeType>Light</EdgeType>
+            <BuildTimeSeconds>3</BuildTimeSeconds>
+            <MaxScreenRenderDistance>60</MaxScreenRenderDistance>
+            <DamageEffectName>Damage_Electrical_Damaged</DamageEffectName>
+            <DamagedSound>ParticleElectrical</DamagedSound>
+            <ResourceSinkGroup>Utility</ResourceSinkGroup>
+            <RequiredPowerInput>0.00002</RequiredPowerInput>
+            <DestroyEffect>BlockDestroyedExplosion_Small</DestroyEffect>
+            <DestroySound>WepSmallWarheadExpl</DestroySound>
+            <PCU>45</PCU>
+        </Definition>
+
+        <Definition xsi:type="MyObjectBuilder_TextPanelDefinition">
+            <Id>
+                <TypeId>TextPanel</TypeId>
+                <SubtypeId>TraderSmallLCDPanelWide</SubtypeId>
+            </Id>
+            <DisplayName>Trader LCD PanelWide</DisplayName>
+            <Icon>Textures\GUI\Icons\Cubes\LCDPanelWide.dds</Icon>
+            <Description>Description_TextPanel</Description>
+            <CubeSize>Small</CubeSize>
+            <GuiVisible>false</GuiVisible>
+            <BlockTopology>TriangleMesh</BlockTopology>
+            <Size x="6" y="3" z="1" />
+            <ModelOffset x="0" y="0" z="0" />
+            <Model>Models\Cubes\Small\LCDPanelWide.mwm</Model>
+            <Components>
+                <Component Subtype="InteriorPlate" Count="1" />
+                <Component Subtype="Construction" Count="8" />
+                <Component Subtype="Computer" Count="8" />
+                <Component Subtype="AdminChip" Count="100" />
+                <Component Subtype="Display" Count="6" />
+                <Component Subtype="BulletproofGlass" Count="2" />
+            </Components>
+            <CriticalComponent Subtype="AdminChip" Index="0" />
+            <MountPoints>
+                <MountPoint Side="Front" StartX="0" StartY="0" EndX="6" EndY="3" Default="true"/>
+                <MountPoint Side="Left" StartX="0" StartY="0" EndX="0.1" EndY="3" />
+                <MountPoint Side="Right" StartX="0.9" StartY="0" EndX="1" EndY="3" />
+                <MountPoint Side="Top" StartX="0" StartY="0.9" EndX="6" EndY="1" />
+                <MountPoint Side="Bottom" StartX="0" StartY="0" EndX="6" EndY="0.1" />
+            </MountPoints>
+            <BuildProgressModels>
+                <Model BuildPercentUpperBound="1.00" File="Models\Cubes\small\LCDPanelWide_Construction_1.mwm" />
+            </BuildProgressModels>
+            <VoxelPlacement>
+            <!--Possible settings Both,InVoxel,OutsideVoxel,Volumetric. If volumetric set than MaxAllowed and MinAllowed will be used.-->
+            <StaticMode>
+                <PlacementMode>OutsideVoxel</PlacementMode>
+                <MaxAllowed>0.4</MaxAllowed>
+                <MinAllowed>0</MinAllowed>
+            </StaticMode>
+            <DynamicMode>
+                <PlacementMode>OutsideVoxel</PlacementMode>
+                <MaxAllowed>0.4</MaxAllowed>
+                <MinAllowed>0.01</MinAllowed>
+            </DynamicMode>
+            </VoxelPlacement>
+            <BlockPairName>TraderLCDPanelWide</BlockPairName>
+            <MirroringX>OffsetX</MirroringX>
+            <MirroringY>ZThenOffsetXOdd</MirroringY>
+            <MirroringZ>YThenOffsetXOdd</MirroringZ>
+            <EdgeType>Light</EdgeType>
+            <BuildTimeSeconds>6</BuildTimeSeconds>
+            <ResourceSinkGroup>Utility</ResourceSinkGroup>
+            <RequiredPowerInput>0.00008</RequiredPowerInput>
+            <TextureResolution>512</TextureResolution>
+            <ScreenWidth>2</ScreenWidth>
+            <ScreenHeight>1</ScreenHeight>
+            <ScreenAreas>
+                <ScreenArea Name="ScreenArea" DisplayName="ScreenArea" TextureResolution="512" ScreenWidth="2" ScreenHeight="1" />
+                <ScreenArea Name="ScreenArea90" DisplayName="ScreenArea90" TextureResolution="512" ScreenWidth="1" ScreenHeight="2" />
+                <ScreenArea Name="ScreenArea180" DisplayName="ScreenArea180" TextureResolution="512" ScreenWidth="2" ScreenHeight="1" />
+                <ScreenArea Name="ScreenArea270" DisplayName="ScreenArea270" TextureResolution="512" ScreenWidth="1" ScreenHeight="2" />
+            </ScreenAreas>
+            <MaxScreenRenderDistance>120</MaxScreenRenderDistance>
+            <DamageEffectName>Damage_Electrical_Damaged</DamageEffectName>
+            <DamagedSound>ParticleElectrical</DamagedSound>
+            <DestroyEffect>BlockDestroyedExplosion_Small</DestroyEffect>
+            <DestroySound>WepSmallWarheadExpl</DestroySound>
+            <PCU>45</PCU>
+            <IsAirTight>false</IsAirTight>
+        </Definition>
+
+        <Definition xsi:type="MyObjectBuilder_TextPanelDefinition">
+            <Id>
+                <TypeId>TextPanel</TypeId>
+                <SubtypeId>TraderSmallLCDPanel</SubtypeId>
+            </Id>
+            <DisplayName>Trader LCD Panel</DisplayName>
+            <Icon>Textures\GUI\Icons\Cubes\LCDPanel.dds</Icon>
+            <Description>Description_TextPanel</Description>
+            <CubeSize>Small</CubeSize>
+            <BlockTopology>TriangleMesh</BlockTopology>
+            <Size x="3" y="3" z="1" />
+            <ModelOffset x="0" y="0" z="0" />
+            <Model>Models\Cubes\Small\LCDPanel.mwm</Model>
+            <Components>
+                <Component Subtype="InteriorPlate" Count="1" />
+                <Component Subtype="Construction" Count="4" />
+                <Component Subtype="Computer" Count="4" />
+                <Component Subtype="AdminChip" Count="100" />
+                <Component Subtype="Display" Count="3" />
+                <Component Subtype="BulletproofGlass" Count="2" />
+            </Components>
+            <CriticalComponent Subtype="AdminChip" Index="0" />
+            <MountPoints>
+                <MountPoint Side="Front" StartX="0" StartY="0" EndX="3" EndY="3" Default="true" />
+                <MountPoint Side="Left" StartX="0" StartY="0" EndX="0.1" EndY="3" />
+                <MountPoint Side="Right" StartX="0.9" StartY="0" EndX="1" EndY="3" />
+                <MountPoint Side="Top" StartX="0" StartY="0.9" EndX="3" EndY="1" />
+                <MountPoint Side="Bottom" StartX="0" StartY="0" EndX="3" EndY="0.1" />
+            </MountPoints>
+            <BuildProgressModels>
+                <Model BuildPercentUpperBound="1.00" File="Models\Cubes\small\LCDPanel_Construction_1.mwm" />
+            </BuildProgressModels>
+            <ScreenAreas>
+                <ScreenArea Name="ScreenArea" DisplayName="ScreenArea" TextureResolution="512" ScreenWidth="1" ScreenHeight="1" />
+                <ScreenArea Name="ScreenArea90" DisplayName="ScreenArea90" TextureResolution="512" ScreenWidth="1" ScreenHeight="1" />
+                <ScreenArea Name="ScreenArea180" DisplayName="ScreenArea180" TextureResolution="512" ScreenWidth="1" ScreenHeight="1" />
+                <ScreenArea Name="ScreenArea270" DisplayName="ScreenArea270" TextureResolution="512" ScreenWidth="1" ScreenHeight="1" />
+            </ScreenAreas>
+            <VoxelPlacement>
+            <!--Possible settings Both,InVoxel,OutsideVoxel,Volumetric. If volumetric set than MaxAllowed and MinAllowed will be used.-->
+            <StaticMode>
+            <PlacementMode>OutsideVoxel</PlacementMode>
+            <MaxAllowed>0.4</MaxAllowed>
+            <MinAllowed>0</MinAllowed>
+            </StaticMode>
+            <DynamicMode>
+            <PlacementMode>OutsideVoxel</PlacementMode>
+            <MaxAllowed>0.4</MaxAllowed>
+            <MinAllowed>0.01</MinAllowed>
+            </DynamicMode>
+            </VoxelPlacement>
+            <BlockPairName>TraderLCDPanel</BlockPairName>
+            <MirroringY>Z</MirroringY>
+            <MirroringZ>Y</MirroringZ>
+            <EdgeType>Light</EdgeType>
+            <BuildTimeSeconds>4</BuildTimeSeconds>
+            <ResourceSinkGroup>Utility</ResourceSinkGroup>
+            <RequiredPowerInput>0.00004</RequiredPowerInput>
+            <TextureResolution>512</TextureResolution>
+            <MaxScreenRenderDistance>120</MaxScreenRenderDistance>
+            <DamageEffectName>Damage_Electrical_Damaged</DamageEffectName>
+            <DamagedSound>ParticleElectrical</DamagedSound>
+            <DestroyEffect>BlockDestroyedExplosion_Small</DestroyEffect>
+            <DestroySound>WepSmallWarheadExpl</DestroySound>
+            <PCU>45</PCU>
+            <IsAirTight>false</IsAirTight>
+        </Definition>
+
+        <Definition xsi:type="MyObjectBuilder_TextPanelDefinition">
+            <Id>
+                <TypeId>TextPanel</TypeId>
+                <SubtypeId>TraderLargeBlockCorner_LCD_1</SubtypeId>
+            </Id>
+            <DisplayName>Trader CornerLCD</DisplayName>
+            <BlockPairName>TraderCornerLCD</BlockPairName>
+            <Icon>Textures\GUI\Icons\Cubes\Corner_LCD_1.dds</Icon>
+            <Description>Description_TextPanel</Description>
+            <CubeSize>Large</CubeSize>
+            <BlockTopology>TriangleMesh</BlockTopology>
+            <Size x="1" y="1" z="1" />
+            <ModelOffset x="0" y="0" z="0" />
+            <Model>Models\Cubes\large\Corner_LCD_1.mwm</Model>
+            <Components>
+                <Component Subtype="Construction" Count="5" />
+                <Component Subtype="Computer" Count="3" />
+                <Component Subtype="AdminChip" Count="100" />
+                <Component Subtype="Display" Count="1" />
+            </Components>
+            <CriticalComponent Subtype="AdminChip" Index="0" />
+            <MountPoints>
+                <MountPoint Side="Back" StartX="0.00" StartY="0.00" EndX="1.00" EndY="0.24" />
+                <MountPoint Side="Bottom" StartX="0.00" StartY="0.76" EndX="1.00" EndY="1.00" />
+            </MountPoints>
+            <EdgeType>Light</EdgeType>
+            <BuildProgressModels>
+                <Model BuildPercentUpperBound="1.00" File="Models\Cubes\large\Corner_LCD_1_Construction_1.mwm" />
+            </BuildProgressModels>
+            <BuildTimeSeconds>6</BuildTimeSeconds>
+            <DamageEffectName>Damage_Electrical_Damaged</DamageEffectName>
+            <DamagedSound>ParticleElectrical</DamagedSound>
+            <ScreenWidth>7</ScreenWidth>
+            <ScreenHeight>1</ScreenHeight>
+            <ScreenAreas>
+                <ScreenArea Name="ScreenArea" DisplayName="ScreenArea" TextureResolution="128" ScreenWidth="7" ScreenHeight="1" />
+                <ScreenArea Name="ScreenArea90" DisplayName="ScreenArea90" TextureResolution="128" ScreenWidth="1" ScreenHeight="7" />
+                <ScreenArea Name="ScreenArea180" DisplayName="ScreenArea180" TextureResolution="128" ScreenWidth="7" ScreenHeight="1" />
+                <ScreenArea Name="ScreenArea270" DisplayName="ScreenArea270" TextureResolution="128" ScreenWidth="1" ScreenHeight="7" />
+            </ScreenAreas>
+            <MirroringZ>Y</MirroringZ>
+            <MirroringY>Z</MirroringY>
+            <RequiredPowerInput>0.00006</RequiredPowerInput>
+            <TextureResolution>128</TextureResolution>
+            <ResourceSinkGroup>Utility</ResourceSinkGroup>
+            <MaxScreenRenderDistance>60</MaxScreenRenderDistance>
+            <DestroyEffect>BlockDestroyedExplosion_Large</DestroyEffect>
+            <DestroyEffectOffset>
+                <X>0</X>
+                <Y>-1.1</Y>
+                <Z>1.1</Z>
+            </DestroyEffectOffset>
+            <DestroySound>WepSmallWarheadExpl</DestroySound>
+            <PCU>45</PCU>
+            <IsAirTight>false</IsAirTight>
+        </Definition>
+
+        <Definition xsi:type="MyObjectBuilder_TextPanelDefinition">
+            <Id>
+                <TypeId>TextPanel</TypeId>
+                <SubtypeId>TraderLCDLargeBlockCorner_LCD_2</SubtypeId>
+            </Id>
+            <DisplayName>Trader CornerLCD 2</DisplayName>
+            <Icon>Textures\GUI\Icons\Cubes\Corner_LCD_2.dds</Icon>
+            <Description>Description_TextPanel</Description>
+            <CubeSize>Large</CubeSize>
+            <GuiVisible>false</GuiVisible>
+            <BlockTopology>TriangleMesh</BlockTopology>
+            <Size x="1" y="1" z="1" />
+            <ModelOffset x="0" y="0" z="0" />
+            <Model>Models\Cubes\large\Corner_LCD_2.mwm</Model>
+            <Components>
+                <Component Subtype="Construction" Count="5" />
+                <Component Subtype="Computer" Count="3" />
+                <Component Subtype="AdminChip" Count="100" />
+                <Component Subtype="Display" Count="1" />
+            </Components>
+            <CriticalComponent Subtype="AdminChip" Index="0" />
+            <MountPoints>
+                <MountPoint Side="Bottom" StartX="0.00" StartY="0.76" EndX="1.00" EndY="1.00" />
+                <MountPoint Side="Back" StartX="0.00" StartY="0.00" EndX="1.00" EndY="0.1" />
+            </MountPoints>
+            <EdgeType>Light</EdgeType>
+            <BuildProgressModels>
+                <Model BuildPercentUpperBound="1.00" File="Models\Cubes\large\Corner_LCD_2_Construction_1.mwm" />
+            </BuildProgressModels>
+            <BuildTimeSeconds>6</BuildTimeSeconds>
+            <DamageEffectName>Damage_Electrical_Damaged</DamageEffectName>
+            <DamagedSound>ParticleElectrical</DamagedSound>
+            <ScreenWidth>7</ScreenWidth>
+            <ScreenHeight>1</ScreenHeight>
+            <ScreenAreas>
+                <ScreenArea Name="ScreenArea" DisplayName="ScreenArea" TextureResolution="128" ScreenWidth="7" ScreenHeight="1" />
+                <ScreenArea Name="ScreenArea90" DisplayName="ScreenArea90" TextureResolution="128" ScreenWidth="1" ScreenHeight="7" />
+                <ScreenArea Name="ScreenArea180" DisplayName="ScreenArea180" TextureResolution="128" ScreenWidth="7" ScreenHeight="1" />
+                <ScreenArea Name="ScreenArea270" DisplayName="ScreenArea270" TextureResolution="128" ScreenWidth="1" ScreenHeight="7" />
+            </ScreenAreas>
+            <MirroringZ>Y</MirroringZ>
+            <MirroringY>Z</MirroringY>
+            <RequiredPowerInput>0.00006</RequiredPowerInput>
+            <TextureResolution>128</TextureResolution>
+            <ResourceSinkGroup>Utility</ResourceSinkGroup>
+            <MaxScreenRenderDistance>60</MaxScreenRenderDistance>
+            <DestroyEffect>BlockDestroyedExplosion_Large</DestroyEffect>
+            <DestroyEffectOffset>
+                <X>0</X>
+                <Y>-1.1</Y>
+                <Z>1.1</Z>
+            </DestroyEffectOffset>
+            <DestroySound>WepSmallWarheadExpl</DestroySound>
+            <PCU>45</PCU>
+            <IsAirTight>false</IsAirTight>
+        </Definition>
+
+        <Definition xsi:type="MyObjectBuilder_TextPanelDefinition">
+            <Id>
+                <TypeId>TextPanel</TypeId>
+                <SubtypeId>TraderLargeBlockCorner_LCD_Flat_1</SubtypeId>
+            </Id>
+            <DisplayName>Trader CornerLCD FlatTop</DisplayName>
+            <Icon>Textures\GUI\Icons\Cubes\Corner_LCD_Flat_1.dds</Icon>
+            <Description>Description_TextPanel</Description>
+            <CubeSize>Large</CubeSize>
+            <GuiVisible>false</GuiVisible>
+            <BlockTopology>TriangleMesh</BlockTopology>
+            <Size x="1" y="1" z="1" />
+            <ModelOffset x="0" y="0" z="0" />
+            <Model>Models\Cubes\large\Corner_LCD_Flat_1.mwm</Model>
+            <Components>
+                <Component Subtype="Construction" Count="5" />
+                <Component Subtype="Computer" Count="3" />
+                <Component Subtype="AdminChip" Count="100" />
+                <Component Subtype="Display" Count="1" />
+            </Components>
+            <CriticalComponent Subtype="AdminChip" Index="0" />
+            <MountPoints>
+                <MountPoint Side="Front" StartX="0.00" StartY="0.00" EndX="1.00" EndY="0.24" />
+                <MountPoint Side="Bottom" StartX="0.00" StartY="0.00" EndX="1.00" EndY="0.24" />
+            </MountPoints>
+            <EdgeType>Light</EdgeType>
+            <BuildProgressModels>
+                <Model BuildPercentUpperBound="1.00" File="Models\Cubes\large\Corner_LCD_Flat_1_Construction_1.mwm" />
+            </BuildProgressModels>
+            <BuildTimeSeconds>6</BuildTimeSeconds>
+            <DamageEffectName>Damage_Electrical_Damaged</DamageEffectName>
+            <DamagedSound>ParticleElectrical</DamagedSound>
+            <ScreenWidth>7</ScreenWidth>
+            <ScreenHeight>1</ScreenHeight>
+            <ScreenAreas>
+                <ScreenArea Name="ScreenArea" DisplayName="ScreenArea" TextureResolution="128" ScreenWidth="7" ScreenHeight="1" />
+                <ScreenArea Name="ScreenArea90" DisplayName="ScreenArea90" TextureResolution="128" ScreenWidth="1" ScreenHeight="7" />
+                <ScreenArea Name="ScreenArea180" DisplayName="ScreenArea180" TextureResolution="128" ScreenWidth="7" ScreenHeight="1" />
+                <ScreenArea Name="ScreenArea270" DisplayName="ScreenArea270" TextureResolution="128" ScreenWidth="1" ScreenHeight="7" />
+            </ScreenAreas>
+            <MirroringZ>Y</MirroringZ>
+            <MirroringY>Z</MirroringY>
+            <RequiredPowerInput>0.00006</RequiredPowerInput>
+            <TextureResolution>128</TextureResolution>
+            <ResourceSinkGroup>Utility</ResourceSinkGroup>
+            <MaxScreenRenderDistance>60</MaxScreenRenderDistance>
+            <DestroyEffect>BlockDestroyedExplosion_Large</DestroyEffect>
+            <DestroyEffectOffset>
+                <X>0</X>
+                <Y>-1.1</Y>
+                <Z>-1.1</Z>
+            </DestroyEffectOffset>
+            <DestroySound>WepSmallWarheadExpl</DestroySound>
+            <PCU>45</PCU>
+            <IsAirTight>false</IsAirTight>
+        </Definition>
+
+        <Definition xsi:type="MyObjectBuilder_TextPanelDefinition">
+            <Id>
+                <TypeId>TextPanel</TypeId>
+                <SubtypeId>TraderLargeBlockCorner_LCD_Flat_2</SubtypeId>
+            </Id>
+            <DisplayName>Trader CornerLCD FlatBottom</DisplayName>
+            <Icon>Textures\GUI\Icons\Cubes\Corner_LCD_Flat_2.dds</Icon>
+            <Description>Description_TextPanel</Description>
+            <CubeSize>Large</CubeSize>
+            <GuiVisible>false</GuiVisible>
+            <BlockTopology>TriangleMesh</BlockTopology>
+            <Size x="1" y="1" z="1" />
+            <ModelOffset x="0" y="0" z="0" />
+            <Model>Models\Cubes\large\Corner_LCD_Flat_2.mwm</Model>
+            <Components>
+                <Component Subtype="Construction" Count="5" />
+                <Component Subtype="Computer" Count="3" />
+                <Component Subtype="AdminChip" Count="100" />
+                <Component Subtype="Display" Count="1" />
+            </Components>
+            <CriticalComponent Subtype="AdminChip" Index="0" />
+            <MountPoints>
+                <MountPoint Side="Back" StartX="0.00" StartY="0.00" EndX="1.00" EndY="0.24" />
+                <MountPoint Side="Bottom" StartX="0.00" StartY="0.76" EndX="1.00" EndY="1.00" />
+            </MountPoints>
+            <EdgeType>Light</EdgeType>
+            <BuildProgressModels>
+            <Model BuildPercentUpperBound="1.00" File="Models\Cubes\large\Corner_LCD_Flat_2_Construction_1.mwm" />
+            </BuildProgressModels>
+            <ScreenWidth>7</ScreenWidth>
+            <ScreenHeight>1</ScreenHeight>
+            <ScreenAreas>
+                <ScreenArea Name="ScreenArea" DisplayName="ScreenArea" TextureResolution="128" ScreenWidth="7" ScreenHeight="1" />
+                <ScreenArea Name="ScreenArea90" DisplayName="ScreenArea90" TextureResolution="128" ScreenWidth="1" ScreenHeight="7" />
+                <ScreenArea Name="ScreenArea180" DisplayName="ScreenArea180" TextureResolution="128" ScreenWidth="7" ScreenHeight="1" />
+                <ScreenArea Name="ScreenArea270" DisplayName="ScreenArea270" TextureResolution="128" ScreenWidth="1" ScreenHeight="7" />
+            </ScreenAreas>
+            <BuildTimeSeconds>6</BuildTimeSeconds>
+            <DamageEffectName>Damage_Electrical_Damaged</DamageEffectName>
+            <DamagedSound>ParticleElectrical</DamagedSound>
+            <MirroringZ>Y</MirroringZ>
+            <MirroringY>Z</MirroringY>
+            <RequiredPowerInput>0.00006</RequiredPowerInput>
+            <TextureResolution>128</TextureResolution>
+            <ResourceSinkGroup>Utility</ResourceSinkGroup>
+            <MaxScreenRenderDistance>60</MaxScreenRenderDistance>
+            <DestroyEffect>BlockDestroyedExplosion_Large</DestroyEffect>
+            <DestroyEffectOffset>
+                <X>0</X>
+                <Y>-1.1</Y>
+                <Z>1.1</Z>
+            </DestroyEffectOffset>
+            <DestroySound>WepSmallWarheadExpl</DestroySound>
+            <PCU>45</PCU>
+            <IsAirTight>false</IsAirTight>
+        </Definition>
+
+        <Definition xsi:type="MyObjectBuilder_TextPanelDefinition">
+            <Id>
+                <TypeId>TextPanel</TypeId>
+                <SubtypeId>TraderSmallBlockCorner_LCD_1</SubtypeId>
+            </Id>
+            <DisplayName>Trader CornerLCD</DisplayName>
+            <BlockPairName>TraderCornerLCD</BlockPairName>
+            <Icon>Textures\GUI\Icons\Cubes\Corner_LCD_1.dds</Icon>
+            <Description>Description_TextPanel</Description>
+            <CubeSize>Small</CubeSize>
+            <BlockTopology>TriangleMesh</BlockTopology>
+            <Size x="1" y="1" z="1" />
+            <ModelOffset x="0" y="0" z="0" />
+            <Model>Models\Cubes\small\Corner_LCD_1.mwm</Model>
+            <Components>
+                <Component Subtype="Construction" Count="3" />
+                <Component Subtype="Computer" Count="2" />
+                <Component Subtype="AdminChip" Count="100" />
+                <Component Subtype="Display" Count="1" />
+            </Components>
+            <CriticalComponent Subtype="AdminChip" Index="0" />
+            <MountPoints>
+                <MountPoint Side="Back" StartX="0.00" StartY="0.00" EndX="1.00" EndY="0.24" />
+                <MountPoint Side="Bottom" StartX="0.00" StartY="0.76" EndX="1.00" EndY="1.00" />
+            </MountPoints>
+            <EdgeType>Light</EdgeType>
+            <BuildProgressModels>
+                <Model BuildPercentUpperBound="1.00" File="Models\Cubes\small\Corner_LCD_1_Construction_1.mwm" />
+            </BuildProgressModels>
+            <BuildTimeSeconds>4</BuildTimeSeconds>
+            <DamageEffectName>Damage_Electrical_Damaged</DamageEffectName>
+            <DamagedSound>ParticleElectrical</DamagedSound>
+            <MirroringZ>Y</MirroringZ>
+            <MirroringY>Z</MirroringY>
+            <ScreenWidth>22</ScreenWidth>
+            <ScreenHeight>7</ScreenHeight>
+            <ScreenAreas>
+                <ScreenArea Name="ScreenArea" DisplayName="ScreenArea" TextureResolution="256" ScreenWidth="22" ScreenHeight="7" />
+                <ScreenArea Name="ScreenArea90" DisplayName="ScreenArea90" TextureResolution="256" ScreenWidth="7" ScreenHeight="22" />
+                <ScreenArea Name="ScreenArea180" DisplayName="ScreenArea180" TextureResolution="256" ScreenWidth="22" ScreenHeight="7" />
+                <ScreenArea Name="ScreenArea270" DisplayName="ScreenArea270" TextureResolution="256" ScreenWidth="7" ScreenHeight="22" />
+            </ScreenAreas>
+            <RequiredPowerInput>0.00002</RequiredPowerInput>
+            <TextureResolution>256</TextureResolution>
+            <ResourceSinkGroup>Utility</ResourceSinkGroup>
+            <MaxScreenRenderDistance>25</MaxScreenRenderDistance>
+            <DestroyEffect>BlockDestroyedExplosion_Small</DestroyEffect>
+            <DestroySound>WepSmallWarheadExpl</DestroySound>
+            <PCU>45</PCU>
+            <IsAirTight>false</IsAirTight>
+        </Definition>
+
+        <Definition xsi:type="MyObjectBuilder_TextPanelDefinition">
+            <Id>
+                <TypeId>TextPanel</TypeId>
+                <SubtypeId>TraderSmallBlockCorner_LCD_2</SubtypeId>
+            </Id>
+            <DisplayName>Trader CornerLCD 2</DisplayName>
+            <Icon>Textures\GUI\Icons\Cubes\Corner_LCD_2.dds</Icon>
+            <Description>Description_TextPanel</Description>
+            <CubeSize>Small</CubeSize>
+            <GuiVisible>false</GuiVisible>
+            <BlockTopology>TriangleMesh</BlockTopology>
+            <Size x="1" y="1" z="1" />
+            <ModelOffset x="0" y="0" z="0" />
+            <Model>Models\Cubes\small\Corner_LCD_2.mwm</Model>
+            <Components>
+                <Component Subtype="Construction" Count="3" />
+                <Component Subtype="Computer" Count="2" />
+                <Component Subtype="AdminChip" Count="100" />
+                <Component Subtype="Display" Count="1" />
+            </Components>
+            <CriticalComponent Subtype="AdminChip" Index="0" />
+            <MountPoints>
+                <MountPoint Side="Bottom" StartX="0.00" StartY="0.76" EndX="1.00" EndY="1.00" />
+            </MountPoints>
+            <EdgeType>Light</EdgeType>
+            <BuildProgressModels>
+            <Model BuildPercentUpperBound="1.00" File="Models\Cubes\small\Corner_LCD_2_Construction_1.mwm" />
+            </BuildProgressModels>
+            <BuildTimeSeconds>4</BuildTimeSeconds>
+            <DamageEffectName>Damage_Electrical_Damaged</DamageEffectName>
+            <DamagedSound>ParticleElectrical</DamagedSound>
+            <MirroringZ>Y</MirroringZ>
+            <MirroringY>Z</MirroringY>
+            <ScreenWidth>22</ScreenWidth>
+            <ScreenHeight>7</ScreenHeight>
+            <ScreenAreas>
+                <ScreenArea Name="ScreenArea" DisplayName="ScreenArea" TextureResolution="256" ScreenWidth="22" ScreenHeight="7" />
+                <ScreenArea Name="ScreenArea90" DisplayName="ScreenArea90" TextureResolution="256" ScreenWidth="7" ScreenHeight="22" />
+                <ScreenArea Name="ScreenArea180" DisplayName="ScreenArea180" TextureResolution="256" ScreenWidth="22" ScreenHeight="7" />
+                <ScreenArea Name="ScreenArea270" DisplayName="ScreenArea270" TextureResolution="256" ScreenWidth="7" ScreenHeight="22" />
+            </ScreenAreas>
+            <RequiredPowerInput>0.00002</RequiredPowerInput>
+            <TextureResolution>256</TextureResolution>
+            <ResourceSinkGroup>Utility</ResourceSinkGroup>
+            <MaxScreenRenderDistance>25</MaxScreenRenderDistance>
+            <DestroyEffect>BlockDestroyedExplosion_Small</DestroyEffect>
+            <DestroySound>WepSmallWarheadExpl</DestroySound>
+            <PCU>45</PCU>
+            <IsAirTight>false</IsAirTight>
+        </Definition>
+
+        <Definition xsi:type="MyObjectBuilder_TextPanelDefinition">
+            <Id>
+                <TypeId>TextPanel</TypeId>
+                <SubtypeId>TraderSmallBlockCorner_LCD_Flat_1</SubtypeId>
+            </Id>
+            <DisplayName>Trader CornerLCD FlatTop</DisplayName>
+            <Icon>Textures\GUI\Icons\Cubes\Corner_LCD_Flat_1.dds</Icon>
+            <Description>Description_TextPanel</Description>
+            <CubeSize>Small</CubeSize>
+            <GuiVisible>false</GuiVisible>
+            <BlockTopology>TriangleMesh</BlockTopology>
+            <Size x="1" y="1" z="1" />
+            <ModelOffset x="0" y="0" z="0" />
+            <Model>Models\Cubes\small\Corner_LCD_Flat_1.mwm</Model>
+            <Components>
+                <Component Subtype="Construction" Count="3" />
+                <Component Subtype="Computer" Count="2" />
+                <Component Subtype="AdminChip" Count="100" />
+                <Component Subtype="Display" Count="1" />
+            </Components>
+            <CriticalComponent Subtype="AdminChip" Index="0" />
+            <MountPoints>
+                <MountPoint Side="Front" StartX="0.00" StartY="0.00" EndX="1.00" EndY="0.24" />
+                <MountPoint Side="Bottom" StartX="0.00" StartY="0.00" EndX="1.00" EndY="0.1" />
+            </MountPoints>
+            <EdgeType>Light</EdgeType>
+            <BuildProgressModels>
+                <Model BuildPercentUpperBound="1.00" File="Models\Cubes\small\Corner_LCD_Flat_Construction_1.mwm" />
+            </BuildProgressModels>
+            <BuildTimeSeconds>4</BuildTimeSeconds>
+            <DamageEffectName>Damage_Electrical_Damaged</DamageEffectName>
+            <DamagedSound>ParticleElectrical</DamagedSound>
+            <ScreenWidth>25</ScreenWidth>
+            <ScreenHeight>10</ScreenHeight>
+            <ScreenAreas>
+                <ScreenArea Name="ScreenArea" DisplayName="ScreenArea" TextureResolution="256" ScreenWidth="25" ScreenHeight="10" />
+                <ScreenArea Name="ScreenArea90" DisplayName="ScreenArea90" TextureResolution="256" ScreenWidth="10" ScreenHeight="25" />
+                <ScreenArea Name="ScreenArea180" DisplayName="ScreenArea180" TextureResolution="256" ScreenWidth="25" ScreenHeight="10" />
+                <ScreenArea Name="ScreenArea270" DisplayName="ScreenArea270" TextureResolution="256" ScreenWidth="10" ScreenHeight="25" />
+            </ScreenAreas>
+            <MirroringZ>Y</MirroringZ>
+            <MirroringY>Z</MirroringY>
+            <RequiredPowerInput>0.00002</RequiredPowerInput>
+            <TextureResolution>256</TextureResolution>
+            <ResourceSinkGroup>Utility</ResourceSinkGroup>
+            <MaxScreenRenderDistance>25</MaxScreenRenderDistance>
+            <DestroyEffect>BlockDestroyedExplosion_Small</DestroyEffect>
+            <DestroySound>WepSmallWarheadExpl</DestroySound>
+            <PCU>45</PCU>
+            <IsAirTight>false</IsAirTight>
+        </Definition>
+
+        <Definition xsi:type="MyObjectBuilder_TextPanelDefinition">
+            <Id>
+                <TypeId>TextPanel</TypeId>
+                <SubtypeId>TraderSmallBlockCorner_LCD_Flat_2</SubtypeId>
+            </Id>
+            <DisplayName>Trader CornerLCD FlatBottom</DisplayName>
+            <Icon>Textures\GUI\Icons\Cubes\Corner_LCD_Flat_2.dds</Icon>
+            <Description>Description_TextPanel</Description>
+            <CubeSize>Small</CubeSize>
+            <GuiVisible>false</GuiVisible>
+            <BlockTopology>TriangleMesh</BlockTopology>
+            <Size x="1" y="1" z="1" />
+            <ModelOffset x="0" y="0" z="0" />
+            <Model>Models\Cubes\small\Corner_LCD_Flat_2.mwm</Model>
+            <Components>
+                <Component Subtype="Construction" Count="3" />
+                <Component Subtype="Computer" Count="2" />
+                <Component Subtype="AdminChip" Count="100" />
+                <Component Subtype="Display" Count="1" />
+            </Components>
+            <CriticalComponent Subtype="AdminChip" Index="0" />
+            <MountPoints>
+                <MountPoint Side="Front" StartX="0.00" StartY="0.00" EndX="1.00" EndY="0.24" />
+                <MountPoint Side="Bottom" StartX="0.00" StartY="0.00" EndX="1.00" EndY="0.1" />
+            </MountPoints>
+            <EdgeType>Light</EdgeType>
+            <BuildProgressModels>
+                <Model BuildPercentUpperBound="1.00" File="Models\Cubes\small\Corner_LCD_Flat_Construction_1.mwm" />
+            </BuildProgressModels>
+            <BuildTimeSeconds>4</BuildTimeSeconds>
+            <DamageEffectName>Damage_Electrical_Damaged</DamageEffectName>
+            <DamagedSound>ParticleElectrical</DamagedSound>
+            <ScreenWidth>25</ScreenWidth>
+            <ScreenHeight>10</ScreenHeight>
+            <ScreenAreas>
+                <ScreenArea Name="ScreenArea" DisplayName="ScreenArea" TextureResolution="256" ScreenWidth="25" ScreenHeight="10" />
+                <ScreenArea Name="ScreenArea90" DisplayName="ScreenArea90" TextureResolution="256" ScreenWidth="10" ScreenHeight="25" />
+                <ScreenArea Name="ScreenArea180" DisplayName="ScreenArea180" TextureResolution="256" ScreenWidth="25" ScreenHeight="10" />
+                <ScreenArea Name="ScreenArea270" DisplayName="ScreenArea270" TextureResolution="256" ScreenWidth="10" ScreenHeight="25" />
+            </ScreenAreas>
+            <MirroringZ>Y</MirroringZ>
+            <MirroringY>Z</MirroringY>
+            <RequiredPowerInput>0.00002</RequiredPowerInput>
+            <TextureResolution>256</TextureResolution>
+            <ResourceSinkGroup>Utility</ResourceSinkGroup>
+            <MaxScreenRenderDistance>25</MaxScreenRenderDistance>
+            <DestroyEffect>BlockDestroyedExplosion_Small</DestroyEffect>
+            <DestroySound>WepSmallWarheadExpl</DestroySound>
+            <PCU>45</PCU>
+            <IsAirTight>false</IsAirTight>
+        </Definition>
+
+        <Definition xsi:type="MyObjectBuilder_TextPanelDefinition">
+            <Id>
+                <TypeId>TextPanel</TypeId>
+                <SubtypeId>TraderLargeTextPanel</SubtypeId>
+            </Id>
+            <DisplayName>Trader TextPanel</DisplayName>
+            <Icon>Textures\GUI\Icons\Cubes\TextPanel.dds</Icon>
+            <Description>Description_TextPanel</Description>
+            <CubeSize>Large</CubeSize>
+            <BlockTopology>TriangleMesh</BlockTopology>
+            <Size x="1" y="1" z="1" />
+            <ModelOffset x="0" y="0" z="0" />
+            <Model>Models\Cubes\Large\TextPanel.mwm</Model>
+            <Components>
+                <Component Subtype="InteriorPlate" Count="1" />
+                <Component Subtype="Construction" Count="6" />
+                <Component Subtype="Computer" Count="6" />
+                <Component Subtype="AdminChip" Count="100" />
+                <Component Subtype="Display" Count="10" />
+                <Component Subtype="BulletproofGlass" Count="2" />
+            </Components>
+            <CriticalComponent Subtype="AdminChip" Index="0" />
+            <MountPoints>
+                <MountPoint Side="Front" StartX="0" StartY="0" EndX="1" EndY="1" Default="true"/>
+                <MountPoint Side="Left" StartX="0" StartY="0.2" EndX="0.1" EndY="0.8" />
+                <MountPoint Side="Right" StartX="0.9" StartY="0.2" EndX="1" EndY="0.8" />
+            </MountPoints>
+            <BuildProgressModels>
+                <Model BuildPercentUpperBound="0.50" File="Models\Cubes\Large\TextPanel_Construction_1.mwm" />
+                <Model BuildPercentUpperBound="1.00" File="Models\Cubes\Large\TextPanel_Construction_2.mwm" />
+            </BuildProgressModels>
+            <BlockPairName>TraderTextPanel</BlockPairName>
+            <MirroringY>Z</MirroringY>
+            <MirroringZ>Y</MirroringZ>
+            <EdgeType>Light</EdgeType>
+            <BuildTimeSeconds>5</BuildTimeSeconds>
+            <MaxScreenRenderDistance>120</MaxScreenRenderDistance>
+            <DamageEffectName>Damage_Electrical_Damaged</DamageEffectName>
+            <DamagedSound>ParticleElectrical</DamagedSound>
+            <GuiVisible>false</GuiVisible>
+            <ScreenWidth>5</ScreenWidth>
+            <ScreenHeight>3</ScreenHeight>
+            <ScreenAreas>
+                <ScreenArea Name="ScreenArea" DisplayName="ScreenArea" TextureResolution="512" ScreenWidth="5" ScreenHeight="3" />
+                <ScreenArea Name="ScreenArea90" DisplayName="ScreenArea90" TextureResolution="512" ScreenWidth="3" ScreenHeight="5" />
+                <ScreenArea Name="ScreenArea180" DisplayName="ScreenArea180" TextureResolution="512" ScreenWidth="5" ScreenHeight="3" />
+                <ScreenArea Name="ScreenArea270" DisplayName="ScreenArea270" TextureResolution="512" ScreenWidth="3" ScreenHeight="5" />
+            </ScreenAreas>
+            <ResourceSinkGroup>Utility</ResourceSinkGroup>
+            <RequiredPowerInput>0.00006</RequiredPowerInput>
+            <DestroyEffect>BlockDestroyedExplosion_Large</DestroyEffect>
+            <DestroyEffectOffset>
+                <X>0</X>
+                <Y>0</Y>
+                <Z>-1.1</Z>
+            </DestroyEffectOffset>
+            <DestroySound>WepSmallWarheadExpl</DestroySound>
+            <PCU>45</PCU>
+            <IsAirTight>false</IsAirTight>
+        </Definition>
+
+        <Definition xsi:type="MyObjectBuilder_TextPanelDefinition">
+            <Id>
+                <TypeId>TextPanel</TypeId>
+                <SubtypeId>TraderLargeLCDPanel</SubtypeId>
+            </Id>
+            <DisplayName>Trader LCD Panel</DisplayName>
+            <Icon>Textures\GUI\Icons\Cubes\LCDPanel.dds</Icon>
+            <Description>Description_TextPanel</Description>
+            <CubeSize>Large</CubeSize>
+            <BlockTopology>TriangleMesh</BlockTopology>
+            <Size x="1" y="1" z="1" />
+            <ModelOffset x="0" y="0" z="0" />
+            <Model>Models\Cubes\Large\LCDPanel.mwm</Model>
+            <Components>
+                <Component Subtype="InteriorPlate" Count="1" />
+                <Component Subtype="Construction" Count="6" />
+                <Component Subtype="Computer" Count="6" />
+                <Component Subtype="AdminChip" Count="100" />
+                <Component Subtype="Display" Count="10" />
+                <Component Subtype="BulletproofGlass" Count="6" />
+            </Components>
+            <CriticalComponent Subtype="AdminChip" Index="0" />
+            <MountPoints>
+                <MountPoint Side="Front" StartX="0" StartY="0" EndX="1" EndY="1" Default="true"/>
+                <MountPoint Side="Left" StartX="0" StartY="0.1" EndX="0.1" EndY="0.9" />
+                <MountPoint Side="Right" StartX="0.9" StartY="0.1" EndX="1" EndY="0.9" />
+                <MountPoint Side="Top" StartX="0" StartY="0.9" EndX="1" EndY="1" />
+                <MountPoint Side="Bottom" StartX="0" StartY="0" EndX="1" EndY="0.1" />
+            </MountPoints>
+            <BuildProgressModels>
+                <Model BuildPercentUpperBound="0.50" File="Models\Cubes\Large\LCDPanel_Construction_1.mwm" />
+                <Model BuildPercentUpperBound="1.00" File="Models\Cubes\Large\LCDPanel_Construction_2.mwm" />
+            </BuildProgressModels>
+            <BlockPairName>TraderLCDPanel</BlockPairName>
+            <MirroringY>Z</MirroringY>
+            <MirroringZ>Y</MirroringZ>
+            <EdgeType>Light</EdgeType>
+            <BuildTimeSeconds>6</BuildTimeSeconds>
+            <MaxScreenRenderDistance>120</MaxScreenRenderDistance>
+            <ResourceSinkGroup>Utility</ResourceSinkGroup>
+            <RequiredPowerInput>0.00006</RequiredPowerInput>
+            <TextureResolution>512</TextureResolution>
+            <ScreenAreas>
+                <ScreenArea Name="ScreenArea" DisplayName="ScreenArea" TextureResolution="512" ScreenWidth="1" ScreenHeight="1" />
+                <ScreenArea Name="ScreenArea90" DisplayName="ScreenArea90" TextureResolution="512" ScreenWidth="1" ScreenHeight="1" />
+                <ScreenArea Name="ScreenArea180" DisplayName="ScreenArea180" TextureResolution="512" ScreenWidth="1" ScreenHeight="1" />
+                <ScreenArea Name="ScreenArea270" DisplayName="ScreenArea270" TextureResolution="512" ScreenWidth="1" ScreenHeight="1" />
+            </ScreenAreas>
+            <DamageEffectName>Damage_Electrical_Damaged</DamageEffectName>
+            <DamagedSound>ParticleElectrical</DamagedSound>
+            <DestroyEffect>BlockDestroyedExplosion_Large</DestroyEffect>
+            <DestroyEffectOffset>
+                <X>0</X>
+                <Y>0</Y>
+                <Z>-1.1</Z>
+            </DestroyEffectOffset>
+            <DestroySound>WepSmallWarheadExpl</DestroySound>
+            <PCU>45</PCU>
+            <IsAirTight>false</IsAirTight>
+        </Definition>
+
+        <Definition xsi:type="MyObjectBuilder_TextPanelDefinition">
+            <Id>
+                <TypeId>TextPanel</TypeId>
+                <SubtypeId>TraderLargeLCDPanelWide</SubtypeId>
+            </Id>
+            <DisplayName>Trader LCD PanelWide</DisplayName>
+            <Icon>Textures\GUI\Icons\Cubes\LCDPanelWide.dds</Icon>
+            <Description>Description_TextPanel</Description>
+            <CubeSize>Large</CubeSize>
+            <BlockTopology>TriangleMesh</BlockTopology>
+            <Size x="2" y="1" z="1" />
+            <ModelOffset x="0" y="0" z="0" />
+            <Model>Models\Cubes\Large\LCDPanelWide.mwm</Model>
+            <Components>
+                <Component Subtype="InteriorPlate" Count="2" />
+                <Component Subtype="Construction" Count="12" />
+                <Component Subtype="Computer" Count="12" />
+                <Component Subtype="AdminChip" Count="100" />
+                <Component Subtype="Display" Count="20" />
+                <Component Subtype="BulletproofGlass" Count="12" />
+            </Components>
+            <CriticalComponent Subtype="AdminChip" Index="0" />
+            <MountPoints>
+                <MountPoint Side="Front" StartX="0" StartY="0" EndX="2" EndY="1" Default="true"/>
+                <MountPoint Side="Left" StartX="0" StartY="0.1" EndX="0.1" EndY="0.9" />
+                <MountPoint Side="Right" StartX="0.9" StartY="0.1" EndX="1" EndY="0.9" />
+                <MountPoint Side="Top" StartX="0" StartY="0.9" EndX="2" EndY="1" />
+                <MountPoint Side="Bottom" StartX="0" StartY="0" EndX="2" EndY="0.1" />
+            </MountPoints>
+            <BuildProgressModels>
+                <Model BuildPercentUpperBound="0.50" File="Models\Cubes\Large\LCDPanelWide_Construction_1.mwm" />
+                <Model BuildPercentUpperBound="1.00" File="Models\Cubes\Large\LCDPanelWide_Construction_2.mwm" />
+            </BuildProgressModels>
+            <BlockPairName>TraderLCDPanelWide</BlockPairName>
+            <MirroringX>OffsetX</MirroringX>
+            <MirroringY>ZThenOffsetXOdd</MirroringY>
+            <MirroringZ>YThenOffsetXOdd</MirroringZ>
+            <EdgeType>Light</EdgeType>
+            <BuildTimeSeconds>8</BuildTimeSeconds>
+            <MaxScreenRenderDistance>120</MaxScreenRenderDistance>
+            <ResourceSinkGroup>Utility</ResourceSinkGroup>
+            <RequiredPowerInput>0.00012</RequiredPowerInput>
+            <TextureResolution>512</TextureResolution>
+            <ScreenAreas>
+                <ScreenArea Name="ScreenArea" DisplayName="ScreenArea" TextureResolution="512" ScreenWidth="2" ScreenHeight="1" />
+                <ScreenArea Name="ScreenArea90" DisplayName="ScreenArea90" TextureResolution="512" ScreenWidth="1" ScreenHeight="2" />
+                <ScreenArea Name="ScreenArea180" DisplayName="ScreenArea180" TextureResolution="512" ScreenWidth="2" ScreenHeight="1" />
+                <ScreenArea Name="ScreenArea270" DisplayName="ScreenArea270" TextureResolution="512" ScreenWidth="1" ScreenHeight="2" />
+            </ScreenAreas>
+            <ScreenWidth>2</ScreenWidth>
+            <ScreenHeight>1</ScreenHeight>
+            <GuiVisible>false</GuiVisible>
+            <DamageEffectName>Damage_Electrical_Damaged</DamageEffectName>
+            <DamagedSound>ParticleElectrical</DamagedSound>
+            <DestroyEffect>BlockDestroyedExplosion_Large</DestroyEffect>
+            <DestroyEffectOffset>
+                <X>0</X>
+                <Y>0</Y>
+                <Z>-1.1</Z>
+            </DestroyEffectOffset>
+            <DestroySound>WepSmallWarheadExpl</DestroySound>
+            <PCU>45</PCU>
+            <IsAirTight>false</IsAirTight>
+        </Definition>
+<!-- New Bildschirme ohne Trader-->
+        <Definition xsi:type="MyObjectBuilder_TextPanelDefinition">
+            <Id>
+                <TypeId>TextPanel</TypeId>
+                <SubtypeId>TraderTransparentLCDLarge</SubtypeId>
+            </Id>
+            <DisplayName>Trader TransparentLCD</DisplayName>
+            <Icon>Textures\GUI\Icons\Cubes\TransparentLCD.dds</Icon>
+            <Description>Description_TransparentLCD</Description>
+            <CubeSize>Large</CubeSize>
+            <BlockTopology>TriangleMesh</BlockTopology>
+            <Size x="1" y="1" z="1" />
+            <GuiVisible>false</GuiVisible>
+            <Model>Models\Cubes\Large\TransparentLCD.mwm</Model>
+            <ModelOffset x="0" y="0" z="0" />
+            <Components>
+                <Component Subtype="Construction" Count="8" />
+                <Component Subtype="Computer" Count="6" />
+                <Component Subtype="AdminChip" Count="100" />
+                <Component Subtype="Display" Count="10" />
+                <Component Subtype="BulletproofGlass" Count="10" />
+            </Components>
+            <CriticalComponent Subtype="AdminChip" Index="0" />
+            <MountPoints>
+                <MountPoint Side="Left" StartX="0" StartY="0" EndX="0.1" EndY="1" />
+                <MountPoint Side="Bottom" StartX="0" StartY="0" EndX="1" EndY="0.1" Default="true" />
+                <MountPoint Side="Front" StartX="0" StartY="0" EndX="1" EndY="1" />
+                <MountPoint Side="Right" StartX="0.9" StartY="0" EndX="1" EndY="1" />
+                <MountPoint Side="Top" StartX="0.0" StartY="0.9" EndX="1" EndY="1" />
+            </MountPoints>
+            <BlockPairName>TraderTransparentLCD</BlockPairName>
+            <BuildProgressModels>
+                <Model BuildPercentUpperBound="0.5" File="Models\Cubes\Large\TransparentLCD_Construction_1.mwm" />
+                <Model BuildPercentUpperBound="1.0" File="Models\Cubes\Large\TransparentLCD_Construction_2.mwm" />
+            </BuildProgressModels>
+            <ScreenAreas>
+                <ScreenArea Name="TransparentScreenArea" DisplayName="TransparentScreenArea" TextureResolution="512" ScreenWidth="1" ScreenHeight="1" />
+                <ScreenArea Name="TransparentScreenArea90" DisplayName="TransparentScreenArea90" TextureResolution="512" ScreenWidth="1" ScreenHeight="1" />
+                <ScreenArea Name="TransparentScreenArea180" DisplayName="TransparentScreenArea270" TextureResolution="512" ScreenWidth="1" ScreenHeight="1" />
+                <ScreenArea Name="TransparentScreenArea270" DisplayName="TransparentScreenArea180" TextureResolution="512" ScreenWidth="1" ScreenHeight="1" />
+            </ScreenAreas>
+            <MirroringZ>Y</MirroringZ>
+            <MirroringY>Z</MirroringY>
+            <EdgeType>Light</EdgeType>
+            <HasInventory>false</HasInventory>
+            <BuildTimeSeconds>6</BuildTimeSeconds>
+            <MaxScreenRenderDistance>120</MaxScreenRenderDistance>
+            <ResourceSinkGroup>Utility</ResourceSinkGroup>
+            <RequiredPowerInput>0.00006</RequiredPowerInput>
+            <PanelMaterialName>TransparentScreenArea</PanelMaterialName>
+            <DamageEffectName>Damage_Electrical_Damaged</DamageEffectName>
+            <DamagedSound>ParticleElectrical</DamagedSound>
+            <PCU>45</PCU>
+            <DLC>DecorativeBlocks2</DLC>
+        </Definition>
+
+        <Definition xsi:type="MyObjectBuilder_TextPanelDefinition">
+            <Id>
+                <TypeId>TextPanel</TypeId>
+                <SubtypeId>TraderTransparentLCDSmall</SubtypeId>
+            </Id>
+            <DisplayName>Trader TransparentLCD</DisplayName>
+            <Icon>Textures\GUI\Icons\Cubes\TransparentLCD.dds</Icon>
+            <Description>Description_TransparentLCD</Description>
+            <CubeSize>Small</CubeSize>
+            <BlockTopology>TriangleMesh</BlockTopology>
+            <Size x="1" y="1" z="1" />
+            <GuiVisible>false</GuiVisible>
+            <Model>Models\Cubes\Small\TransparentLCD.mwm</Model>
+            <ModelOffset x="0" y="0" z="0" />
+            <Components>
+                <Component Subtype="Construction" Count="4" />
+                <Component Subtype="Computer" Count="4" />
+                <Component Subtype="AdminChip" Count="100" />
+                <Component Subtype="Display" Count="3" />
+                <Component Subtype="BulletproofGlass" Count="1" />
+            </Components>
+            <CriticalComponent Subtype="AdminChip" Index="0" />
+            <MountPoints>
+                <MountPoint Side="Left" StartX="0" StartY="0" EndX="0.1" EndY="1" />
+                <MountPoint Side="Bottom" StartX="0" StartY="0" EndX="1" EndY="0.1" Default="true" />
+                <MountPoint Side="Front" StartX="0" StartY="0" EndX="1" EndY="1" />
+                <MountPoint Side="Right" StartX="0.9" StartY="0" EndX="1" EndY="1" />
+                <MountPoint Side="Top" StartX="0.0" StartY="0.9" EndX="1" EndY="1" />
+            </MountPoints>
+            <BlockPairName>TraderTransparentLCD</BlockPairName>
+            <BuildProgressModels>
+                <Model BuildPercentUpperBound="1.00" File="Models\Cubes\Small\TransparentLCD_Construction_1.mwm" />
+            </BuildProgressModels>
+            <ScreenAreas>
+                <ScreenArea Name="TransparentScreenArea" DisplayName="TransparentScreenArea" TextureResolution="512" ScreenWidth="1" ScreenHeight="1" />
+                <ScreenArea Name="TransparentScreenArea90" DisplayName="TransparentScreenArea90" TextureResolution="512" ScreenWidth="1" ScreenHeight="1" />
+                <ScreenArea Name="TransparentScreenArea180" DisplayName="TransparentScreenArea270" TextureResolution="512" ScreenWidth="1" ScreenHeight="1" />
+                <ScreenArea Name="TransparentScreenArea270" DisplayName="TransparentScreenArea180" TextureResolution="512" ScreenWidth="1" ScreenHeight="1" />
+            </ScreenAreas>
+            <VoxelPlacement>
+            <StaticMode>
+                <PlacementMode>OutsideVoxel</PlacementMode>
+                <MaxAllowed>0.2</MaxAllowed>
+                <MinAllowed>0</MinAllowed>
+            </StaticMode>
+            <DynamicMode>
+                <PlacementMode>OutsideVoxel</PlacementMode>
+                <MaxAllowed>0.2</MaxAllowed>
+                <MinAllowed>0</MinAllowed>
+            </DynamicMode>
+            </VoxelPlacement>
+            <MirroringZ>Y</MirroringZ>
+            <MirroringY>Z</MirroringY>
+            <EdgeType>Light</EdgeType>
+            <HasInventory>false</HasInventory>
+            <BuildTimeSeconds>3</BuildTimeSeconds>
+            <MaxScreenRenderDistance>60</MaxScreenRenderDistance>
+            <ResourceSinkGroup>Utility</ResourceSinkGroup>
+            <RequiredPowerInput>0.00002</RequiredPowerInput>
+            <PanelMaterialName>TransparentScreenArea</PanelMaterialName>
+            <PCU>45</PCU>
+            <DamageEffectName>Damage_Electrical_Damaged</DamageEffectName>
+            <DamagedSound>ParticleElectrical</DamagedSound>
+            <DLC>DecorativeBlocks2</DLC>
+        </Definition>
+
+        <Definition xsi:type="MyObjectBuilder_TextPanelDefinition">
+            <Id>
+                <TypeId>TextPanel</TypeId>
+                <SubtypeId>TraderHoloLCDLarge</SubtypeId>
+            </Id>
+            <DisplayName>Trader HoloLCD</DisplayName>
+            <Icon>Textures\GUI\Icons\Cubes\HoloLCDLarge.dds</Icon>
+            <Description>Description_TransparentLCD</Description>
+            <CubeSize>Large</CubeSize>
+            <AllowInteractionThroughBlock>true</AllowInteractionThroughBlock>
+            <BlockTopology>TriangleMesh</BlockTopology>
+            <PlaceDecals>false</PlaceDecals>
+            <Size x="1" y="1" z="1" />
+            <GuiVisible>false</GuiVisible>
+            <Model>Models\Cubes\Large\HoloLCD.mwm</Model>
+            <ModelOffset x="0" y="0" z="0" />
+            <Components>
+                <Component Subtype="Construction" Count="6" />
+                <Component Subtype="Motor" Count="1" />
+                <Component Subtype="AdminChip" Count="100" />
+                <Component Subtype="Computer" Count="8" />
+                <Component Subtype="Construction" Count="4" />
+            </Components>
+            <CriticalComponent Subtype="AdminChip" Index="0" />
+            <MountPoints>
+                <MountPoint Side="Front" StartX="0.1" StartY="0.9" EndX="0.9" EndY="1" Default="true" />
+                <MountPoint Side="Top" StartX="0.1" StartY="0.9" EndX="0.9" EndY="1" />
+            </MountPoints>
+            <BlockPairName>TraderHoloLCD</BlockPairName>
+            <BuildProgressModels>
+                <Model BuildPercentUpperBound="0.33" File="Models\Cubes\Large\HoloLCD_Construction_1.mwm" />
+                <Model BuildPercentUpperBound="0.66" File="Models\Cubes\Large\HoloLCD_Construction_2.mwm" />
+                <Model BuildPercentUpperBound="1.0" File="Models\Cubes\Large\HoloLCD_Construction_3.mwm" />
+            </BuildProgressModels>
+            <ScreenAreas>
+                <ScreenArea Name="TransparentScreenArea" DisplayName="TransparentScreenArea" TextureResolution="512" ScreenWidth="1" ScreenHeight="1" />
+                <ScreenArea Name="TransparentScreenArea90" DisplayName="TransparentScreenArea90" TextureResolution="512" ScreenWidth="1" ScreenHeight="1" />
+                <ScreenArea Name="TransparentScreenArea180" DisplayName="TransparentScreenArea270" TextureResolution="512" ScreenWidth="1" ScreenHeight="1" />
+                <ScreenArea Name="TransparentScreenArea270" DisplayName="TransparentScreenArea180" TextureResolution="512" ScreenWidth="1" ScreenHeight="1" />
+            </ScreenAreas>
+            <MirroringZ>Y</MirroringZ>
+            <MirroringY>Z</MirroringY>
+            <EdgeType>Light</EdgeType>
+            <HasInventory>false</HasInventory>
+            <BuildTimeSeconds>6</BuildTimeSeconds>
+            <MaxScreenRenderDistance>120</MaxScreenRenderDistance>
+            <MaterialNamesToHideWhenOffline>
+            <string>HoloScreen</string>
+            <string>TransparentScreenArea_Outside</string>
+            </MaterialNamesToHideWhenOffline>
+            <ResourceSinkGroup>Utility</ResourceSinkGroup>
+            <RequiredPowerInput>0.00006</RequiredPowerInput>
+            <PanelMaterialName>TransparentScreenArea</PanelMaterialName>
+            <DamageEffectName>Damage_Electrical_Damaged_HoloLCD</DamageEffectName>
+            <DamagedSound>ParticleElectrical</DamagedSound>
+            <IsStandAlone>false</IsStandAlone>
+            <IsAirTight>false</IsAirTight>
+            <PCU>45</PCU>
+            <DLC>DecorativeBlocks3</DLC>
+        </Definition>
+
+        <Definition xsi:type="MyObjectBuilder_TextPanelDefinition">
+            <Id>
+                <TypeId>TextPanel</TypeId>
+                <SubtypeId>TraderHoloLCDSmall</SubtypeId>
+            </Id>
+            <DisplayName>Trader HoloLCD</DisplayName>
+            <Icon>Textures\GUI\Icons\Cubes\HoloLCD_Small.dds</Icon>
+            <Description>Description_TransparentLCD</Description>
+            <CubeSize>Small</CubeSize>
+            <AllowInteractionThroughBlock>true</AllowInteractionThroughBlock>
+            <BlockTopology>TriangleMesh</BlockTopology>
+            <PlaceDecals>false</PlaceDecals>
+            <Size x="1" y="1" z="1" />
+            <GuiVisible>false</GuiVisible>
+            <Model>Models\Cubes\Small\HoloLCD_Small.mwm</Model>
+            <ModelOffset x="0" y="0" z="0" />
+            <Components>
+                <Component Subtype="Construction" Count="3" />
+                <Component Subtype="Motor" Count="1" />
+                <Component Subtype="AdminChip" Count="100" />
+                <Component Subtype="Computer" Count="8" />
+                <Component Subtype="Construction" Count="2" />
+            </Components>
+            <CriticalComponent Subtype="AdminChip" Index="0" />
+            <MountPoints>
+                <MountPoint Side="Front" StartX="0.1" StartY="0.8" EndX="0.9" EndY="1" Default="true" />
+                <MountPoint Side="Top" StartX="0.1" StartY="0.8" EndX="0.9" EndY="1" />
+            </MountPoints>
+            <BlockPairName>TraderHoloLCD</BlockPairName>
+            <BuildProgressModels>
+                <Model BuildPercentUpperBound="0.50" File="Models\Cubes\Small\HoloLCD_Small_Construction_1.mwm" />
+                <Model BuildPercentUpperBound="1.00" File="Models\Cubes\Small\HoloLCD_Small_Construction_2.mwm" />
+            </BuildProgressModels>
+            <ScreenAreas>
+                <ScreenArea Name="TransparentScreenArea" DisplayName="TransparentScreenArea" TextureResolution="512" ScreenWidth="1" ScreenHeight="1" />
+                <ScreenArea Name="TransparentScreenArea90" DisplayName="TransparentScreenArea90" TextureResolution="512" ScreenWidth="1" ScreenHeight="1" />
+                <ScreenArea Name="TransparentScreenArea180" DisplayName="TransparentScreenArea270" TextureResolution="512" ScreenWidth="1" ScreenHeight="1" />
+                <ScreenArea Name="TransparentScreenArea270" DisplayName="TransparentScreenArea180" TextureResolution="512" ScreenWidth="1" ScreenHeight="1" />
+            </ScreenAreas>
+            <MirroringZ>Y</MirroringZ>
+            <MirroringY>Z</MirroringY>
+            <EdgeType>Light</EdgeType>
+            <HasInventory>false</HasInventory>
+            <BuildTimeSeconds>3</BuildTimeSeconds>
+            <MaxScreenRenderDistance>60</MaxScreenRenderDistance>
+            <MaterialNamesToHideWhenOffline>
+            <string>HoloScreen</string>
+            <string>TransparentScreenArea_Outside</string>
+            </MaterialNamesToHideWhenOffline>
+            <ResourceSinkGroup>Utility</ResourceSinkGroup>
+            <RequiredPowerInput>0.00002</RequiredPowerInput>
+            <PanelMaterialName>TransparentScreenArea</PanelMaterialName>
+            <DamageEffectName>Damage_Electrical_Damaged_SmallHoloLCD</DamageEffectName>
+            <DamagedSound>ParticleElectrical</DamagedSound>
+            <IsStandAlone>false</IsStandAlone>
+            <IsAirTight>false</IsAirTight>
+            <PCU>45</PCU>
+            <DLC>DecorativeBlocks3</DLC>
+        </Definition>
+
+        <Definition xsi:type="MyObjectBuilder_TextPanelDefinition">
+            <Id>
+                <TypeId>TextPanel</TypeId>
+                <SubtypeId>TraderLargeFullBlockLCDPanel</SubtypeId>
+            </Id>
+            <DisplayName>Trader FullBlockLCD</DisplayName>
+            <Icon>Textures\GUI\Icons\Cubes\FullBlockLCD.dds</Icon>
+            <Description>Description_TextPanel</Description>
+            <CubeSize>Large</CubeSize>
+            <BlockTopology>TriangleMesh</BlockTopology>
+            <Size x="1" y="1" z="1" />
+            <ModelOffset x="0" y="0" z="0" />
+            <Model>Models\Cubes\Large\FullBlockLCD.mwm</Model>
+            <Components>
+                <Component Subtype="InteriorPlate" Count="20" />
+                <Component Subtype="Construction" Count="10" />
+                <Component Subtype="Computer" Count="6" />
+                <Component Subtype="Construction" Count="10" />
+                <Component Subtype="AdminChip" Count="100" />
+                <Component Subtype="Display" Count="10" />
+                <Component Subtype="BulletproofGlass" Count="6" />
+            </Components>
+            <CriticalComponent Subtype="AdminChip" Index="0" />
+            <BuildProgressModels>
+                <Model BuildPercentUpperBound="0.33" File="Models\Cubes\Large\FullBlockLCDConstruction1.mwm" />
+                <Model BuildPercentUpperBound="0.66" File="Models\Cubes\Large\FullBlockLCDConstruction2.mwm" />
+                <Model BuildPercentUpperBound="1.00" File="Models\Cubes\Large\FullBlockLCDConstruction3.mwm" />
+            </BuildProgressModels>
+            <BlockPairName>TraderFullBlockLCDPanel</BlockPairName>
+            <MirroringX>Y</MirroringX>
+            <MirroringY>X</MirroringY>
+            <EdgeType>Light</EdgeType>
+            <BuildTimeSeconds>20</BuildTimeSeconds>
+            <MaxScreenRenderDistance>120</MaxScreenRenderDistance>
+            <DamageEffectName>Damage_Electrical_Damaged</DamageEffectName>
+            <DamagedSound>ParticleElectrical</DamagedSound>
+            <GuiVisible>false</GuiVisible>
+            <ScreenWidth>5</ScreenWidth>
+            <ScreenHeight>3</ScreenHeight>
+            <ScreenAreas>
+                <ScreenArea Name="ScreenArea" DisplayName="ScreenArea" TextureResolution="512" ScreenWidth="1" ScreenHeight="1" />
+                <ScreenArea Name="ScreenArea90" DisplayName="ScreenArea90" TextureResolution="512" ScreenWidth="1" ScreenHeight="1" />
+                <ScreenArea Name="ScreenArea180" DisplayName="ScreenArea180" TextureResolution="512" ScreenWidth="1" ScreenHeight="1" />
+                <ScreenArea Name="ScreenArea270" DisplayName="ScreenArea270" TextureResolution="512" ScreenWidth="1" ScreenHeight="1" />
+            </ScreenAreas>
+            <ResourceSinkGroup>Utility</ResourceSinkGroup>
+            <RequiredPowerInput>0.00006</RequiredPowerInput>
+            <DestroyEffect>BlockDestroyedExplosion_Large</DestroyEffect>
+            <DestroySound>WepSmallWarheadExpl</DestroySound>
+            <PCU>45</PCU>
+            <DLC>DecorativeBlocks3</DLC>
+        </Definition>
+
+        <Definition xsi:type="MyObjectBuilder_TextPanelDefinition">
+            <Id>
+                <TypeId>TextPanel</TypeId>
+                <SubtypeId>TraderSmallFullBlockLCDPanel</SubtypeId>
+            </Id>
+            <DisplayName>Trader FullBlockLCD</DisplayName>
+            <Icon>Textures\GUI\Icons\Cubes\FullBlockLCD.dds</Icon>
+            <Description>Description_TextPanel</Description>
+            <CubeSize>Small</CubeSize>
+            <BlockTopology>TriangleMesh</BlockTopology>
+            <Size x="1" y="1" z="1" />
+            <ModelOffset x="0" y="0" z="0" />
+            <Model>Models\Cubes\Small\FullBlockLCD.mwm</Model>
+            <Components>
+                <Component Subtype="InteriorPlate" Count="4" />
+                <Component Subtype="Construction" Count="2" />
+                <Component Subtype="Computer" Count="4" />
+                <Component Subtype="Construction" Count="2" />
+                <Component Subtype="AdminChip" Count="100" />
+                <Component Subtype="Display" Count="3" />
+                <Component Subtype="BulletproofGlass" Count="1" />
+            </Components>
+            <CriticalComponent Subtype="AdminChip" Index="0" />
+            <BuildProgressModels>
+                <Model BuildPercentUpperBound="0.33" File="Models\Cubes\Small\FullBlockLCDConstruction1.mwm" />
+                <Model BuildPercentUpperBound="0.66" File="Models\Cubes\Small\FullBlockLCDConstruction2.mwm" />
+                <Model BuildPercentUpperBound="1.00" File="Models\Cubes\Small\FullBlockLCDConstruction3.mwm" />
+            </BuildProgressModels>
+            <BlockPairName>TraderFullBlockLCDPanel</BlockPairName>
+            <MirroringX>Y</MirroringX>
+            <MirroringY>X</MirroringY>
+            <EdgeType>Light</EdgeType>
+            <BuildTimeSeconds>8</BuildTimeSeconds>
+            <MaxScreenRenderDistance>60</MaxScreenRenderDistance>
+            <GuiVisible>false</GuiVisible>
+            <ScreenWidth>5</ScreenWidth>
+            <ScreenHeight>3</ScreenHeight>
+            <ScreenAreas>
+                <ScreenArea Name="ScreenArea" DisplayName="ScreenArea" TextureResolution="512" ScreenWidth="1" ScreenHeight="1" />
+                <ScreenArea Name="ScreenArea90" DisplayName="ScreenArea90" TextureResolution="512" ScreenWidth="1" ScreenHeight="1" />
+                <ScreenArea Name="ScreenArea180" DisplayName="ScreenArea180" TextureResolution="512" ScreenWidth="1" ScreenHeight="1" />
+                <ScreenArea Name="ScreenArea270" DisplayName="ScreenArea270" TextureResolution="512" ScreenWidth="1" ScreenHeight="1" />
+            </ScreenAreas>
+            <ResourceSinkGroup>Utility</ResourceSinkGroup>
+            <RequiredPowerInput>0.00002</RequiredPowerInput>
+            <DamageEffectName>Damage_Electrical_Damaged</DamageEffectName>
+            <DamagedSound>ParticleElectrical</DamagedSound>
+            <DestroyEffect>BlockDestroyedExplosion_Small</DestroyEffect>
+            <DestroySound>WepSmallWarheadExpl</DestroySound>
+            <PCU>45</PCU>
+            <DLC>DecorativeBlocks3</DLC>
+        </Definition>
+
+        <Definition xsi:type="MyObjectBuilder_TextPanelDefinition">
+            <Id>
+                <TypeId>TextPanel</TypeId>
+                <SubtypeId>TraderLargeDiagonalLCDPanel</SubtypeId>
+            </Id>
+            <DisplayName>Trader DiagonalLCD</DisplayName>
+            <Icon>Textures\GUI\Icons\Cubes\DiagonalLCD.dds</Icon>
+            <Description>Description_TextPanel</Description>
+            <CubeSize>Large</CubeSize>
+            <BlockTopology>TriangleMesh</BlockTopology>
+            <Size x="1" y="1" z="1" />
+            <ModelOffset x="0" y="0" z="0" />
+            <Model>Models\Cubes\Large\DiagonalLCD.mwm</Model>
+            <Components>
+                <Component Subtype="InteriorPlate" Count="10" />
+                <Component Subtype="Construction" Count="5" />
+                <Component Subtype="Computer" Count="6" />
+                <Component Subtype="Construction" Count="5" />
+                <Component Subtype="AdminChip" Count="100" />
+                <Component Subtype="Display" Count="10" />
+                <Component Subtype="BulletproofGlass" Count="8" />
+            </Components>
+            <CriticalComponent Subtype="AdminChip" Index="0" />
+            <BuildProgressModels>
+                <Model BuildPercentUpperBound="0.33" File="Models\Cubes\Large\DiagonalLCDConstruction1.mwm" />
+                <Model BuildPercentUpperBound="0.66" File="Models\Cubes\Large\DiagonalLCDConstruction2.mwm" />
+                <Model BuildPercentUpperBound="1.00" File="Models\Cubes\Large\DiagonalLCDConstruction3.mwm" />
+            </BuildProgressModels>
+            <MountPoints>
+                <MountPoint Side="Back" StartX="0.00" StartY="0.00" EndX="1.00" EndY="1.00"/>
+                <MountPoint Side="Left" StartX="0.00" StartY="0.00" EndX="1.00" EndY="1.00"/>
+                <MountPoint Side="Top" StartX="0.00" StartY="0.00" EndX="1.00" EndY="0.50"/>
+                <MountPoint Side="Top" StartX="0.00" StartY="0.50" EndX="0.50" EndY="1.00"/>
+                <MountPoint Side="Bottom" StartX="0.00" StartY="0.50" EndX="1.00" EndY="1.00"/>
+                <MountPoint Side="Bottom" StartX="0.00" StartY="0.00" EndX="0.50" EndY="0.50"/>
+            </MountPoints>
+            <BlockPairName>TraderDiagonalLCDPanel</BlockPairName>
+            <MirroringX>MinusHalfY</MirroringX>
+            <MirroringY>ZHalfY</MirroringY>
+            <MirroringZ>HalfY</MirroringZ>
+            <EdgeType>Light</EdgeType>
+            <BuildTimeSeconds>12</BuildTimeSeconds>
+            <MaxScreenRenderDistance>120</MaxScreenRenderDistance>
+            <DamageEffectName>Damage_Electrical_Damaged</DamageEffectName>
+            <DamagedSound>ParticleElectrical</DamagedSound>
+            <GuiVisible>false</GuiVisible>
+            <ScreenWidth>5</ScreenWidth>
+            <ScreenHeight>3</ScreenHeight>
+            <ScreenAreas>
+                <ScreenArea Name="ScreenArea" DisplayName="ScreenArea" TextureResolution="512" ScreenWidth="1414" ScreenHeight="1000" />
+                <ScreenArea Name="ScreenArea90" DisplayName="ScreenArea90" TextureResolution="512" ScreenWidth="1000" ScreenHeight="1414" />
+                <ScreenArea Name="ScreenArea180" DisplayName="ScreenArea180" TextureResolution="512" ScreenWidth="1414" ScreenHeight="1000" />
+                <ScreenArea Name="ScreenArea270" DisplayName="ScreenArea270" TextureResolution="512" ScreenWidth="1000" ScreenHeight="1414" />
+            </ScreenAreas>
+            <ResourceSinkGroup>Utility</ResourceSinkGroup>
+            <RequiredPowerInput>0.00006</RequiredPowerInput>
+            <DestroyEffect>BlockDestroyedExplosion_Large</DestroyEffect>
+            <DestroySound>WepSmallWarheadExpl</DestroySound>
+            <PCU>45</PCU>
+            <DLC>DecorativeBlocks3</DLC>
+        </Definition>
+
+        <Definition xsi:type="MyObjectBuilder_TextPanelDefinition">
+            <Id>
+                <TypeId>TextPanel</TypeId>
+                <SubtypeId>TraderSmallDiagonalLCDPanel</SubtypeId>
+            </Id>
+            <DisplayName>Trader DiagonalLCD</DisplayName>
+            <Icon>Textures\GUI\Icons\Cubes\DiagonalLCD.dds</Icon>
+            <Description>Description_TextPanel</Description>
+            <CubeSize>Small</CubeSize>
+            <BlockTopology>TriangleMesh</BlockTopology>
+            <Size x="1" y="1" z="1" />
+            <ModelOffset x="0" y="0" z="0" />
+            <Model>Models\Cubes\Small\DiagonalLCD.mwm</Model>
+            <Components>
+                <Component Subtype="InteriorPlate" Count="4" />
+                <Component Subtype="Construction" Count="2" />
+                <Component Subtype="Computer" Count="4" />
+                <Component Subtype="Construction" Count="2" />
+                <Component Subtype="AdminChip" Count="100" />
+                <Component Subtype="Display" Count="3" />
+                <Component Subtype="BulletproofGlass" Count="1" />
+            </Components>
+            <CriticalComponent Subtype="AdminChip" Index="0" />
+            <BuildProgressModels>
+                <Model BuildPercentUpperBound="0.33" File="Models\Cubes\Small\DiagonalLCDConstruction1.mwm" />
+                <Model BuildPercentUpperBound="0.66" File="Models\Cubes\Small\DiagonalLCDConstruction2.mwm" />
+                <Model BuildPercentUpperBound="1.00" File="Models\Cubes\Small\DiagonalLCDConstruction3.mwm" />
+            </BuildProgressModels>
+            <MountPoints>
+                <MountPoint Side="Back" StartX="0.00" StartY="0.00" EndX="1.00" EndY="1.00"/>
+                <MountPoint Side="Left" StartX="0.00" StartY="0.00" EndX="1.00" EndY="1.00"/>
+                <MountPoint Side="Top" StartX="0.00" StartY="0.00" EndX="1.00" EndY="0.50"/>
+                <MountPoint Side="Top" StartX="0.00" StartY="0.50" EndX="0.50" EndY="1.00"/>
+                <MountPoint Side="Bottom" StartX="0.00" StartY="0.50" EndX="1.00" EndY="1.00"/>
+                <MountPoint Side="Bottom" StartX="0.00" StartY="0.00" EndX="0.50" EndY="0.50"/>
+            </MountPoints>
+            <BlockPairName>TraderDiagonalLCDPanel</BlockPairName>
+            <MirroringX>MinusHalfY</MirroringX>
+            <MirroringY>ZHalfY</MirroringY>
+            <MirroringZ>HalfY</MirroringZ>
+            <EdgeType>Light</EdgeType>
+            <BuildTimeSeconds>6</BuildTimeSeconds>
+            <MaxScreenRenderDistance>60</MaxScreenRenderDistance>
+            <GuiVisible>false</GuiVisible>
+            <ScreenWidth>5</ScreenWidth>
+            <ScreenHeight>3</ScreenHeight>
+            <ScreenAreas>
+                <ScreenArea Name="ScreenArea" DisplayName="ScreenArea" TextureResolution="512" ScreenWidth="1414" ScreenHeight="1000" />
+                <ScreenArea Name="ScreenArea90" DisplayName="ScreenArea90" TextureResolution="512" ScreenWidth="1000" ScreenHeight="1414" />
+                <ScreenArea Name="ScreenArea180" DisplayName="ScreenArea180" TextureResolution="512" ScreenWidth="1414" ScreenHeight="1000" />
+                <ScreenArea Name="ScreenArea270" DisplayName="ScreenArea270" TextureResolution="512" ScreenWidth="1000" ScreenHeight="1414" />
+            </ScreenAreas>
+            <ResourceSinkGroup>Utility</ResourceSinkGroup>
+            <RequiredPowerInput>0.00002</RequiredPowerInput>
+            <DamageEffectName>Damage_Electrical_Damaged</DamageEffectName>
+            <DamagedSound>ParticleElectrical</DamagedSound>
+            <DestroyEffect>BlockDestroyedExplosion_Small</DestroyEffect>
+            <DestroySound>WepSmallWarheadExpl</DestroySound>
+            <PCU>45</PCU>
+            <DLC>DecorativeBlocks3</DLC>
+        </Definition>
+
+        <Definition xsi:type="MyObjectBuilder_TextPanelDefinition">
+            <Id>
+            <TypeId>TextPanel</TypeId>
+            <SubtypeId>TraderLargeCurvedLCDPanel</SubtypeId>
+            </Id>
+            <DisplayName>Trader CurvedLCDPanel</DisplayName>
+            <Icon>Textures\GUI\Icons\Cubes\CurvedLCD.dds</Icon>
+            <Description>Description_TextPanel</Description>
+            <CubeSize>Large</CubeSize>
+            <BlockTopology>TriangleMesh</BlockTopology>
+            <Size x="1" y="1" z="1" />
+            <ModelOffset x="0" y="0" z="0" />
+            <Model>Models\Cubes\Large\CurvedLCD.mwm</Model>
+            <Components>
+                <Component Subtype="InteriorPlate" Count="20" />
+                <Component Subtype="Construction" Count="10" />
+                <Component Subtype="Computer" Count="6" />
+                <Component Subtype="Construction" Count="10" />
+                <Component Subtype="AdminChip" Count="100" />
+                <Component Subtype="Display" Count="10" />
+                <Component Subtype="BulletproofGlass" Count="10" />
+            </Components>
+            <CriticalComponent Subtype="AdminChip" Index="0" />
+            <BuildProgressModels>
+                <Model BuildPercentUpperBound="0.33" File="Models\Cubes\Large\CurvedLCDConstruction1.mwm" />
+                <Model BuildPercentUpperBound="0.66" File="Models\Cubes\Large\CurvedLCDConstruction2.mwm" />
+                <Model BuildPercentUpperBound="1.00" File="Models\Cubes\Large\CurvedLCDConstruction3.mwm" />
+            </BuildProgressModels>
+            <MountPoints>
+                <MountPoint Side="Back" StartX="0.00" StartY="0.00" EndX="1.00" EndY="1.00"/>
+                <MountPoint Side="Left" StartX="0.00" StartY="0.00" EndX="1.00" EndY="1.00"/>
+                <MountPoint Side="Top" StartX="0.00" StartY="0.00" EndX="1.00" EndY="0.50"/>
+                <MountPoint Side="Top" StartX="0.00" StartY="0.50" EndX="0.50" EndY="1.00"/>
+                <MountPoint Side="Bottom" StartX="0.00" StartY="0.50" EndX="1.00" EndY="1.00"/>
+                <MountPoint Side="Bottom" StartX="0.00" StartY="0.00" EndX="0.50" EndY="0.50"/>
+            </MountPoints>
+            <BlockPairName>TraderCurvedLCDPanel</BlockPairName>
+            <MirroringX>MinusHalfY</MirroringX>
+            <MirroringY>ZHalfY</MirroringY>
+            <MirroringZ>HalfY</MirroringZ>
+            <EdgeType>Light</EdgeType>
+            <BuildTimeSeconds>12</BuildTimeSeconds>
+            <MaxScreenRenderDistance>120</MaxScreenRenderDistance>
+            <DamageEffectName>Damage_Electrical_Damaged</DamageEffectName>
+            <DamagedSound>ParticleElectrical</DamagedSound>
+            <GuiVisible>false</GuiVisible>
+            <ScreenWidth>5</ScreenWidth>
+            <ScreenHeight>3</ScreenHeight>
+            <ScreenAreas>
+                <ScreenArea Name="ScreenArea" DisplayName="ScreenArea" TextureResolution="512" ScreenWidth="5" ScreenHeight="3" />
+                <ScreenArea Name="ScreenArea90" DisplayName="ScreenArea90" TextureResolution="512" ScreenWidth="3" ScreenHeight="5" />
+                <ScreenArea Name="ScreenArea180" DisplayName="ScreenArea180" TextureResolution="512" ScreenWidth="5" ScreenHeight="3" />
+                <ScreenArea Name="ScreenArea270" DisplayName="ScreenArea270" TextureResolution="512" ScreenWidth="3" ScreenHeight="5" />
+            </ScreenAreas>
+            <ResourceSinkGroup>Utility</ResourceSinkGroup>
+            <RequiredPowerInput>0.00006</RequiredPowerInput>
+            <DestroyEffect>BlockDestroyedExplosion_Large</DestroyEffect>
+            <DestroySound>WepSmallWarheadExpl</DestroySound>
+            <PCU>45</PCU>
+            <DLC>DecorativeBlocks3</DLC>
+        </Definition>
+
+        <Definition xsi:type="MyObjectBuilder_TextPanelDefinition">
+            <Id>
+                <TypeId>TextPanel</TypeId>
+                <SubtypeId>TraderSmallCurvedLCDPanel</SubtypeId>
+            </Id>
+            <DisplayName>Trader CurvedLCDPanel</DisplayName>
+            <Icon>Textures\GUI\Icons\Cubes\CurvedLCD.dds</Icon>
+            <Description>Description_TextPanel</Description>
+            <CubeSize>Small</CubeSize>
+            <BlockTopology>TriangleMesh</BlockTopology>
+            <Size x="1" y="1" z="1" />
+            <ModelOffset x="0" y="0" z="0" />
+            <Model>Models\Cubes\Small\CurvedLCD.mwm</Model>
+            <Components>
+                <Component Subtype="InteriorPlate" Count="4" />
+                <Component Subtype="Construction" Count="2" />
+                <Component Subtype="Computer" Count="4" />
+                <Component Subtype="Construction" Count="2" />
+                <Component Subtype="AdminChip" Count="100" />
+                <Component Subtype="Display" Count="3" />
+                <Component Subtype="BulletproofGlass" Count="1" />
+            </Components>
+            <CriticalComponent Subtype="AdminChip" Index="0" />
+            <BuildProgressModels>
+                <Model BuildPercentUpperBound="0.33" File="Models\Cubes\Small\CurvedLCDConstruction1.mwm" />
+                <Model BuildPercentUpperBound="0.66" File="Models\Cubes\Small\CurvedLCDConstruction2.mwm" />
+                <Model BuildPercentUpperBound="1.00" File="Models\Cubes\Small\CurvedLCDConstruction3.mwm" />
+            </BuildProgressModels>
+            <MountPoints>
+                <MountPoint Side="Back" StartX="0.00" StartY="0.00" EndX="1.00" EndY="1.00"/>
+                <MountPoint Side="Left" StartX="0.00" StartY="0.00" EndX="1.00" EndY="1.00"/>
+                <MountPoint Side="Top" StartX="0.00" StartY="0.00" EndX="1.00" EndY="0.50"/>
+                <MountPoint Side="Top" StartX="0.00" StartY="0.50" EndX="0.50" EndY="1.00"/>
+                <MountPoint Side="Bottom" StartX="0.00" StartY="0.50" EndX="1.00" EndY="1.00"/>
+                <MountPoint Side="Bottom" StartX="0.00" StartY="0.00" EndX="0.50" EndY="0.50"/>
+            </MountPoints>
+            <BlockPairName>TraderCurvedLCDPanel</BlockPairName>
+            <MirroringX>MinusHalfY</MirroringX>
+            <MirroringY>ZHalfY</MirroringY>
+            <MirroringZ>HalfY</MirroringZ>
+            <EdgeType>Light</EdgeType>
+            <BuildTimeSeconds>6</BuildTimeSeconds>
+            <MaxScreenRenderDistance>60</MaxScreenRenderDistance>
+            <GuiVisible>false</GuiVisible>
+            <ScreenWidth>5</ScreenWidth>
+            <ScreenHeight>3</ScreenHeight>
+            <ScreenAreas>
+                <ScreenArea Name="ScreenArea" DisplayName="ScreenArea" TextureResolution="512" ScreenWidth="5" ScreenHeight="3" />
+                <ScreenArea Name="ScreenArea90" DisplayName="ScreenArea90" TextureResolution="512" ScreenWidth="3" ScreenHeight="5" />
+                <ScreenArea Name="ScreenArea180" DisplayName="ScreenArea180" TextureResolution="512" ScreenWidth="5" ScreenHeight="3" />
+                <ScreenArea Name="ScreenArea270" DisplayName="ScreenArea270" TextureResolution="512" ScreenWidth="3" ScreenHeight="5" />
+            </ScreenAreas>
+            <ResourceSinkGroup>Utility</ResourceSinkGroup>
+            <RequiredPowerInput>0.00002</RequiredPowerInput>
+            <DamageEffectName>Damage_Electrical_Damaged</DamageEffectName>
+            <DamagedSound>ParticleElectrical</DamagedSound>
+            <DestroyEffect>BlockDestroyedExplosion_Small</DestroyEffect>
+            <DestroySound>WepSmallWarheadExpl</DestroySound>
+            <PCU>45</PCU>
+            <DLC>DecorativeBlocks3</DLC>
+        </Definition>
+
+        <Definition xsi:type="MyObjectBuilder_TextPanelDefinition">
+            <Id>
+                <TypeId>TextPanel</TypeId>
+                <SubtypeId>TraderSmallBlockConsoleModuleScreens</SubtypeId>
+            </Id>
+            <DisplayName>Trader ConsoleModuleScreens</DisplayName>
+            <Icon>Textures\GUI\Icons\Cubes\ConsoleModule_Screens_Small.dds</Icon>
+            <Description>Description_ConsoleModule</Description>
+            <CubeSize>Small</CubeSize>
+            <BlockTopology>TriangleMesh</BlockTopology>
+            <Size x="2" y="1" z="1" />
+            <ModelOffset x="0" y="0" z="0" />
+            <Model>Models\Cubes\Small\ConsoleModuleScreens.mwm</Model>
+            <Components>
+                <Component Subtype="InteriorPlate" Count="4" />
+                <Component Subtype="Construction" Count="4" />
+                <Component Subtype="Display" Count="2" />
+                <Component Subtype="Computer" Count="2" />
+                <Component Subtype="AdminChip" Count="100" />
+                <Component Subtype="InteriorPlate" Count="2" />
+                <Component Subtype="Construction" Count="2" />
+            </Components>
+            <CriticalComponent Subtype="AdminChip" Index="0" />
+            <MountPoints>
+                <MountPoint Side="Front" StartX="0" StartY="0" EndX="2" EndY="1" />
+                <MountPoint Side="Back" StartX="0" StartY="0" EndX="2" EndY="0.2" />
+                <MountPoint Side="Left" StartX="0" StartY="0" EndX="0.2" EndY="1" />
+                <MountPoint Side="Left" StartX="0.2" StartY="0" EndX="1" EndY="0.2" />
+                <MountPoint Side="Right" StartX="0" StartY="0" EndX="0.8" EndY="0.2" />
+                <MountPoint Side="Right" StartX="0.8" StartY="0" EndX="1" EndY="1" />
+                <MountPoint Side="Bottom" StartX="0" StartY="0" EndX="2" EndY="1" Default="true" />
+                <MountPoint Side="Top" StartX="0" StartY="0.9" EndX="2" EndY="1" />
+            </MountPoints>
+            <BuildProgressModels>
+                <Model BuildPercentUpperBound="0.33" File="Models\Cubes\Small\ConsoleModuleStraight_Construction_1.mwm" />
+                <Model BuildPercentUpperBound="0.66" File="Models\Cubes\Small\ConsoleModuleStraight_Construction_2.mwm" />
+                <Model BuildPercentUpperBound="1.00" File="Models\Cubes\Small\ConsoleModuleStraight_Construction_3.mwm" />
+            </BuildProgressModels>
+            <BlockPairName>TraderConsoleModuleScreens</BlockPairName>
+            <MirroringX>Y</MirroringX>
+            <MirroringY>X</MirroringY>
+            <EdgeType>Light</EdgeType>
+            <BuildTimeSeconds>8</BuildTimeSeconds>
+            <MaxScreenRenderDistance>60</MaxScreenRenderDistance>
+            <DamageEffectName>Damage_Electrical_Damaged</DamageEffectName>
+            <DamagedSound>ParticleElectrical</DamagedSound>
+            <GuiVisible>false</GuiVisible>
+            <ScreenWidth>5</ScreenWidth>
+            <ScreenHeight>3</ScreenHeight>
+            <ScreenAreas>
+                <ScreenArea Name="ScreenArea" DisplayName="ScreenArea" TextureResolution="256" ScreenWidth="10" ScreenHeight="6" />
+                <ScreenArea Name="ScreenArea90" DisplayName="ScreenArea90" TextureResolution="256" ScreenWidth="10" ScreenHeight="6" />
+                <ScreenArea Name="ScreenArea180" DisplayName="ScreenArea180" TextureResolution="256" ScreenWidth="10" ScreenHeight="6" />
+                <ScreenArea Name="ScreenArea270" DisplayName="ScreenArea270" TextureResolution="256" ScreenWidth="10" ScreenHeight="6" />
+            </ScreenAreas>
+            <ResourceSinkGroup>Utility</ResourceSinkGroup>
+            <RequiredPowerInput>0.00002</RequiredPowerInput>
+            <DestroyEffect>BlockDestroyedExplosion_Large</DestroyEffect>
+            <DestroySound>WepSmallWarheadExpl</DestroySound>
+            <PCU>50</PCU>
+            <DLC>Signal</DLC>
+        </Definition>
+
+        <Definition xsi:type="MyObjectBuilder_TextPanelDefinition">
+            <Id>
+                <TypeId>TextPanel</TypeId>
+                <SubtypeId>TraderLargeLCDPanel5x5</SubtypeId>
+            </Id>
+            <DisplayName>Trader LCD_Panel5x5</DisplayName>
+            <Icon>Textures\GUI\Icons\Cubes\LCDPanel3x3.dds</Icon>
+            <Description>Description_TextPanel</Description>
+            <CubeSize>Large</CubeSize>
+            <BlockTopology>TriangleMesh</BlockTopology>
+            <Size x="5" y="5" z="1" />
+            <ModelOffset x="0" y="0" z="0" />
+            <Model>Models\Cubes\Large\LCDPanel5x5.mwm</Model>
+            <Components>
+                <Component Subtype="InteriorPlate" Count="25" />
+                <Component Subtype="Construction" Count="150" />
+                <Component Subtype="Computer" Count="25" />
+                <Component Subtype="AdminChip" Count="100" />
+                <Component Subtype="Display" Count="250" />
+                <Component Subtype="BulletproofGlass" Count="150" />
+            </Components>
+            <CriticalComponent Subtype="AdminChip" Index="0" />
+            <MountPoints>
+                <MountPoint Side="Front" StartX="0" StartY="0" EndX="5" EndY="5" Default="true"/>
+                <MountPoint Side="Left" StartX="0" StartY="0" EndX="0.1" EndY="5" />
+                <MountPoint Side="Right" StartX="0.9" StartY="0" EndX="1" EndY="5" />
+                <MountPoint Side="Top" StartX="0" StartY="0.9" EndX="5" EndY="1" />
+                <MountPoint Side="Bottom" StartX="0" StartY="0" EndX="5" EndY="0.1" />
+            </MountPoints>
+            <BuildProgressModels>
+                <Model BuildPercentUpperBound="0.40" File="Models\Cubes\Large\LCDPanel5x5Construction_1.mwm" />
+                <Model BuildPercentUpperBound="0.70" File="Models\Cubes\Large\LCDPanel5x5Construction_2.mwm" />
+                <Model BuildPercentUpperBound="1.00" File="Models\Cubes\Large\LCDPanel5x5Construction_3.mwm" />
+            </BuildProgressModels>
+            <BlockPairName>TraderLCDPanel5x5</BlockPairName>
+            <MirroringY>Z</MirroringY>
+            <MirroringZ>Y</MirroringZ>
+            <EdgeType>Light</EdgeType>
+            <BuildTimeSeconds>20</BuildTimeSeconds>
+            <ResourceSinkGroup>Utility</ResourceSinkGroup>
+            <RequiredPowerInput>0.0025</RequiredPowerInput>
+            <TextureResolution>512</TextureResolution>
+            <ScreenAreas>
+                <ScreenArea Name="ScreenArea" DisplayName="ScreenArea" TextureResolution="512" ScreenWidth="5" ScreenHeight="5" />
+                <ScreenArea Name="ScreenArea90" DisplayName="ScreenArea90" TextureResolution="512" ScreenWidth="5" ScreenHeight="5" />
+                <ScreenArea Name="ScreenArea180" DisplayName="ScreenArea180" TextureResolution="512" ScreenWidth="5" ScreenHeight="5" />
+                <ScreenArea Name="ScreenArea270" DisplayName="ScreenArea270" TextureResolution="512" ScreenWidth="5" ScreenHeight="5" />
+            </ScreenAreas>
+            <MaxScreenRenderDistance>400</MaxScreenRenderDistance>
+            <DamageEffectName>Damage_Electrical_Damaged</DamageEffectName>
+            <DamagedSound>ParticleElectrical</DamagedSound>
+            <DestroyEffect>BlockDestroyedExplosion_Large</DestroyEffect>
+            <DestroyEffectOffset>
+                <X>0</X>
+                <Y>0</Y>
+                <Z>-1.1</Z>
+            </DestroyEffectOffset>
+            <DestroySound>WepSmallWarheadExpl</DestroySound>
+            <PCU>45</PCU>
+            <IsAirTight>false</IsAirTight>
+            <DLC>SparksOfTheFuture</DLC>
+        </Definition>
+
+        <Definition xsi:type="MyObjectBuilder_TextPanelDefinition">
+            <Id>
+                <TypeId>TextPanel</TypeId>
+                <SubtypeId>TraderLargeLCDPanel5x3</SubtypeId>
+            </Id>
+            <DisplayName>Trader LCD_Panel5x3</DisplayName>
+            <Icon>Textures\GUI\Icons\Cubes\LCDPanel5x3.dds</Icon>
+            <Description>Description_TextPanel</Description>
+            <CubeSize>Large</CubeSize>
+            <BlockTopology>TriangleMesh</BlockTopology>
+            <Size x="5" y="3" z="1" />
+            <ModelOffset x="0" y="0" z="0" />
+            <Model>Models\Cubes\Large\LCDPanel5x3.mwm</Model>
+            <Components>
+                <Component Subtype="InteriorPlate" Count="15" />
+                <Component Subtype="Construction" Count="90" />
+                <Component Subtype="Computer" Count="15" />
+                <Component Subtype="AdminChip" Count="100" />
+                <Component Subtype="Display" Count="150" />
+                <Component Subtype="BulletproofGlass" Count="90" />
+            </Components>
+            <CriticalComponent Subtype="AdminChip" Index="0" />
+            <MountPoints>
+                <MountPoint Side="Front" StartX="0" StartY="0" EndX="5" EndY="3" Default="true"/>
+                <MountPoint Side="Left" StartX="0" StartY="0" EndX="0.1" EndY="3" />
+                <MountPoint Side="Right" StartX="0.9" StartY="0" EndX="1" EndY="3" />
+                <MountPoint Side="Top" StartX="0" StartY="0.9" EndX="5" EndY="1" />
+                <MountPoint Side="Bottom" StartX="0" StartY="0" EndX="5" EndY="0.1" />
+            </MountPoints>
+            <BuildProgressModels>
+                <Model BuildPercentUpperBound="0.40" File="Models\Cubes\Large\LCDPanel5x3Construction_1.mwm" />
+                <Model BuildPercentUpperBound="0.70" File="Models\Cubes\Large\LCDPanel5x3Construction_2.mwm" />
+                <Model BuildPercentUpperBound="1.00" File="Models\Cubes\Large\LCDPanel5x3Construction_3.mwm" />
+            </BuildProgressModels>
+            <BlockPairName>TraderLCDPanel5x3Rot</BlockPairName>
+            <MirroringY>Z</MirroringY>
+            <MirroringZ>Y</MirroringZ>
+            <EdgeType>Light</EdgeType>
+            <BuildTimeSeconds>16</BuildTimeSeconds>
+            <ResourceSinkGroup>Utility</ResourceSinkGroup>
+            <RequiredPowerInput>0.0015</RequiredPowerInput>
+            <TextureResolution>512</TextureResolution>
+            <ScreenAreas>
+                <ScreenArea Name="ScreenArea" DisplayName="ScreenArea" TextureResolution="512" ScreenWidth="5" ScreenHeight="3" />
+                <ScreenArea Name="ScreenArea90" DisplayName="ScreenArea90" TextureResolution="512" ScreenWidth="3" ScreenHeight="5" />
+                <ScreenArea Name="ScreenArea180" DisplayName="ScreenArea180" TextureResolution="512" ScreenWidth="5" ScreenHeight="3" />
+                <ScreenArea Name="ScreenArea270" DisplayName="ScreenArea270" TextureResolution="512" ScreenWidth="3" ScreenHeight="5" />
+            </ScreenAreas>
+            <MaxScreenRenderDistance>400</MaxScreenRenderDistance>
+            <DamageEffectName>Damage_Electrical_Damaged</DamageEffectName>
+            <DamagedSound>ParticleElectrical</DamagedSound>
+            <DestroyEffect>BlockDestroyedExplosion_Large</DestroyEffect>
+            <DestroyEffectOffset>
+                <X>0</X>
+                <Y>0</Y>
+                <Z>-1.1</Z>
+            </DestroyEffectOffset>
+            <DestroySound>WepSmallWarheadExpl</DestroySound>
+            <PCU>45</PCU>
+            <IsAirTight>false</IsAirTight>
+            <DLC>SparksOfTheFuture</DLC>
+        </Definition>
+
+        <Definition xsi:type="MyObjectBuilder_TextPanelDefinition">
+            <Id>
+                <TypeId>TextPanel</TypeId>
+                <SubtypeId>TraderLargeLCDPanel3x3</SubtypeId>
+            </Id>
+            <DisplayName>Trader LCD_Panel3x3</DisplayName>
+            <Icon>Textures\GUI\Icons\Cubes\LCDPanel3x3.dds</Icon>
+            <Description>Description_TextPanel</Description>
+            <CubeSize>Large</CubeSize>
+            <BlockTopology>TriangleMesh</BlockTopology>
+            <Size x="3" y="3" z="1" />
+            <ModelOffset x="0" y="0" z="0" />
+            <Model>Models\Cubes\Large\LCDPanel3x3.mwm</Model>
+            <Components>
+                <Component Subtype="InteriorPlate" Count="10" />
+                <Component Subtype="Construction" Count="50" />
+                <Component Subtype="Computer" Count="10" />
+                <Component Subtype="AdminChip" Count="100" />
+                <Component Subtype="Display" Count="90" />
+                <Component Subtype="BulletproofGlass" Count="50" />
+            </Components>
+            <CriticalComponent Subtype="AdminChip" Index="0" />
+            <MountPoints>
+                <MountPoint Side="Front" StartX="0" StartY="0" EndX="3" EndY="3" Default="true"/>
+                <MountPoint Side="Left" StartX="0" StartY="0" EndX="0.1" EndY="3" />
+                <MountPoint Side="Right" StartX="0.9" StartY="0" EndX="1" EndY="3" />
+                <MountPoint Side="Top" StartX="0" StartY="0.9" EndX="3" EndY="1" />
+                <MountPoint Side="Bottom" StartX="0" StartY="0" EndX="3" EndY="0.1" />
+            </MountPoints>
+            <BuildProgressModels>
+                <Model BuildPercentUpperBound="0.40" File="Models\Cubes\Large\LCDPanel3x3Construction_1.mwm" />
+                <Model BuildPercentUpperBound="0.70" File="Models\Cubes\Large\LCDPanel3x3Construction_2.mwm" />
+                <Model BuildPercentUpperBound="1.00" File="Models\Cubes\Large\LCDPanel3x3Construction_3.mwm" />
+            </BuildProgressModels>
+            <BlockPairName>TraderLCDPanel3x3</BlockPairName>
+            <MirroringY>Z</MirroringY>
+            <MirroringZ>Y</MirroringZ>
+            <EdgeType>Light</EdgeType>
+            <BuildTimeSeconds>12</BuildTimeSeconds>
+            <ResourceSinkGroup>Utility</ResourceSinkGroup>
+            <RequiredPowerInput>0.0009</RequiredPowerInput>
+            <TextureResolution>512</TextureResolution>
+            <ScreenAreas>
+                <ScreenArea Name="ScreenArea" DisplayName="ScreenArea" TextureResolution="512" ScreenWidth="3" ScreenHeight="3" />
+                <ScreenArea Name="ScreenArea90" DisplayName="ScreenArea90" TextureResolution="512" ScreenWidth="3" ScreenHeight="3" />
+                <ScreenArea Name="ScreenArea180" DisplayName="ScreenArea180" TextureResolution="512" ScreenWidth="3" ScreenHeight="3" />
+                <ScreenArea Name="ScreenArea270" DisplayName="ScreenArea270" TextureResolution="512" ScreenWidth="3" ScreenHeight="3" />
+            </ScreenAreas>
+            <MaxScreenRenderDistance>400</MaxScreenRenderDistance>
+            <DamageEffectName>Damage_Electrical_Damaged</DamageEffectName>
+            <DamagedSound>ParticleElectrical</DamagedSound>
+            <DestroyEffect>BlockDestroyedExplosion_Large</DestroyEffect>
+            <DestroyEffectOffset>
+                <X>0</X>
+                <Y>0</Y>
+                <Z>-1.1</Z>
+            </DestroyEffectOffset>
+            <DestroySound>WepSmallWarheadExpl</DestroySound>
+            <PCU>45</PCU>
+            <IsAirTight>false</IsAirTight>
+            <DLC>SparksOfTheFuture</DLC>
+        </Definition>
+    </CubeBlocks>
+</Definitions>

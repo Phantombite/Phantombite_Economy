@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <PhysicalItems>
+                <PhysicalItem xsi:type="MyObjectBuilder_DatapadDefinition">
+            <Id>
+                <TypeId>Datapad</TypeId>
+                <SubtypeId>Freighter_Info_Datapad01</SubtypeId>
+            </Id>
+            <DisplayName>Freighter Info Datapad</DisplayName>
+            <Description>Datapad with Secured Information</Description>
+            <Icon>Textures\GUI\Icons\Items\Datapad_Item.dds</Icon>
+            <Size>
+                <X>0.2</X>
+                <Y>0.1</Y>
+                <Z>0.2</Z>
+            </Size>
+            <Mass>0.2</Mass>
+            <Volume>0.4</Volume>
+            <Model>Models\Items\Datapad_Item.mwm</Model>
+            <PhysicalMaterial>Metal</PhysicalMaterial>
+
+            <MinimumOfferAmount>5</MinimumOfferAmount>
+            <MaximumOfferAmount>20</MaximumOfferAmount>
+            <CanPlayerOrder>true</CanPlayerOrder>
+        </PhysicalItem>
+    </PhysicalItems>
+</Definitions>

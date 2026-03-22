@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Blueprints>        
+        <Blueprint>
+            <Id>
+                <TypeId>BlueprintDefinition</TypeId>
+                <SubtypeId>Freighter_Info_Datapad01</SubtypeId>
+            </Id>
+            <DisplayName>Freighter Info Datapad</DisplayName>
+            <Icon>Textures\GUI\Icons\Items\Datapad_Item.dds</Icon>
+            <Prerequisites>
+                <Item Amount="100" TypeId="Component" SubtypeId="AdminChip" />
+            </Prerequisites>
+            <Results>
+                <Item Amount="1" TypeId="Datapad" SubtypeId="Freighter_Info_Datapad01" />
+            </Results>
+            <BaseProductionTimeInSeconds>500</BaseProductionTimeInSeconds>
+        </Blueprint>
+    </Blueprints>
+</Definitions>
