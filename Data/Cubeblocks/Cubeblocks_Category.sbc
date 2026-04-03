@@ -12,47 +12,6 @@
                 <string>TraderStore</string>
                 <string>TraderSafeZone</string>
                 <string>TraderVendingMachine</string>
-                <string>TraderZoneContainer</string>
-                <string>TraderLargeBlockLargeContainer</string>
-                <string>TraderLargeBlockLargeIndustrialContainer</string>
-                <string>TraderConnector</string>
-                <string>TraderConnectorSmall</string>
-                <string>TraderConnectorMedium</string>
-                <string>TraderLargeBlockInsetConnector</string>
-                <string>TraderLargeBlockInsetConnectorSmall</string>
-                <string>TraderSmallBlockInsetConnector</string>
-                <string>TraderSmallBlockInsetConnectorMedium</string>
-                <string>TraderLargeBlockConveyorSorter</string>
-                <string>TraderMediumBlockConveyorSorter</string>
-                <string>TraderSmallBlockConveyorSorter</string>
-                <string>TraderSmallTextPanel</string>
-                <string>TraderSmallLCDPanelWide</string>
-                <string>TraderSmallLCDPanel</string>
-                <string>TraderLargeBlockCorner_LCD_1</string>
-                <string>TraderLCDLargeBlockCorner_LCD_2</string>
-                <string>TraderLargeBlockCorner_LCD_Flat_1</string>
-                <string>TraderLargeBlockCorner_LCD_Flat_2</string>
-                <string>TraderSmallBlockCorner_LCD_1</string>
-                <string>TraderSmallBlockCorner_LCD_2</string>
-                <string>TraderSmallBlockCorner_LCD_Flat_1</string>
-                <string>TraderSmallBlockCorner_LCD_Flat_2</string>
-                <string>TraderLargeTextPanel</string>
-                <string>TraderLargeLCDPanel</string>
-                <string>TraderLargeLCDPanelWide</string>
-                <string>TraderTransparentLCDLarge</string>
-                <string>TraderTransparentLCDSmall</string>
-                <string>TraderHoloLCDLarge</string>
-                <string>TraderHoloLCDSmall</string>
-                <string>TraderLargeFullBlockLCDPanel</string>
-                <string>TraderSmallFullBlockLCDPanel</string>
-                <string>TraderLargeDiagonalLCDPanel</string>
-                <string>TraderSmallDiagonalLCDPanel</string>
-                <string>TraderLargeCurvedLCDPanel</string>
-                <string>TraderSmallCurvedLCDPanel</string>
-                <string>TraderSmallBlockConsoleModuleScreens</string>
-                <string>TraderLargeLCDPanel5x5</string>
-                <string>TraderLargeLCDPanel5x3</string>
-                <string>TraderLargeLCDPanel3x3</string>
             </ItemIds>
         </Category>
     </CategoryClasses>

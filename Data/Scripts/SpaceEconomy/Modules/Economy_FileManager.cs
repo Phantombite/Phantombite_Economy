@@ -152,6 +152,13 @@ namespace PhantombiteEconomy.Modules
                 sb.AppendLine("DebugMode=false");
                 sb.AppendLine();
 
+                sb.AppendLine("[StationRefill]");
+                sb.AppendLine("Enabled=true");
+                sb.AppendLine("IntervalHours=5");
+                sb.AppendLine("AmmoSubtype=RapidFireAutomaticRifleGun_Mag_50rd");
+                sb.AppendLine("FactionTags=SPT");
+                sb.AppendLine();
+
                 sb.AppendLine("[Rarity_Common]");
                 sb.AppendLine("BaseSpawnAmount=4000");
                 sb.AppendLine("MinSpawnAmount=3000");
@@ -2173,15 +2180,58 @@ namespace PhantombiteEconomy.Modules
                 _globalConfig = ParseFlatINI(content);
                 MyLog.Default.WriteLineAndConsole($"[PhantombiteEconomy] FileManager: GlobalConfig loaded ({_globalConfig.Count} entries)");
 
-                // DebugMode sofort setzen — direkt aus Dictionary (kein GetGlobalConfig-Aufruf → verhindert Rekursion)
-                string debugVal;
-                LoggerModule.DebugMode = _globalConfig.TryGetValue("General.DebugMode", out debugVal)
-                    && debugVal.Equals("true", StringComparison.OrdinalIgnoreCase);
-                MyLog.Default.WriteLineAndConsole($"[PhantombiteEconomy] FileManager: DebugMode = {LoggerModule.DebugMode}");
+                // Migration: fehlende Keys automatisch nachpatchen
+                PatchGlobalConfigIfNeeded(content);
+
+                // Debug-Level wird vom PhantomBite Core über LOGLEVEL gesetzt — nicht mehr hier
             }
             catch (Exception ex)
             {
                 MyLog.Default.WriteLineAndConsole($"[PhantombiteEconomy] FileManager ERROR loading GlobalConfig:\n{ex}");
+            }
+        }
+
+
+        /// <summary>
+        /// Prüft ob Keys in der GlobalConfig fehlen und patcht sie nach (Migration für bestehende Server).
+        /// </summary>
+        private void PatchGlobalConfigIfNeeded(string existingContent)
+        {
+            try
+            {
+                bool changed = false;
+                var sb = new System.Text.StringBuilder(existingContent);
+
+                // StationRefill.FactionTags — neu in v1.1
+                if (!_globalConfig.ContainsKey("StationRefill.FactionTags"))
+                {
+                    // Zeile nach AmmoSubtype einfügen
+                    string needle = "AmmoSubtype=RapidFireAutomaticRifleGun_Mag_50rd";
+                    int idx = existingContent.IndexOf(needle);
+                    if (idx >= 0)
+                    {
+                        int lineEnd = existingContent.IndexOf('\n', idx);
+                        if (lineEnd < 0) lineEnd = existingContent.Length;
+                        sb.Insert(lineEnd + 1, "FactionTags=SPT\n");
+                    }
+                    else
+                    {
+                        // [StationRefill] Block nicht gefunden — ans Ende hängen
+                        sb.AppendLine();
+                        sb.AppendLine("[StationRefill]");
+                        sb.AppendLine("FactionTags=SPT");
+                    }
+                    _globalConfig["StationRefill.FactionTags"] = "SPT";
+                    changed = true;
+                    MyLog.Default.WriteLineAndConsole("[PhantombiteEconomy] FileManager: Migration — StationRefill.FactionTags hinzugefügt");
+                }
+
+                if (changed)
+                    WriteFile(GLOBAL_CONFIG_FILE, sb.ToString());
+            }
+            catch (Exception ex)
+            {
+                MyLog.Default.WriteLineAndConsole("[PhantombiteEconomy] FileManager ERROR in PatchGlobalConfigIfNeeded: " + ex.Message);
             }
         }
 

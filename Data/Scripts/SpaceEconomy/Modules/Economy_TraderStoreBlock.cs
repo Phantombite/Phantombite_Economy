@@ -28,7 +28,13 @@ namespace PhantombiteEconomy.Modules
     /// </summary>
     public class TraderStoreBlockModule : IModule
     {
-        public string ModuleName => "TraderStoreBlock";
+        public string ModuleName => "Economy_TraderStore";
+
+        // Logger von Economy_Command
+        private EconomyCommandModule _logger;
+        private const string MODULE = "Economy_TraderStore";
+
+        public void SetLogger(EconomyCommandModule logger) { _logger = logger; }
 
         // Block Detection
         private const string BLOCK_SUBTYPE = "TraderStore";
@@ -53,8 +59,7 @@ namespace PhantombiteEconomy.Modules
         {
             try
             {
-                if (LoggerModule.DebugMode)
-                MyLog.Default.WriteLineAndConsole("[PhantombiteEconomy] TraderStoreBlock: Initializing...");
+                _logger?.Debug(MODULE, "Initializing...");
 
                 if (!MyAPIGateway.Multiplayer.IsServer)
                 {
@@ -70,8 +75,7 @@ namespace PhantombiteEconomy.Modules
                 MyAPIGateway.Entities.OnEntityRemove += OnEntityRemove;
 
                 _initialized = true;
-                if (LoggerModule.DebugMode)
-                MyLog.Default.WriteLineAndConsole($"[PhantombiteEconomy] TraderStoreBlock: Initialized — {_storeBlocks.Count} blocks cached");
+                _logger?.Debug(MODULE, $"Initialized — {_storeBlocks.Count} blocks cached");
             }
             catch (Exception ex)
             {
@@ -116,8 +120,7 @@ namespace PhantombiteEconomy.Modules
 
             _forceMaintenanceOnce = true;
             PollStoreBlocks();
-            if (LoggerModule.DebugMode)
-            MyLog.Default.WriteLineAndConsole("[PhantombiteEconomy] TraderStoreBlock: ForceRefresh executed");
+            _logger?.Debug(MODULE, "ForceRefresh executed");
         }
 
         public void Close()
@@ -245,8 +248,7 @@ namespace PhantombiteEconomy.Modules
 
                 if (_storeBlocks.Count > 0)
                 {
-                    if (LoggerModule.DebugMode)
-                    MyLog.Default.WriteLineAndConsole($"[PhantombiteEconomy] TraderStoreBlock: Found {_storeBlocks.Count} TraderStore blocks");
+                    _logger?.Trace(MODULE, $"Found {_storeBlocks.Count} TraderStore blocks");
                 }
             }
             catch (Exception ex)
@@ -404,8 +406,7 @@ namespace PhantombiteEconomy.Modules
 
                 block.CustomData = sb.ToString();
                 
-                if (LoggerModule.DebugMode)
-                MyLog.Default.WriteLineAndConsole($"[PhantombiteEconomy] TraderStoreBlock: Deployed CustomData template to '{block.CustomName}'");
+                _logger?.Debug(MODULE, $"Deployed CustomData template to '{block.CustomName}'");
             }
             catch (Exception ex)
             {
@@ -762,16 +763,14 @@ namespace PhantombiteEconomy.Modules
             try
             {
                 // DEBUG: Log category sync attempt
-                if (LoggerModule.DebugMode)
-                MyLog.Default.WriteLineAndConsole($"[PhantombiteEconomy] TraderStoreBlock: SyncCategoryItems called for {category}");
+                _logger?.Trace(MODULE, $"SyncCategoryItems called for {category}");
                 
                 string catalogFile = $"RAM_StoreEvent_{category}.ini";
                 ReadCatalog(catalogFile);
 
                 if (_reuseCatalog.Count == 0)
                 {
-                    if (LoggerModule.DebugMode)
-                    MyLog.Default.WriteLineAndConsole($"[PhantombiteEconomy] TraderStoreBlock: Catalog is EMPTY or not found for {category}!");
+                    _logger?.Debug(MODULE, $"Catalog is EMPTY or not found for {category}!");
                     return;
                 }
 
@@ -781,21 +780,18 @@ namespace PhantombiteEconomy.Modules
                 {
                     if (DateTime.Now < nextRefresh)
                     {
-                        if (LoggerModule.DebugMode)
-                        MyLog.Default.WriteLineAndConsole(
-                            $"[PhantombiteEconomy] TraderStoreBlock: NextRefresh not reached for {category} (Next: {nextRefresh:yyyy-MM-dd HH:mm:ss}), skipping spawn"
+                        _logger?.Trace(MODULE, 
+                            $"NextRefresh not reached for {category} (Next: {nextRefresh:yyyy-MM-dd HH:mm:ss}), skipping spawn"
                         );
                         return;
                     }
                 }
                 else
                 {
-                    if (LoggerModule.DebugMode)
-                    MyLog.Default.WriteLineAndConsole($"[PhantombiteEconomy] TraderStoreBlock: Maintenance Mode ACTIVE for {category}, spawning items immediately...");
+                    _logger?.Debug(MODULE, $"Maintenance Mode ACTIVE for {category}, spawning items immediately...");
                 }
 
-                if (LoggerModule.DebugMode)
-                MyLog.Default.WriteLineAndConsole($"[PhantombiteEconomy] TraderStoreBlock: Spawning items for {category}...");
+                _logger?.Debug(MODULE, $"Spawning items for {category}...");
 
                 int spawnedCount = 0;
                 int skippedBlacklist = 0;
@@ -827,8 +823,7 @@ namespace PhantombiteEconomy.Modules
                     spawnedCount++;
                 }
                 
-                if (LoggerModule.DebugMode)
-                MyLog.Default.WriteLineAndConsole($"[PhantombiteEconomy] TraderStoreBlock: {category} sync complete - Spawned: {spawnedCount}, Skipped (blacklist): {skippedBlacklist}, Skipped (category off): {skippedCategory}");
+                _logger?.Debug(MODULE, $"{category} sync complete - Spawned: {spawnedCount}, Skipped (blacklist): {skippedBlacklist}, Skipped (category off): {skippedCategory}");
             }
             catch (Exception ex)
             {
@@ -892,16 +887,14 @@ namespace PhantombiteEconomy.Modules
                 
                 if (finalAmount != targetAmount)
                 {
-                    if (LoggerModule.DebugMode)
-                    MyLog.Default.WriteLineAndConsole(
-                        $"[PhantombiteEconomy] TraderStoreBlock WARNING: '{block.CustomName}' {typeId}/{subtypeId} - Target: {targetAmount}, Actual: {finalAmount}"
+                    _logger?.Debug(MODULE, 
+                        $"'{block.CustomName}' {typeId}/{subtypeId} - Target: {targetAmount}, Actual: {finalAmount}"
                     );
                 }
                 else
                 {
-                    if (LoggerModule.DebugMode)
-                    MyLog.Default.WriteLineAndConsole(
-                        $"[PhantombiteEconomy] TraderStoreBlock: '{block.CustomName}' {typeId}/{subtypeId} = {finalAmount} @ {price} Credits ✓"
+                    _logger?.Debug(MODULE, 
+                        $"'{block.CustomName}' {typeId}/{subtypeId} = {finalAmount} @ {price} Credits ✓"
                     );
                 }
             }
@@ -1007,35 +1000,29 @@ namespace PhantombiteEconomy.Modules
 
             try
             {
-                if (LoggerModule.DebugMode)
-                MyLog.Default.WriteLineAndConsole($"[PhantombiteEconomy] TraderStoreBlock: Checking if file exists: {filename}");
+                _logger?.Trace(MODULE, $"Checking if file exists: {filename}");
                 
                 if (!FileExists(filename))
                 {
-                    if (LoggerModule.DebugMode)
-                    MyLog.Default.WriteLineAndConsole($"[PhantombiteEconomy] TraderStoreBlock: FILE NOT FOUND: {filename}");
+                    _logger?.Trace(MODULE, $"FILE NOT FOUND: {filename}");
                     return;
                 }
                 
-                if (LoggerModule.DebugMode)
-                MyLog.Default.WriteLineAndConsole($"[PhantombiteEconomy] TraderStoreBlock: File exists, reading content...");
+                _logger?.Trace(MODULE, $"File exists, reading content...");
 
                 string content = ReadFile(filename);
                 if (string.IsNullOrWhiteSpace(content))
                 {
-                    if (LoggerModule.DebugMode)
-                    MyLog.Default.WriteLineAndConsole($"[PhantombiteEconomy] TraderStoreBlock: File content is EMPTY: {filename}");
+                    _logger?.Trace(MODULE, $"File content is EMPTY: {filename}");
                     return;
                 }
                 
-                if (LoggerModule.DebugMode)
-                MyLog.Default.WriteLineAndConsole($"[PhantombiteEconomy] TraderStoreBlock: File content loaded, length: {content.Length} chars");
+                _logger?.Trace(MODULE, $"File content loaded, length: {content.Length} chars");
 
                 string currentSection = "";
                 string[] lines = content.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
                 
-                if (LoggerModule.DebugMode)
-                MyLog.Default.WriteLineAndConsole($"[PhantombiteEconomy] TraderStoreBlock: Parsing {lines.Length} lines...");
+                _logger?.Trace(MODULE, $"Parsing {lines.Length} lines...");
 
                 foreach (var line in lines)
                 {
@@ -1099,8 +1086,7 @@ namespace PhantombiteEconomy.Modules
                     }
                 }
                 
-                if (LoggerModule.DebugMode)
-                MyLog.Default.WriteLineAndConsole($"[PhantombiteEconomy] TraderStoreBlock: Parsed {_reuseCatalog.Count} items from {filename}");
+                _logger?.Debug(MODULE, $"Parsed {_reuseCatalog.Count} items from {filename}");
             }
             catch (Exception ex)
             {
@@ -1267,8 +1253,7 @@ namespace PhantombiteEconomy.Modules
                                         if (config.Sell_Blacklist.Contains($"{category}:{itemDef.DisplayName}"))
                                         {
                                             inventory.RemoveItemsAt(i, (MyFixedPoint)(int)item.Amount);
-                                            if (LoggerModule.DebugMode)
-                                            MyLog.Default.WriteLineAndConsole($"[PhantombiteEconomy] TraderStoreBlock: Despawned blacklisted sell item {category}:{itemDef.DisplayName}");
+                                            _logger?.Debug(MODULE, $"Despawned blacklisted sell item {category}:{itemDef.DisplayName}");
                                         }
                                         break;
                                     }
@@ -1325,8 +1310,7 @@ namespace PhantombiteEconomy.Modules
                                     if (config.Buy_Blacklist.Contains($"{category}:{itemDef.DisplayName}"))
                                     {
                                         storeBlock.RemoveStoreItem(order);
-                                        if (LoggerModule.DebugMode)
-                                        MyLog.Default.WriteLineAndConsole($"[PhantombiteEconomy] TraderStoreBlock: Removed blacklisted buy order {category}:{itemDef.DisplayName}");
+                                        _logger?.Debug(MODULE, $"Removed blacklisted buy order {category}:{itemDef.DisplayName}");
                                     }
                                     break;
                                 }
@@ -1388,8 +1372,7 @@ namespace PhantombiteEconomy.Modules
                 }
 
                 if (removedCount > 0)
-                    if (LoggerModule.DebugMode)
-                    MyLog.Default.WriteLineAndConsole($"[PhantombiteEconomy] TraderStoreBlock: Removed {removedCount} non-whitelisted {category} items");
+                    _logger?.Debug(MODULE, $"Removed {removedCount} non-whitelisted {category} items");
             }
             catch (Exception ex)
             {
@@ -1440,8 +1423,7 @@ namespace PhantombiteEconomy.Modules
                 }
 
                 if (removedCount > 0)
-                    if (LoggerModule.DebugMode)
-                    MyLog.Default.WriteLineAndConsole($"[PhantombiteEconomy] TraderStoreBlock: Removed {removedCount} non-whitelisted {category} orders");
+                    _logger?.Debug(MODULE, $"Removed {removedCount} non-whitelisted {category} orders");
             }
             catch (Exception ex)
             {
@@ -1479,9 +1461,8 @@ namespace PhantombiteEconomy.Modules
                 _reuseStoreItems.Clear();
                 storeBlock.GetStoreItems(_reuseStoreItems);
                 
-                if (LoggerModule.DebugMode)
-                MyLog.Default.WriteLineAndConsole(
-                    $"[PhantombiteEconomy] TraderStoreBlock DEBUG: Checking for existing order {typeId}/{subtypeId}, total orders: {_reuseStoreItems.Count}"
+                _logger?.Debug(MODULE, 
+                    $"DEBUG: Checking for existing order {typeId}/{subtypeId}, total orders: {_reuseStoreItems.Count}"
                 );
                 
                 // Check if order already exists
@@ -1494,9 +1475,8 @@ namespace PhantombiteEconomy.Modules
                         order.StoreItemType == StoreItemTypes.Offer)
                     {
                         existingOrder = order;
-                        if (LoggerModule.DebugMode)
-                        MyLog.Default.WriteLineAndConsole(
-                            $"[PhantombiteEconomy] TraderStoreBlock DEBUG: FOUND existing order for {typeId}/{subtypeId}!"
+                        _logger?.Debug(MODULE, 
+                            $"DEBUG: FOUND existing order for {typeId}/{subtypeId}!"
                         );
                         break;
                     }
@@ -1509,9 +1489,8 @@ namespace PhantombiteEconomy.Modules
                     if (existingOrder.PricePerUnit != price)
                     {
                         existingOrder.PricePerUnit = price;
-                        if (LoggerModule.DebugMode)
-                        MyLog.Default.WriteLineAndConsole(
-                            $"[PhantombiteEconomy] TraderStoreBlock: Updated order price {typeId}/{subtypeId}: {price}"
+                        _logger?.Debug(MODULE, 
+                            $"Updated order price {typeId}/{subtypeId}: {price}"
                         );
                     }
                     // Else: Order exists with correct price, nothing to do!
@@ -1522,17 +1501,15 @@ namespace PhantombiteEconomy.Modules
                     var newItem = storeBlock.CreateStoreItem(itemDefId, amount, price, StoreItemTypes.Offer);
                     storeBlock.InsertStoreItem(newItem);
                     
-                    if (LoggerModule.DebugMode)
-                    MyLog.Default.WriteLineAndConsole(
-                        $"[PhantombiteEconomy] TraderStoreBlock: Created order {typeId}/{subtypeId}: {amount} @ {price}"
+                    _logger?.Debug(MODULE, 
+                        $"Created order {typeId}/{subtypeId}: {amount} @ {price}"
                     );
                 }
             }
             catch (Exception ex)
             {
-                if (LoggerModule.DebugMode)
-                MyLog.Default.WriteLineAndConsole(
-                    $"[PhantombiteEconomy] TraderStoreBlock ERROR creating order for {typeId}/{subtypeId}:\n{ex}"
+                _logger?.Debug(MODULE, 
+                    $"creating order for {typeId}/{subtypeId}:\n{ex}"
                 );
             }
         }
@@ -1594,8 +1571,7 @@ namespace PhantombiteEconomy.Modules
 
                 if (_reuseCatalog.Count == 0)
                 {
-                    if (LoggerModule.DebugMode)
-                    MyLog.Default.WriteLineAndConsole($"[PhantombiteEconomy] TraderStoreBlock: No catalog for Buy Orders {category}");
+                    _logger?.Debug(MODULE, $"No catalog for Buy Orders {category}");
                     return;
                 }
 
@@ -1636,8 +1612,7 @@ namespace PhantombiteEconomy.Modules
                     createdCount++;
                 }
 
-                if (LoggerModule.DebugMode)
-                MyLog.Default.WriteLineAndConsole($"[PhantombiteEconomy] TraderStoreBlock: {category} buy orders - Created: {createdCount}, Skipped (blacklist): {skippedBlacklist}, Skipped (category off): {skippedCategory}");
+                _logger?.Debug(MODULE, $"{category} buy orders - Created: {createdCount}, Skipped (blacklist): {skippedBlacklist}, Skipped (category off): {skippedCategory}");
             }
             catch (Exception ex)
             {
@@ -1783,8 +1758,7 @@ namespace PhantombiteEconomy.Modules
                     if (existingOrder.PricePerUnit != price)
                     {
                         existingOrder.PricePerUnit = price;
-                        if (LoggerModule.DebugMode)
-                        MyLog.Default.WriteLineAndConsole($"[PhantombiteEconomy] TraderStoreBlock: Updated buy order price {typeId}/{subtypeId}: {price}");
+                        _logger?.Debug(MODULE, $"Updated buy order price {typeId}/{subtypeId}: {price}");
                     }
                 }
                 else
@@ -1793,8 +1767,7 @@ namespace PhantombiteEconomy.Modules
                     int buyAmount = 99999;
                     var newItem = storeBlock.CreateStoreItem(itemDefId, buyAmount, price, StoreItemTypes.Order);
                     storeBlock.InsertStoreItem(newItem);
-                    if (LoggerModule.DebugMode)
-                    MyLog.Default.WriteLineAndConsole($"[PhantombiteEconomy] TraderStoreBlock: Created buy order {typeId}/{subtypeId}: {price} Credits");
+                    _logger?.Debug(MODULE, $"Created buy order {typeId}/{subtypeId}: {price} Credits");
                 }
             }
             catch (Exception ex)
@@ -1844,16 +1817,14 @@ namespace PhantombiteEconomy.Modules
             try
             {
                 block.Enabled = false;
-                if (LoggerModule.DebugMode)
-                MyLog.Default.WriteLineAndConsole(
-                    $"[PhantombiteEconomy] TraderStoreBlock '{block.CustomName}' ERROR: {errorMessage}"
+                _logger?.Debug(MODULE, 
+                    $"'{block.CustomName}' ERROR: {errorMessage}"
                 );
             }
             catch (Exception ex)
             {
-                if (LoggerModule.DebugMode)
-                MyLog.Default.WriteLineAndConsole(
-                    $"[PhantombiteEconomy] TraderStoreBlock ERROR in EnterErrorMode:\n{ex}"
+                _logger?.Debug(MODULE, 
+                    $"in EnterErrorMode:\n{ex}"
                 );
             }
         }

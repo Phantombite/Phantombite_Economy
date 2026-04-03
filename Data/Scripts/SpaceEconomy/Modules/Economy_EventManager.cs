@@ -25,7 +25,12 @@ namespace PhantombiteEconomy.Modules
     /// </summary>
     public class EventManagerModule : IModule
     {
-        public string ModuleName => "EventManager";
+        public string ModuleName => "Economy_EventManager";
+
+        private EconomyCommandModule _logger;
+        private const string MODULE = "Economy_EventManager";
+
+        public void SetLogger(EconomyCommandModule logger) { _logger = logger; }
 
         // Categories to manage
         private readonly string[] CATEGORIES = {
@@ -108,8 +113,7 @@ namespace PhantombiteEconomy.Modules
         {
             try
             {
-                if (LoggerModule.DebugMode)
-                MyLog.Default.WriteLineAndConsole("[PhantombiteEconomy] EventManager: Initializing...");
+                _logger?.Debug(MODULE, "Initializing...");
 
                 if (!MyAPIGateway.Multiplayer.IsServer)
                 {
@@ -127,8 +131,7 @@ namespace PhantombiteEconomy.Modules
                 CheckOverdueEvents();
 
                 _initialized = true;
-                if (LoggerModule.DebugMode)
-                MyLog.Default.WriteLineAndConsole("[PhantombiteEconomy] EventManager: Initialized successfully");
+                _logger?.Debug(MODULE, "Initialized successfully");
             }
             catch (Exception ex)
             {
@@ -218,9 +221,8 @@ namespace PhantombiteEconomy.Modules
                                         if (bool.TryParse(value, out boolValue))
                                         {
                                             _dynamicPrice = boolValue;
-                                            if (LoggerModule.DebugMode)
-                                            MyLog.Default.WriteLineAndConsole(
-                                                $"[PhantombiteEconomy] EventManager: DynamicPrice = {_dynamicPrice}"
+                                            _logger?.Debug(MODULE, 
+                                                $"DynamicPrice = {_dynamicPrice}"
                                             );
                                         }
                                     }
@@ -231,9 +233,8 @@ namespace PhantombiteEconomy.Modules
                 }
                 else
                 {
-                    if (LoggerModule.DebugMode)
-                    MyLog.Default.WriteLineAndConsole(
-                        "[PhantombiteEconomy] EventManager: GlobalConfig.ini not found, using defaults (DynamicPrice=true)"
+                    _logger?.Debug(MODULE, 
+                        "GlobalConfig.ini not found, using defaults (DynamicPrice=true)"
                     );
                 }
             }
@@ -268,8 +269,7 @@ namespace PhantombiteEconomy.Modules
                     }
                 }
 
-                if (LoggerModule.DebugMode)
-                MyLog.Default.WriteLineAndConsole($"[PhantombiteEconomy] EventManager: Loaded {_categoryEvents.Count} category events");
+                _logger?.Trace(MODULE, $"Loaded {_categoryEvents.Count} category events");
             }
             catch (Exception ex)
             {
@@ -289,8 +289,7 @@ namespace PhantombiteEconomy.Modules
 
                 if (string.IsNullOrWhiteSpace(content))
                 {
-                    if (LoggerModule.DebugMode)
-                    MyLog.Default.WriteLineAndConsole($"[PhantombiteEconomy] EventManager: {filename} empty, creating new");
+                    _logger?.Trace(MODULE, $"{filename} empty, creating new");
                     CreateNewCategoryEvent(category);
                     return;
                 }
@@ -298,9 +297,8 @@ namespace PhantombiteEconomy.Modules
                 var categoryEvent = ParseEventFile(content, category);
                 _categoryEvents[category] = categoryEvent;
 
-                if (LoggerModule.DebugMode)
-                MyLog.Default.WriteLineAndConsole(
-                    $"[PhantombiteEconomy] EventManager: Loaded {category} - Next refresh: {categoryEvent.NextRefresh}"
+                _logger?.Trace(MODULE, 
+                    $"Loaded {category} - Next refresh: {categoryEvent.NextRefresh}"
                 );
             }
             catch (Exception ex)
@@ -398,8 +396,7 @@ namespace PhantombiteEconomy.Modules
         {
             try
             {
-                if (LoggerModule.DebugMode)
-                MyLog.Default.WriteLineAndConsole($"[PhantombiteEconomy] EventManager: Creating new event for {category}");
+                _logger?.Debug(MODULE, $"Creating new event for {category}");
 
                 var categoryEvent = new CategoryEvent(category);
                 categoryEvent.LastRefresh = DateTime.Now;
@@ -419,9 +416,8 @@ namespace PhantombiteEconomy.Modules
 
                 _categoryEvents[category] = categoryEvent;
 
-                if (LoggerModule.DebugMode)
-                MyLog.Default.WriteLineAndConsole(
-                    $"[PhantombiteEconomy] EventManager: Created {category} event - {categoryEvent.Items.Count} items"
+                _logger?.Debug(MODULE, 
+                    $"Created {category} event - {categoryEvent.Items.Count} items"
                 );
             }
             catch (Exception ex)
@@ -447,8 +443,7 @@ namespace PhantombiteEconomy.Modules
 
                 foreach (var itemName in items)
                 {
-                    if (LoggerModule.DebugMode)
-                    MyLog.Default.WriteLineAndConsole($"[PhantombiteEconomy] EventManager DEBUG: Processing item '{itemName}' in category '{categoryEvent.Category}'");
+                    _logger?.Trace(MODULE, $"Processing item '{itemName}' in category '{categoryEvent.Category}'");
                     
                     // STEP 1: Get pricelist data (BasePrice, MinPrice, MaxPrice, Rarity)
                     var pricelistData = GetPricelistData(categoryEvent.Category, itemName);
@@ -458,9 +453,8 @@ namespace PhantombiteEconomy.Modules
                         continue;
                     }
                     
-                    if (LoggerModule.DebugMode)
-                    MyLog.Default.WriteLineAndConsole(
-                        $"[PhantombiteEconomy] EventManager DEBUG: Found pricelist data for {itemName}: " +
+                    _logger?.Trace(MODULE, 
+                        $"Found pricelist data for {itemName}: " +
                         $"Rarity={pricelistData.Rarity}, BasePrice={pricelistData.BasePrice}, MinPrice={pricelistData.MinPrice}, MaxPrice={pricelistData.MaxPrice}"
                     );
                     
@@ -489,9 +483,8 @@ namespace PhantombiteEconomy.Modules
                         amount = _rand.Next(rarityData.MinSpawnAmount, rarityData.MaxSpawnAmount + 1);
                         price  = _rand.Next(pricelistData.MinPrice, pricelistData.MaxPrice + 1);
                         
-                        if (LoggerModule.DebugMode)
-                        MyLog.Default.WriteLineAndConsole(
-                            $"[PhantombiteEconomy] EventManager: DYNAMIC {itemName} ({pricelistData.Rarity}): " +
+                        _logger?.Debug(MODULE, 
+                            $"DYNAMIC {itemName} ({pricelistData.Rarity}): " +
                             $"Amount={amount} (rolled {rarityData.MinSpawnAmount}-{rarityData.MaxSpawnAmount}), " +
                             $"Price={price} (rolled {pricelistData.MinPrice}-{pricelistData.MaxPrice}), " +
                             $"PriceStep={dynamicPriceStep}, PriceFactor={dynamicPriceFactor}" +
@@ -504,9 +497,8 @@ namespace PhantombiteEconomy.Modules
                         amount = rarityData.BaseSpawnAmount;
                         price = pricelistData.BasePrice;
                         
-                        if (LoggerModule.DebugMode)
-                        MyLog.Default.WriteLineAndConsole(
-                            $"[PhantombiteEconomy] EventManager: STATIC {itemName} ({pricelistData.Rarity}): " +
+                        _logger?.Debug(MODULE, 
+                            $"STATIC {itemName} ({pricelistData.Rarity}): " +
                             $"Amount={amount} (BaseSpawnAmount), Price={price} (BasePrice)"
                         );
                     }
@@ -529,16 +521,14 @@ namespace PhantombiteEconomy.Modules
                         Price = price
                     };
                     
-                    if (LoggerModule.DebugMode)
-                    MyLog.Default.WriteLineAndConsole(
-                        $"[PhantombiteEconomy] EventManager DEBUG: Created catalog entry for {itemName}: " +
+                    _logger?.Trace(MODULE, 
+                        $"Created catalog entry for {itemName}: " +
                         $"TypeId={itemDef.TypeId}, SubtypeId={itemDef.SubtypeId}, Amount={amount}, Price={price}"
                     );
                 }
 
-                if (LoggerModule.DebugMode)
-                MyLog.Default.WriteLineAndConsole(
-                    $"[PhantombiteEconomy] EventManager: Rolled {categoryEvent.Items.Count} items for {categoryEvent.Category} (DynamicPrice={_dynamicPrice})"
+                _logger?.Debug(MODULE, 
+                    $"Rolled {categoryEvent.Items.Count} items for {categoryEvent.Category} (DynamicPrice={_dynamicPrice})"
                 );
             }
             catch (Exception ex)
@@ -561,8 +551,7 @@ namespace PhantombiteEconomy.Modules
                 if (!_initialized)
                     return;
 
-                if (LoggerModule.DebugMode)
-                MyLog.Default.WriteLineAndConsole("[PhantombiteEconomy] EventManager: ForceRefreshAll triggered by command");
+                _logger?.Debug(MODULE, "ForceRefreshAll triggered by command");
 
                 foreach (var category in CATEGORIES)
                 {
@@ -581,12 +570,10 @@ namespace PhantombiteEconomy.Modules
                     // Datei speichern
                     SaveEventFile(categoryEvent);
 
-                    if (LoggerModule.DebugMode)
-                    MyLog.Default.WriteLineAndConsole($"[PhantombiteEconomy] EventManager: ForceRefresh {category} — NextRefresh set to now");
+                    _logger?.Debug(MODULE, $"ForceRefresh {category} — NextRefresh set to now");
                 }
 
-                if (LoggerModule.DebugMode)
-                MyLog.Default.WriteLineAndConsole("[PhantombiteEconomy] EventManager: ForceRefreshAll complete");
+                _logger?.Debug(MODULE, "ForceRefreshAll complete");
             }
             catch (Exception ex)
             {
@@ -604,8 +591,7 @@ namespace PhantombiteEconomy.Modules
                 if (!_initialized)
                     return;
 
-                if (LoggerModule.DebugMode)
-                MyLog.Default.WriteLineAndConsole("[PhantombiteEconomy] EventManager: ReloadPricelists triggered by command");
+                _logger?.Debug(MODULE, "ReloadPricelists triggered by command");
 
                 // GlobalConfig neu laden (z.B. DynamicPrice Änderung)
                 LoadGlobalConfig();
@@ -614,8 +600,7 @@ namespace PhantombiteEconomy.Modules
                 foreach (var category in CATEGORIES)
                     TriggerCategoryRefresh(category);
 
-                if (LoggerModule.DebugMode)
-                MyLog.Default.WriteLineAndConsole("[PhantombiteEconomy] EventManager: ReloadPricelists complete");
+                _logger?.Debug(MODULE, "ReloadPricelists complete");
             }
             catch (Exception ex)
             {
@@ -643,9 +628,8 @@ namespace PhantombiteEconomy.Modules
 
                     if (categoryEvent.NextRefresh <= now)
                     {
-                        if (LoggerModule.DebugMode)
-                        MyLog.Default.WriteLineAndConsole(
-                            $"[PhantombiteEconomy] EventManager: {categoryEvent.Category} overdue by {(now - categoryEvent.NextRefresh).TotalMinutes:F1} minutes, triggering now"
+                        _logger?.Debug(MODULE, 
+                            $"{categoryEvent.Category} overdue by {(now - categoryEvent.NextRefresh).TotalMinutes:F1} minutes, triggering now"
                         );
 
                         TriggerCategoryRefresh(categoryEvent.Category);
@@ -655,8 +639,7 @@ namespace PhantombiteEconomy.Modules
 
                 if (overdueCount > 0)
                 {
-                    if (LoggerModule.DebugMode)
-                    MyLog.Default.WriteLineAndConsole($"[PhantombiteEconomy] EventManager: Triggered {overdueCount} overdue events");
+                    _logger?.Debug(MODULE, $"Triggered {overdueCount} overdue events");
                 }
             }
             catch (Exception ex)
@@ -699,16 +682,14 @@ namespace PhantombiteEconomy.Modules
             {
                 if (!_categoryEvents.ContainsKey(category))
                 {
-                    if (LoggerModule.DebugMode)
-                    MyLog.Default.WriteLineAndConsole($"[PhantombiteEconomy] EventManager: Category {category} not found");
+                    _logger?.Debug(MODULE, $"Category {category} not found");
                     return;
                 }
 
                 var categoryEvent = _categoryEvents[category];
                 DateTime now = DateTime.Now;
 
-                if (LoggerModule.DebugMode)
-                MyLog.Default.WriteLineAndConsole($"[PhantombiteEconomy] EventManager: Triggering refresh for {category}");
+                _logger?.Debug(MODULE, $"Triggering refresh for {category}");
 
                 // Update timestamps
                 categoryEvent.LastRefresh = now;
@@ -720,9 +701,8 @@ namespace PhantombiteEconomy.Modules
                 // Save to file
                 SaveEventFile(categoryEvent);
 
-                if (LoggerModule.DebugMode)
-                MyLog.Default.WriteLineAndConsole(
-                    $"[PhantombiteEconomy] EventManager: {category} refreshed - Next refresh: {categoryEvent.NextRefresh}"
+                _logger?.Debug(MODULE, 
+                    $"{category} refreshed - Next refresh: {categoryEvent.NextRefresh}"
                 );
             }
             catch (Exception ex)
@@ -773,8 +753,7 @@ namespace PhantombiteEconomy.Modules
                 string filename = GetEventFilename(categoryEvent.Category);
                 WriteFile(filename, sb.ToString());
 
-                if (LoggerModule.DebugMode)
-                MyLog.Default.WriteLineAndConsole($"[PhantombiteEconomy] EventManager: Saved {filename}");
+                _logger?.Debug(MODULE, $"Saved {filename}");
             }
             catch (Exception ex)
             {
@@ -886,8 +865,7 @@ namespace PhantombiteEconomy.Modules
                         // Found our item section
                         if (currentSection == itemName)
                         {
-                            if (LoggerModule.DebugMode)
-                            MyLog.Default.WriteLineAndConsole($"[PhantombiteEconomy] EventManager DEBUG: Found section [{itemName}] in {filename}");
+                            _logger?.Debug(MODULE, $"Found section [{itemName}] in {filename}");
                             
                             // Parse all values for this item
                             var data = new PricelistItemData();
@@ -950,9 +928,8 @@ namespace PhantombiteEconomy.Modules
                                 }
                             }
                             
-                            if (LoggerModule.DebugMode)
-                            MyLog.Default.WriteLineAndConsole(
-                                $"[PhantombiteEconomy] EventManager DEBUG: Parsed {itemName}: " +
+                            _logger?.Debug(MODULE, 
+                                $"Parsed {itemName}: " +
                                 $"Rarity={data.Rarity}, BasePrice={data.BasePrice}, MinPrice={data.MinPrice}, MaxPrice={data.MaxPrice}"
                             );
                             
@@ -1035,9 +1012,8 @@ namespace PhantombiteEconomy.Modules
                 
                 if (inSection)
                 {
-                    if (LoggerModule.DebugMode)
-                    MyLog.Default.WriteLineAndConsole(
-                        $"[PhantombiteEconomy] EventManager DEBUG: Parsed Rarity '{rarity}': " +
+                    _logger?.Debug(MODULE, 
+                        $"Parsed Rarity '{rarity}': " +
                         $"BaseSpawnAmount={data.BaseSpawnAmount}, MinSpawnAmount={data.MinSpawnAmount}, MaxSpawnAmount={data.MaxSpawnAmount}"
                     );
                     return data;

@@ -28,11 +28,16 @@ namespace PhantombiteEconomy.Modules
     /// </summary>
     public class TraderVendingMachineModule : IModule
     {
-        public string ModuleName => "TraderVendingMachine";
+        public string ModuleName => "Economy_VendingMachine";
+
+        private EconomyCommandModule _logger;
+        private const string MODULE = "Economy_VendingMachine";
+
+        public void SetLogger(EconomyCommandModule logger) { _logger = logger; }
 
         // Block Detection
-        private const string BLOCK_SUBTYPE = "VendingMachine";
-        private List<IMyStoreBlock> _vendingMachines = new List<IMyStoreBlock>();
+        private const string BLOCK_SUBTYPE = "TraderVendingMachine";
+        private List<IMyVendingMachine> _vendingMachines = new List<IMyVendingMachine>();
 
         // Polling
         private int _updateCounter = 0;
@@ -53,8 +58,7 @@ namespace PhantombiteEconomy.Modules
         {
             try
             {
-                if (LoggerModule.DebugMode)
-                MyLog.Default.WriteLineAndConsole("[PhantombiteEconomy] TraderVendingMachine: Initializing...");
+                _logger?.Debug(MODULE, "Initializing...");
 
                 if (!MyAPIGateway.Multiplayer.IsServer)
                 {
@@ -70,8 +74,7 @@ namespace PhantombiteEconomy.Modules
                 MyAPIGateway.Entities.OnEntityRemove += OnEntityRemove;
 
                 _initialized = true;
-                if (LoggerModule.DebugMode)
-                MyLog.Default.WriteLineAndConsole($"[PhantombiteEconomy] TraderVendingMachine: Initialized — {_vendingMachines.Count} blocks cached");
+                _logger?.Debug(MODULE, $"Initialized — {_vendingMachines.Count} blocks cached");
             }
             catch (Exception ex)
             {
@@ -116,8 +119,7 @@ namespace PhantombiteEconomy.Modules
 
             _forceMaintenanceOnce = true;
             PollVendingMachines();
-            if (LoggerModule.DebugMode)
-            MyLog.Default.WriteLineAndConsole("[PhantombiteEconomy] TraderVendingMachine: ForceRefresh executed");
+            _logger?.Debug(MODULE, "ForceRefresh executed");
         }
 
         public void Close()
@@ -174,7 +176,7 @@ namespace PhantombiteEconomy.Modules
         /// <summary>
         /// Verarbeitet einen einzelnen Block (ISOLIERT!)
         /// </summary>
-        private void ProcessBlock(IMyStoreBlock block)
+        private void ProcessBlock(IMyVendingMachine block)
         {
             try
             {
@@ -234,7 +236,7 @@ namespace PhantombiteEconomy.Modules
 
                     foreach (var slimBlock in blocks)
                     {
-                        IMyStoreBlock vendingBlock = slimBlock.FatBlock as IMyStoreBlock;
+                        IMyVendingMachine vendingBlock = slimBlock.FatBlock as IMyVendingMachine;
                         if (vendingBlock != null && !_vendingMachines.Contains(vendingBlock))
                         {
                             _vendingMachines.Add(vendingBlock);
@@ -244,8 +246,7 @@ namespace PhantombiteEconomy.Modules
 
                 if (_vendingMachines.Count > 0)
                 {
-                    if (LoggerModule.DebugMode)
-                    MyLog.Default.WriteLineAndConsole($"[PhantombiteEconomy] TraderVendingMachine: Found {_vendingMachines.Count} VendingMachine blocks");
+                    _logger?.Trace(MODULE, $"Found {_vendingMachines.Count} VendingMachine blocks");
                 }
             }
             catch (Exception ex)
@@ -267,7 +268,7 @@ namespace PhantombiteEconomy.Modules
                 grid.GetBlocks(blocks, b => IsVendingMachineBlock(b));
                 foreach (var slim in blocks)
                 {
-                    var vendingBlock = slim.FatBlock as IMyStoreBlock;
+                    var vendingBlock = slim.FatBlock as IMyVendingMachine;
                     if (vendingBlock != null && !_vendingMachines.Contains(vendingBlock))
                         _vendingMachines.Add(vendingBlock);
                 }
@@ -299,7 +300,7 @@ namespace PhantombiteEconomy.Modules
             try
             {
                 if (!IsVendingMachineBlock(slim)) return;
-                var vendingBlock = slim.FatBlock as IMyStoreBlock;
+                var vendingBlock = slim.FatBlock as IMyVendingMachine;
                 if (vendingBlock != null && !_vendingMachines.Contains(vendingBlock))
                     _vendingMachines.Add(vendingBlock);
             }
@@ -317,8 +318,8 @@ namespace PhantombiteEconomy.Modules
             if (block?.FatBlock == null)
                 return false;
 
-            return block.FatBlock is IMyStoreBlock && 
-                   block.BlockDefinition.Id.SubtypeName.Contains(BLOCK_SUBTYPE);
+            return block.FatBlock is IMyVendingMachine && 
+                   block.BlockDefinition.Id.SubtypeName == BLOCK_SUBTYPE;
         }
 
         #endregion
@@ -328,7 +329,7 @@ namespace PhantombiteEconomy.Modules
         /// <summary>
         /// Deployed Custom Data Template in Block (OHNE Buy Categories!)
         /// </summary>
-        private void DeployCustomDataTemplate(IMyStoreBlock block)
+        private void DeployCustomDataTemplate(IMyVendingMachine block)
         {
             try
             {
@@ -382,8 +383,7 @@ namespace PhantombiteEconomy.Modules
 
                 block.CustomData = sb.ToString();
                 
-                if (LoggerModule.DebugMode)
-                MyLog.Default.WriteLineAndConsole($"[PhantombiteEconomy] TraderVendingMachine: Deployed CustomData template to '{block.CustomName}'");
+                _logger?.Debug(MODULE, $"Deployed CustomData template to '{block.CustomName}'");
             }
             catch (Exception ex)
             {
@@ -604,7 +604,7 @@ namespace PhantombiteEconomy.Modules
         /// Whitelist-Logik: Items werden gespawnt wenn Kategorie AN oder Item auf Whitelist
         /// Blacklist-Logik: Items werden NIE gespawnt wenn auf Blacklist (überschreibt alles)
         /// </summary>
-        private void SyncStoreItems(IMyStoreBlock block, StoreConfig config)
+        private void SyncStoreItems(IMyVendingMachine block, StoreConfig config)
         {
             try
             {
@@ -670,7 +670,7 @@ namespace PhantombiteEconomy.Modules
         /// <summary>
         /// Synchronisiert Items einer Category
         /// </summary>
-        private void SyncCategoryItems(IMyStoreBlock block, string category, StoreConfig config)
+        private void SyncCategoryItems(IMyVendingMachine block, string category, StoreConfig config)
         {
             try
             {
@@ -679,8 +679,7 @@ namespace PhantombiteEconomy.Modules
 
                 if (_reuseCatalog.Count == 0)
                 {
-                    if (LoggerModule.DebugMode)
-                    MyLog.Default.WriteLineAndConsole($"[PhantombiteEconomy] TraderVendingMachine: No catalog for {category}");
+                    _logger?.Debug(MODULE, $"No catalog for {category}");
                     return;
                 }
 
@@ -693,8 +692,7 @@ namespace PhantombiteEconomy.Modules
                 }
                 else
                 {
-                    if (LoggerModule.DebugMode)
-                    MyLog.Default.WriteLineAndConsole($"[PhantombiteEconomy] TraderVendingMachine: Maintenance Mode ACTIVE for {category}");
+                    _logger?.Debug(MODULE, $"Maintenance Mode ACTIVE for {category}");
                 }
 
                 int spawnedCount = 0;
@@ -722,13 +720,18 @@ namespace PhantombiteEconomy.Modules
                     }
 
                     // Item ist erlaubt → spawnen
+                    // Guard: TypeId/SubtypeId müssen vorhanden sein (aus Catalog gelesen)
+                    if (string.IsNullOrWhiteSpace(item.TypeId) || string.IsNullOrWhiteSpace(item.SubtypeId))
+                    {
+                        _logger?.Debug(MODULE, $"Skipping '{item.ItemName}' — TypeId or SubtypeId missing in catalog");
+                        continue;
+                    }
                     SpawnItem(block, item.TypeId, item.SubtypeId, item.Amount, item.Price);
                     CreateStoreOrder(block, item.TypeId, item.SubtypeId, item.Amount, item.Price);
                     spawnedCount++;
                 }
 
-                if (LoggerModule.DebugMode)
-                MyLog.Default.WriteLineAndConsole($"[PhantombiteEconomy] TraderVendingMachine: {category} sync - Spawned: {spawnedCount}, Skipped (blacklist): {skippedBlacklist}, Skipped (category off): {skippedCategory}");
+                _logger?.Debug(MODULE, $"{category} sync - Spawned: {spawnedCount}, Skipped (blacklist): {skippedBlacklist}, Skipped (category off): {skippedCategory}");
             }
             catch (Exception ex)
             {
@@ -745,7 +748,7 @@ namespace PhantombiteEconomy.Modules
         /// KRITISCH: TypeId + SubtypeId MÜSSEN von M00 kommen! (Single Source of Truth)
         /// WICHTIG: EXAKT dieselbe Parsing-Logik wie CreateStoreOrder()!
         /// </summary>
-        private void SpawnItem(IMyStoreBlock block, string typeId, string subtypeId, int targetAmount, int price)
+        private void SpawnItem(IMyVendingMachine block, string typeId, string subtypeId, int targetAmount, int price)
         {
             try
             {
@@ -792,16 +795,14 @@ namespace PhantombiteEconomy.Modules
                 
                 if (finalAmount != targetAmount)
                 {
-                    if (LoggerModule.DebugMode)
-                    MyLog.Default.WriteLineAndConsole(
-                        $"[PhantombiteEconomy] TraderVendingMachine WARNING: '{block.CustomName}' {typeId}/{subtypeId} - Target: {targetAmount}, Actual: {finalAmount}"
+                    _logger?.Debug(MODULE, 
+                        $"'{block.CustomName}' {typeId}/{subtypeId} - Target: {targetAmount}, Actual: {finalAmount}"
                     );
                 }
                 else
                 {
-                    if (LoggerModule.DebugMode)
-                    MyLog.Default.WriteLineAndConsole(
-                        $"[PhantombiteEconomy] TraderVendingMachine: '{block.CustomName}' {typeId}/{subtypeId} = {finalAmount} @ {price} Credits ✓"
+                    _logger?.Debug(MODULE, 
+                        $"'{block.CustomName}' {typeId}/{subtypeId} = {finalAmount} @ {price} Credits ✓"
                     );
                 }
             }
@@ -900,11 +901,11 @@ namespace PhantombiteEconomy.Modules
         /// <summary>
         /// Erstellt oder updated Store Order (DUPLICATE from M04 - STAHLBETON!)
         /// </summary>
-        private void CreateStoreOrder(IMyStoreBlock block, string typeId, string subtypeId, int amount, int price)
+        private void CreateStoreOrder(IMyVendingMachine block, string typeId, string subtypeId, int amount, int price)
         {
             try
             {
-                var storeBlock = block as Sandbox.ModAPI.IMyStoreBlock;
+                var storeBlock = block as Sandbox.ModAPI.IMyVendingMachine;
                 if (storeBlock == null)
                     return;
 
@@ -986,7 +987,7 @@ namespace PhantombiteEconomy.Modules
                     string key = trimmed.Substring(0, equalsIndex).Trim();
                     string value = trimmed.Substring(equalsIndex + 1).Trim();
 
-                    // Parse ItemName_Amount or ItemName_Price
+                    // Parse ItemName_TypeId, ItemName_SubtypeId, ItemName_Amount, ItemName_Price
                     if (key.EndsWith("_Amount"))
                     {
                         string itemName = key.Substring(0, key.Length - 7);
@@ -1008,6 +1009,20 @@ namespace PhantombiteEconomy.Modules
                                 _reuseCatalog[itemName] = new CatalogItem { ItemName = itemName };
                             _reuseCatalog[itemName].Price = price;
                         }
+                    }
+                    else if (key.EndsWith("_TypeId"))
+                    {
+                        string itemName = key.Substring(0, key.Length - 7);
+                        if (!_reuseCatalog.ContainsKey(itemName))
+                            _reuseCatalog[itemName] = new CatalogItem { ItemName = itemName };
+                        _reuseCatalog[itemName].TypeId = value;
+                    }
+                    else if (key.EndsWith("_SubtypeId"))
+                    {
+                        string itemName = key.Substring(0, key.Length - 10);
+                        if (!_reuseCatalog.ContainsKey(itemName))
+                            _reuseCatalog[itemName] = new CatalogItem { ItemName = itemName };
+                        _reuseCatalog[itemName].SubtypeId = value;
                     }
                 }
             }
@@ -1073,7 +1088,7 @@ namespace PhantombiteEconomy.Modules
         {
             try
             {
-                return MyAPIGateway.Utilities.FileExistsInWorldStorage(filename, typeof(TraderVendingMachineModule));
+                return MyAPIGateway.Utilities.FileExistsInWorldStorage(filename, typeof(EventManagerModule));
             }
             catch
             {
@@ -1085,9 +1100,9 @@ namespace PhantombiteEconomy.Modules
         {
             try
             {
-                if (MyAPIGateway.Utilities.FileExistsInWorldStorage(filename, typeof(TraderVendingMachineModule)))
+                if (MyAPIGateway.Utilities.FileExistsInWorldStorage(filename, typeof(EventManagerModule)))
                 {
-                    using (var reader = MyAPIGateway.Utilities.ReadFileInWorldStorage(filename, typeof(TraderVendingMachineModule)))
+                    using (var reader = MyAPIGateway.Utilities.ReadFileInWorldStorage(filename, typeof(EventManagerModule)))
                     {
                         return reader.ReadToEnd();
                     }
@@ -1109,7 +1124,7 @@ namespace PhantombiteEconomy.Modules
         /// Entfernt Items aus deaktivierten Categories
         /// KRITISCH: Items die auf false stehen müssen gelöscht werden!
         /// </summary>
-        private void DespawnDisabledCategories(IMyStoreBlock block, StoreConfig config)
+        private void DespawnDisabledCategories(IMyVendingMachine block, StoreConfig config)
         {
             try
             {
@@ -1139,7 +1154,7 @@ namespace PhantombiteEconomy.Modules
         /// Entfernt Blacklist-Items aus Inventar + Store Orders
         /// Läuft nach jedem Spawn — entfernt auch bereits gespawnte Items
         /// </summary>
-        private void DespawnBlacklistedItems(IMyStoreBlock block, StoreConfig config)
+        private void DespawnBlacklistedItems(IMyVendingMachine block, StoreConfig config)
         {
             try
             {
@@ -1150,7 +1165,7 @@ namespace PhantombiteEconomy.Modules
                 if (inventory == null)
                     return;
 
-                var storeBlock = block as Sandbox.ModAPI.IMyStoreBlock;
+                var storeBlock = block as Sandbox.ModAPI.IMyVendingMachine;
                 if (storeBlock == null)
                     return;
 
@@ -1178,8 +1193,7 @@ namespace PhantombiteEconomy.Modules
                                 if (config.Sell_Blacklist.Contains($"{category}:{itemDef.DisplayName}"))
                                 {
                                     inventory.RemoveItemsAt(i, (MyFixedPoint)(int)item.Amount);
-                                    if (LoggerModule.DebugMode)
-                                    MyLog.Default.WriteLineAndConsole($"[PhantombiteEconomy] TraderVendingMachine: Despawned blacklisted item {category}:{itemDef.DisplayName}");
+                                    _logger?.Debug(MODULE, $"Despawned blacklisted item {category}:{itemDef.DisplayName}");
                                 }
                                 break;
                             }
@@ -1260,8 +1274,7 @@ namespace PhantombiteEconomy.Modules
                 }
 
                 if (removedCount > 0)
-                    if (LoggerModule.DebugMode)
-                    MyLog.Default.WriteLineAndConsole($"[PhantombiteEconomy] TraderVendingMachine: Removed {removedCount} non-whitelisted {category} items");
+                    _logger?.Debug(MODULE, $"Removed {removedCount} non-whitelisted {category} items");
             }
             catch (Exception ex)
             {
@@ -1272,11 +1285,11 @@ namespace PhantombiteEconomy.Modules
         /// <summary>
         /// Entfernt Store Orders einer Category, AUSSER Whitelist-Items
         /// </summary>
-        private void RemoveStoreOrdersForCategoryExcludingWhitelist(IMyStoreBlock block, string category, List<string> whitelist, StoreItemTypes orderType)
+        private void RemoveStoreOrdersForCategoryExcludingWhitelist(IMyVendingMachine block, string category, List<string> whitelist, StoreItemTypes orderType)
         {
             try
             {
-                var storeBlock = block as Sandbox.ModAPI.IMyStoreBlock;
+                var storeBlock = block as Sandbox.ModAPI.IMyVendingMachine;
                 if (storeBlock == null)
                     return;
 
@@ -1311,8 +1324,7 @@ namespace PhantombiteEconomy.Modules
                 }
 
                 if (removedCount > 0)
-                    if (LoggerModule.DebugMode)
-                    MyLog.Default.WriteLineAndConsole($"[PhantombiteEconomy] TraderVendingMachine: Removed {removedCount} non-whitelisted {category} orders");
+                    _logger?.Debug(MODULE, $"Removed {removedCount} non-whitelisted {category} orders");
             }
             catch (Exception ex)
             {
@@ -1333,21 +1345,19 @@ namespace PhantombiteEconomy.Modules
         /// 
         /// ISOLIERT: Betrifft nur diesen einen Block!
         /// </summary>
-        private void EnterErrorMode(IMyStoreBlock block, string errorMessage)
+        private void EnterErrorMode(IMyVendingMachine block, string errorMessage)
         {
             try
             {
                 block.Enabled = false;
-                if (LoggerModule.DebugMode)
-                MyLog.Default.WriteLineAndConsole(
-                    $"[PhantombiteEconomy] TraderVendingMachine '{block.CustomName}' ERROR: {errorMessage}"
+                _logger?.Debug(MODULE, 
+                    $"'{block.CustomName}' ERROR: {errorMessage}"
                 );
             }
             catch (Exception ex)
             {
-                if (LoggerModule.DebugMode)
-                MyLog.Default.WriteLineAndConsole(
-                    $"[PhantombiteEconomy] TraderVendingMachine ERROR in EnterErrorMode:\n{ex}"
+                _logger?.Debug(MODULE, 
+                    $"in EnterErrorMode:\n{ex}"
                 );
             }
         }
