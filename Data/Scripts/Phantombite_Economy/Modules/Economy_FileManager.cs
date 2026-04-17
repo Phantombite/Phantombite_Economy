@@ -451,6 +451,19 @@ namespace PhantombiteEconomy.Modules
                     sb.AppendLine("Over_Buy_Margin=0.5");
                     sb.AppendLine("Over_DynamicPriceStep=10");
                     sb.AppendLine("Over_DynamicPriceFactor=1.15");
+                    sb.AppendLine();
+
+                    sb.AppendLine("[Scrap]");
+                    sb.AppendLine("SubtypeId=Scrap");
+                    sb.AppendLine("Category=Ore");
+                    sb.AppendLine("Rarity=Common");
+                    sb.AppendLine("Sell_BasePrice=5");
+                    sb.AppendLine("Sell_MinPrice=3");
+                    sb.AppendLine("Sell_MaxPrice=8");
+                    sb.AppendLine("Override_enable=false");
+                    sb.AppendLine("Over_Buy_Margin=0.7");
+                    sb.AppendLine("Over_DynamicPriceStep=100");
+                    sb.AppendLine("Over_DynamicPriceFactor=1.01");
                 }
                 // ============================================================
                 // PRICELIST_INGOTS.INI - KOMPLETT (10 Items)
@@ -1038,6 +1051,19 @@ namespace PhantombiteEconomy.Modules
                     sb.AppendLine("Over_Buy_Margin=0.5");
                     sb.AppendLine("Over_DynamicPriceStep=10");
                     sb.AppendLine("Over_DynamicPriceFactor=1.15");
+                    sb.AppendLine();
+
+                    sb.AppendLine("[FlareGun]");
+                    sb.AppendLine("SubtypeId=FlareGunItem");
+                    sb.AppendLine("Category=Tools");
+                    sb.AppendLine("Rarity=Uncommon");
+                    sb.AppendLine("Sell_BasePrice=150");
+                    sb.AppendLine("Sell_MinPrice=120");
+                    sb.AppendLine("Sell_MaxPrice=188");
+                    sb.AppendLine("Override_enable=false");
+                    sb.AppendLine("Over_Buy_Margin=0.7");
+                    sb.AppendLine("Over_DynamicPriceStep=30");
+                    sb.AppendLine("Over_DynamicPriceFactor=1.08");
                     sb.AppendLine();
                 }
                 // ============================================================

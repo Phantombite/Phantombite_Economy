@@ -94,7 +94,6 @@ namespace PhantombiteEconomy
                         new ItemDefinition { DisplayName = "Platinum", TypeId = "Ore", SubtypeId = "Platinum" },
                         new ItemDefinition { DisplayName = "Uranium", TypeId = "Ore", SubtypeId = "Uranium" },
                         new ItemDefinition { DisplayName = "Scrap", TypeId = "Ore", SubtypeId = "Scrap" },
-                        new ItemDefinition { DisplayName = "Organic", TypeId = "Ore", SubtypeId = "Organic" }
                     }
                 },
 
@@ -103,7 +102,7 @@ namespace PhantombiteEconomy
                 // ============================================================
                 { "Ingots", new List<ItemDefinition>
                     {
-                        new ItemDefinition { DisplayName = "Stone", TypeId = "Ingot", SubtypeId = "Stone" },  // Display: Gravel
+                        new ItemDefinition { DisplayName = "Gravel", TypeId = "Ingot", SubtypeId = "Stone" },  // Gravel = Stone Ingot
                         new ItemDefinition { DisplayName = "Iron", TypeId = "Ingot", SubtypeId = "Iron" },
                         new ItemDefinition { DisplayName = "Nickel", TypeId = "Ingot", SubtypeId = "Nickel" },
                         new ItemDefinition { DisplayName = "Cobalt", TypeId = "Ingot", SubtypeId = "Cobalt" },
@@ -112,8 +111,7 @@ namespace PhantombiteEconomy
                         new ItemDefinition { DisplayName = "Silver", TypeId = "Ingot", SubtypeId = "Silver" },
                         new ItemDefinition { DisplayName = "Gold", TypeId = "Ingot", SubtypeId = "Gold" },
                         new ItemDefinition { DisplayName = "Platinum", TypeId = "Ingot", SubtypeId = "Platinum" },
-                        new ItemDefinition { DisplayName = "Uranium", TypeId = "Ingot", SubtypeId = "Uranium" },
-                        new ItemDefinition { DisplayName = "Scrap", TypeId = "Ingot", SubtypeId = "Scrap" }
+                        new ItemDefinition { DisplayName = "Uranium", TypeId = "Ingot", SubtypeId = "Uranium" }
                     }
                 },
 
