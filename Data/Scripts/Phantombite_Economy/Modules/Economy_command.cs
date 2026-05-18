@@ -182,8 +182,7 @@ namespace PhantombiteEconomy.Modules
                 Array.Copy(parts, 2, args, 0, args.Length);
                 string argsJoined = string.Join("|", args);
 
-                Log("Economy_Command", "Command empfangen: " + command, 1
-                    + (argsJoined.Length > 0 ? " " + argsJoined : "") + " — SteamId: " + steamId);
+                Log("Economy_Command", "Command empfangen: " + command + (argsJoined.Length > 0 ? " " + argsJoined : "") + " — SteamId: " + steamId, 1);
 
                 IMyPlayer player = FindPlayer(steamId);
 

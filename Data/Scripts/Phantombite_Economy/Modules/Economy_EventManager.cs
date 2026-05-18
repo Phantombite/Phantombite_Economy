@@ -310,8 +310,7 @@ namespace PhantombiteEconomy.Modules
                 _categoryEvents[category] = categoryEvent;
 
                 _logger?.Log(MODULE, 
-                    $"Loaded {category} - Next refresh: {categoryEvent.NextRefresh}", 1
-                , 1);
+                    $"Loaded {category} - Next refresh: {categoryEvent.NextRefresh}", 1);
             }
             catch (Exception ex)
             {
@@ -534,8 +533,7 @@ namespace PhantombiteEconomy.Modules
                     };
                     
                     _logger?.Log(MODULE, 
-                        $"Catalog: {itemName} — {itemDef.TypeId}/{itemDef.SubtypeId} Amt:{amount} Price:{price}", 2
-                    , 1);
+                        $"Catalog: {itemName} — {itemDef.TypeId}/{itemDef.SubtypeId} Amt:{amount} Price:{price}", 2);
                 }
 
                 _logger?.Log(MODULE, 
@@ -609,7 +607,7 @@ namespace PhantombiteEconomy.Modules
 
                 // Alle Categories neu rollen mit aktuellen Pricelist-Dateien
                 foreach (var category in CATEGORIES)
-                    TriggerCategoryRefresh(category);
+                    TriggerCategoryRefresh(category, true);
 
                 _logger?.Log(MODULE, "ReloadPricelists complete", 1);
             }
@@ -640,10 +638,9 @@ namespace PhantombiteEconomy.Modules
                     if (categoryEvent.NextRefresh <= now)
                     {
                         _logger?.Log(MODULE, 
-                            $"{categoryEvent.Category} overdue by {(now - categoryEvent.NextRefresh).TotalMinutes:F1} minutes, triggering now", 1
-                        , 1);
+                            $"{categoryEvent.Category} overdue by {(now - categoryEvent.NextRefresh).TotalMinutes:F1} minutes, triggering now", 1);
 
-                        TriggerCategoryRefresh(categoryEvent.Category);
+                        TriggerCategoryRefresh(categoryEvent.Category, true);
                         overdueCount++;
                     }
                 }
@@ -739,8 +736,7 @@ namespace PhantombiteEconomy.Modules
                 SaveEventFile(categoryEvent);
 
                 _logger?.Log(MODULE, 
-                    $"Refresh: {category} — nächster: {categoryEvent.NextRefresh}", 1
-                , 1);
+                    $"Refresh: {category} — nächster: {categoryEvent.NextRefresh}", 1);
             }
             catch (Exception ex)
             {
