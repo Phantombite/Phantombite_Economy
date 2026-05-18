@@ -161,7 +161,10 @@ namespace PhantombiteEconomy
                         new ItemDefinition { DisplayName = "HandDrill2", TypeId = "PhysicalGunObject", SubtypeId = "HandDrill2Item" },
                         new ItemDefinition { DisplayName = "HandDrill3", TypeId = "PhysicalGunObject", SubtypeId = "HandDrill3Item" },
                         new ItemDefinition { DisplayName = "HandDrill4", TypeId = "PhysicalGunObject", SubtypeId = "HandDrill4Item" },
-                        new ItemDefinition { DisplayName = "FlareGun", TypeId = "PhysicalGunObject", SubtypeId = "FlareGunItem" }
+                        new ItemDefinition { DisplayName = "FlareGun", TypeId = "PhysicalGunObject", SubtypeId = "FlareGunItem" },
+                        new ItemDefinition { DisplayName = "Datapad", TypeId = "Datapad", SubtypeId = "Datapad" },
+                        new ItemDefinition { DisplayName = "OxygenBottle", TypeId = "OxygenContainerObject", SubtypeId = "OxygenBottle" },
+                        new ItemDefinition { DisplayName = "HydrogenBottle", TypeId = "GasContainerObject", SubtypeId = "HydrogenBottle" }
                     }
                 },
 
@@ -289,6 +292,17 @@ namespace PhantombiteEconomy
                         new ItemDefinition { DisplayName = "PrototechMachinery", TypeId = "Component", SubtypeId = "PrototechMachinery" },
                         new ItemDefinition { DisplayName = "PrototechCircuitry", TypeId = "Component", SubtypeId = "PrototechCircuitry" },
                         new ItemDefinition { DisplayName = "PrototechCoolingUnit", TypeId = "Component", SubtypeId = "PrototechCoolingUnit" }
+                    }
+                },
+
+                // ============================================================
+                // COLLECTIBLES - 2 Items
+                // Seltene Sammelgegenstände — nicht craftbar, nur handelbar
+                // ============================================================
+                { "Collectibles", new List<ItemDefinition>
+                    {
+                        new ItemDefinition { DisplayName = "EngineerPlushie", TypeId = "Component", SubtypeId = "EngineerPlushie" },
+                        new ItemDefinition { DisplayName = "SabiroidPlushie", TypeId = "Component", SubtypeId = "SabiroidPlushie" }
                     }
                 }
             };

@@ -36,12 +36,17 @@ namespace PhantombiteEconomy.Modules
         private const long   ECONOMY_CHANNEL = 1995004L;
         private const long   LOG_CHANNEL     = 1995999L;
         private const string MOD_NAME        = "Phantombite_Economy";
+        private const string VERSION         = "1.3.0";
 
         private bool _initialized = false;
 
         // ── Log-Level (vom Core gesetzt) ─────────────────────────────────────
         private enum LogLevel { Normal = 0, Debug = 1, Trace = 2 }
         private LogLevel _logLevel = LogLevel.Normal;
+
+        // ── Performance-Level (vom Core gesetzt) ─────────────────────────────
+        /// <summary>0=voll, 1=reduziert, 2=minimal, 3=aus — für EventManager lesbar.</summary>
+        public int PerfLevel { get; private set; } = 0;
 
         // ── Modul-Referenzen ─────────────────────────────────────────────────
         private FileManagerModule          _fileManager;
@@ -90,18 +95,34 @@ namespace PhantombiteEconomy.Modules
 
                 if (msg == "READY")
                 {
-                    Trace("Economy_Command", "READY empfangen — sende Registrierung...");
+                    Log("Economy_Command", "READY empfangen — sende Registrierung...");
                     RegisterWithCore();
                     return;
                 }
 
                 if (msg.StartsWith("LOGLEVEL|"))
                 {
-                    string levelStr = msg.Substring(9).ToLower();
-                    _logLevel = levelStr == "trace" ? LogLevel.Trace
-                              : levelStr == "debug" ? LogLevel.Debug
-                              : LogLevel.Normal;
-                    Trace("Economy_Command", "LOGLEVEL gesetzt: " + _logLevel);
+                    int level;
+                    if (int.TryParse(msg.Substring(9), out level))
+                        _logLevel = (LogLevel)level;
+                    else
+                    {
+                        string s = msg.Substring(9).ToLower();
+                        _logLevel = s == "trace" ? LogLevel.Trace : s == "debug" ? LogLevel.Debug : LogLevel.Normal;
+                    }
+                    Log("Economy_Command", "LOGLEVEL gesetzt: " + _logLevel, 1);
+                    return;
+                }
+
+                if (msg.StartsWith("PERFLEVEL|"))
+                {
+                    int level;
+                    if (int.TryParse(msg.Substring(10), out level))
+                    {
+                        PerfLevel = level;
+                        Log("Economy_Command", "PERFLEVEL gesetzt: " + level, 1);
+                        MyAPIGateway.Utilities.SendModMessage(CORE_CHANNEL, "PERFACK|economy|" + level);
+                    }
                     return;
                 }
 
@@ -122,13 +143,14 @@ namespace PhantombiteEconomy.Modules
             {
                 string msg = "REGISTER"
                     + "|economy"
-                    + "|PhantomBite Economy"
+                    + "|Phantombite Economy"
+                    + "|" + VERSION
                     + "|" + ECONOMY_CHANNEL
                     + "|forcerefresh:1:Alle Stores sofort initialisieren"
                     + "|pricelist:1:Pricelists neu laden (!pbc economy pricelist reload)";
 
                 MyAPIGateway.Utilities.SendModMessage(CORE_CHANNEL, msg);
-                Trace("Economy_Command", "Registrierung an Core gesendet");
+                Log("Economy_Command", "Registrierung an Core gesendet");
             }
             catch (Exception ex)
             {
@@ -160,7 +182,7 @@ namespace PhantombiteEconomy.Modules
                 Array.Copy(parts, 2, args, 0, args.Length);
                 string argsJoined = string.Join("|", args);
 
-                Debug("Economy_Command", "Command empfangen: " + command
+                Log("Economy_Command", "Command empfangen: " + command, 1
                     + (argsJoined.Length > 0 ? " " + argsJoined : "") + " — SteamId: " + steamId);
 
                 IMyPlayer player = FindPlayer(steamId);
@@ -176,12 +198,17 @@ namespace PhantombiteEconomy.Modules
                             resultMsg = "EventManager Modul nicht verfügbar.";
                             break;
                         }
-                        _eventManager.ForceRefreshAll();
-                        _traderStore?.ForceRefresh();
-                        _vendingMachine?.ForceRefresh();
-                        executed  = true;
-                        resultMsg = "Economy: Alle Stores aktualisiert.";
-                        Debug("Economy_Command", "ForceRefresh ausgeführt");
+                        HeavyStart("ForceRefresh");
+                        try
+                        {
+                            _eventManager.ForceRefreshAll();
+                            _traderStore?.ForceRefresh();
+                            _vendingMachine?.ForceRefresh();
+                            executed  = true;
+                            resultMsg = "Economy: Alle Stores aktualisiert.";
+                        }
+                        finally { HeavyEnd("ForceRefresh"); }
+                        Log("Economy_Command", "ForceRefresh ausgeführt");
                         break;
 
                     case "pricelist":
@@ -198,7 +225,7 @@ namespace PhantombiteEconomy.Modules
                         _eventManager.ReloadPricelists();
                         executed  = true;
                         resultMsg = "Economy: Pricelists neu geladen.";
-                        Debug("Economy_Command", "Pricelist reload ausgeführt");
+                        Log("Economy_Command", "Pricelist reload ausgeführt");
                         break;
 
                     default:
@@ -207,10 +234,10 @@ namespace PhantombiteEconomy.Modules
                 }
 
                 // CMDRESULT zurück an Core — immer "economy" als modName
-                string status = executed ? "ok" : "fail";
+                string status = executed ? "ok" : "error";
                 string result = "CMDRESULT|economy|" + command + "|" + argsJoined + "|" + steamId + "|" + status + "|" + resultMsg;
                 MyAPIGateway.Utilities.SendModMessage(CORE_CHANNEL, result);
-                Trace("Economy_Command", "CMDRESULT gesendet: status=" + status + ", msg='" + resultMsg + "'");
+                Log("Economy_Command", "CMDRESULT gesendet: " + status, 1);
             }
             catch (Exception ex)
             {
@@ -269,25 +296,41 @@ namespace PhantombiteEconomy.Modules
 
         // ── Log API für alle Economy-Module ──────────────────────────────────
 
-        public void Warn(string module, string message)  { SendLog("WARN",  module, message); }
-        public void Error(string module, string message) { SendLog("ERROR", module, message); }
+        // ── Log API ───────────────────────────────────────────────────────────
+        // Einheitliches System: level 0 = immer, 1/2/3 = gefiltert
+        // Kein Debug(), Trace(), Info() — nur Log(), Warn(), Error()
 
-        public void Info(string module, string message)
+        public void Warn(string module, string message)
         {
-            if (_logLevel < LogLevel.Debug) return;
-            SendLog("INFO", module, message);
+            MyLog.Default.WriteLineAndConsole("[PhantombiteEconomy] [WARN] [" + module + "] " + message);
+            SendLog("WARN", module, message);
         }
 
-        public void Debug(string module, string message)
+        public void Error(string module, string message)
         {
-            if (_logLevel < LogLevel.Debug) return;
-            SendLog("DEBUG", module, message);
+            MyLog.Default.WriteLineAndConsole("[PhantombiteEconomy] [ERROR] [" + module + "] " + message);
+            SendLog("ERROR", module, message);
         }
 
-        public void Trace(string module, string message)
+        public void Log(string module, string message, int level = 0)
         {
-            if (_logLevel < LogLevel.Trace) return;
-            SendLog("TRACE", module, message);
+            if (level > 0 && (int)_logLevel < level) return;
+            MyLog.Default.WriteLineAndConsole("[PhantombiteEconomy] [" + level + "] [" + module + "] " + message);
+            SendLog(level.ToString(), module, message);
+        }
+
+        // ── HEAVY Signale an Core ─────────────────────────────────────────────
+
+        public void HeavyStart(string opName)
+        {
+            try { MyAPIGateway.Utilities.SendModMessage(CORE_CHANNEL, "HEAVY_START|economy|" + opName); }
+            catch { }
+        }
+
+        public void HeavyEnd(string opName)
+        {
+            try { MyAPIGateway.Utilities.SendModMessage(CORE_CHANNEL, "HEAVY_END|economy|" + opName); }
+            catch { }
         }
 
         private void SendLog(string level, string module, string message)

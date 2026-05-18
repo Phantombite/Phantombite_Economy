@@ -37,6 +37,7 @@ namespace PhantombiteEconomy.Modules
             "Pricelist_Seeds.ini",
             "Pricelist_Consumables.ini",            
             "Pricelist_Prototech.ini",
+            "Pricelist_Collectibles.ini",
             "Pricelist_Blacklist.ini"
         };
 
@@ -1064,6 +1065,45 @@ namespace PhantombiteEconomy.Modules
                     sb.AppendLine("Over_Buy_Margin=0.7");
                     sb.AppendLine("Over_DynamicPriceStep=30");
                     sb.AppendLine("Over_DynamicPriceFactor=1.08");
+                    sb.AppendLine();
+
+                    sb.AppendLine("[Datapad]");
+                    sb.AppendLine("SubtypeId=Datapad");
+                    sb.AppendLine("Category=Tools");
+                    sb.AppendLine("Rarity=Common");
+                    sb.AppendLine("Sell_BasePrice=50");
+                    sb.AppendLine("Sell_MinPrice=25");
+                    sb.AppendLine("Sell_MaxPrice=100");
+                    sb.AppendLine("Override_enable=false");
+                    sb.AppendLine("Over_Buy_Margin=0.7");
+                    sb.AppendLine("Over_DynamicPriceStep=10");
+                    sb.AppendLine("Over_DynamicPriceFactor=1.05");
+                    sb.AppendLine();
+
+                    sb.AppendLine("[OxygenBottle]");
+                    sb.AppendLine("SubtypeId=OxygenBottle");
+                    sb.AppendLine("Category=Tools");
+                    sb.AppendLine("Rarity=Uncommon");
+                    sb.AppendLine("Sell_BasePrice=400");
+                    sb.AppendLine("Sell_MinPrice=200");
+                    sb.AppendLine("Sell_MaxPrice=800");
+                    sb.AppendLine("Override_enable=false");
+                    sb.AppendLine("Over_Buy_Margin=0.7");
+                    sb.AppendLine("Over_DynamicPriceStep=20");
+                    sb.AppendLine("Over_DynamicPriceFactor=1.08");
+                    sb.AppendLine();
+
+                    sb.AppendLine("[HydrogenBottle]");
+                    sb.AppendLine("SubtypeId=HydrogenBottle");
+                    sb.AppendLine("Category=Tools");
+                    sb.AppendLine("Rarity=Rare");
+                    sb.AppendLine("Sell_BasePrice=800");
+                    sb.AppendLine("Sell_MinPrice=400");
+                    sb.AppendLine("Sell_MaxPrice=1600");
+                    sb.AppendLine("Override_enable=false");
+                    sb.AppendLine("Over_Buy_Margin=0.7");
+                    sb.AppendLine("Over_DynamicPriceStep=30");
+                    sb.AppendLine("Over_DynamicPriceFactor=1.10");
                     sb.AppendLine();
                 }
                 // ============================================================
@@ -2128,6 +2168,43 @@ namespace PhantombiteEconomy.Modules
                     sb.AppendLine("Sell_BasePrice=25000");
                     sb.AppendLine("Sell_MinPrice=12500");
                     sb.AppendLine("Sell_MaxPrice=50000");
+                    sb.AppendLine("Override_enable=false");
+                    sb.AppendLine("Over_Buy_Margin=0.4");
+                    sb.AppendLine("Over_DynamicPriceStep=5");
+                    sb.AppendLine("Over_DynamicPriceFactor=1.20");
+                }
+                // ============================================================
+                // PRICELIST_COLLECTIBLES.INI
+                // Seltene Sammelgegenstände — nicht craftbar, nur handelbar
+                // ============================================================
+                else if (filename == "Pricelist_Collectibles.ini")
+                {
+                    sb.AppendLine("# ==============================================================================");
+                    sb.AppendLine("# PRICELIST - COLLECTIBLES");
+                    sb.AppendLine("# Seltene Sammelgegenstaende - nicht craftbar, nur handelbar");
+                    sb.AppendLine("# ==============================================================================");
+                    sb.AppendLine();
+
+                    sb.AppendLine("[EngineerPlushie]");
+                    sb.AppendLine("SubtypeId=EngineerPlushie");
+                    sb.AppendLine("Category=Collectibles");
+                    sb.AppendLine("Rarity=Legendary");
+                    sb.AppendLine("Sell_BasePrice=15000");
+                    sb.AppendLine("Sell_MinPrice=7500");
+                    sb.AppendLine("Sell_MaxPrice=30000");
+                    sb.AppendLine("Override_enable=false");
+                    sb.AppendLine("Over_Buy_Margin=0.4");
+                    sb.AppendLine("Over_DynamicPriceStep=5");
+                    sb.AppendLine("Over_DynamicPriceFactor=1.20");
+                    sb.AppendLine();
+
+                    sb.AppendLine("[SabiroidPlushie]");
+                    sb.AppendLine("SubtypeId=SabiroidPlushie");
+                    sb.AppendLine("Category=Collectibles");
+                    sb.AppendLine("Rarity=Legendary");
+                    sb.AppendLine("Sell_BasePrice=12000");
+                    sb.AppendLine("Sell_MinPrice=6000");
+                    sb.AppendLine("Sell_MaxPrice=24000");
                     sb.AppendLine("Override_enable=false");
                     sb.AppendLine("Over_Buy_Margin=0.4");
                     sb.AppendLine("Over_DynamicPriceStep=5");

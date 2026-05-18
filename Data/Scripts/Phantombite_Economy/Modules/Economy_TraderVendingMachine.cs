@@ -58,7 +58,7 @@ namespace PhantombiteEconomy.Modules
         {
             try
             {
-                _logger?.Debug(MODULE, "Initializing...");
+                _logger?.Log(MODULE, "Initializing...", 1);
 
                 if (!MyAPIGateway.Multiplayer.IsServer)
                 {
@@ -74,7 +74,7 @@ namespace PhantombiteEconomy.Modules
                 MyAPIGateway.Entities.OnEntityRemove += OnEntityRemove;
 
                 _initialized = true;
-                _logger?.Debug(MODULE, $"Initialized — {_vendingMachines.Count} blocks cached");
+                _logger?.Log(MODULE, $"Initialized — {_vendingMachines.Count} blocks cached", 1);
             }
             catch (Exception ex)
             {
@@ -119,7 +119,7 @@ namespace PhantombiteEconomy.Modules
 
             _forceMaintenanceOnce = true;
             PollVendingMachines();
-            _logger?.Debug(MODULE, "ForceRefresh executed");
+            _logger?.Log(MODULE, "ForceRefresh executed", 1);
         }
 
         public void Close()
@@ -246,7 +246,7 @@ namespace PhantombiteEconomy.Modules
 
                 if (_vendingMachines.Count > 0)
                 {
-                    _logger?.Trace(MODULE, $"Found {_vendingMachines.Count} VendingMachine blocks");
+                    _logger?.Log(MODULE, $"Found {_vendingMachines.Count} VendingMachine blocks", 2);
                 }
             }
             catch (Exception ex)
@@ -383,7 +383,7 @@ namespace PhantombiteEconomy.Modules
 
                 block.CustomData = sb.ToString();
                 
-                _logger?.Debug(MODULE, $"Deployed CustomData template to '{block.CustomName}'");
+                _logger?.Log(MODULE, $"Deployed CustomData template to '{block.CustomName}'", 1);
             }
             catch (Exception ex)
             {
@@ -679,7 +679,7 @@ namespace PhantombiteEconomy.Modules
 
                 if (_reuseCatalog.Count == 0)
                 {
-                    _logger?.Debug(MODULE, $"No catalog for {category}");
+                    _logger?.Log(MODULE, $"No catalog for {category}", 1);
                     return;
                 }
 
@@ -692,7 +692,7 @@ namespace PhantombiteEconomy.Modules
                 }
                 else
                 {
-                    _logger?.Debug(MODULE, $"Maintenance Mode ACTIVE for {category}");
+                    _logger?.Log(MODULE, $"Maintenance Mode ACTIVE for {category}", 1);
                 }
 
                 int spawnedCount = 0;
@@ -723,7 +723,7 @@ namespace PhantombiteEconomy.Modules
                     // Guard: TypeId/SubtypeId müssen vorhanden sein (aus Catalog gelesen)
                     if (string.IsNullOrWhiteSpace(item.TypeId) || string.IsNullOrWhiteSpace(item.SubtypeId))
                     {
-                        _logger?.Debug(MODULE, $"Skipping '{item.ItemName}' — TypeId or SubtypeId missing in catalog");
+                        _logger?.Log(MODULE, $"Skipping '{item.ItemName}' — TypeId or SubtypeId missing in catalog", 1);
                         continue;
                     }
                     SpawnItem(block, item.TypeId, item.SubtypeId, item.Amount, item.Price);
@@ -731,7 +731,7 @@ namespace PhantombiteEconomy.Modules
                     spawnedCount++;
                 }
 
-                _logger?.Debug(MODULE, $"{category} sync - Spawned: {spawnedCount}, Skipped (blacklist): {skippedBlacklist}, Skipped (category off): {skippedCategory}");
+                _logger?.Log(MODULE, $"{category} sync - Spawned: {spawnedCount}, Skipped (blacklist): {skippedBlacklist}, Skipped (category off): {skippedCategory}", 1);
             }
             catch (Exception ex)
             {
@@ -795,15 +795,15 @@ namespace PhantombiteEconomy.Modules
                 
                 if (finalAmount != targetAmount)
                 {
-                    _logger?.Debug(MODULE, 
+                    _logger?.Log(MODULE, 
                         $"'{block.CustomName}' {typeId}/{subtypeId} - Target: {targetAmount}, Actual: {finalAmount}"
-                    );
+                    , 1);
                 }
                 else
                 {
-                    _logger?.Debug(MODULE, 
+                    _logger?.Log(MODULE, 
                         $"'{block.CustomName}' {typeId}/{subtypeId} = {finalAmount} @ {price} Credits ✓"
-                    );
+                    , 1);
                 }
             }
             catch (Exception ex)
@@ -1193,7 +1193,7 @@ namespace PhantombiteEconomy.Modules
                                 if (config.Sell_Blacklist.Contains($"{category}:{itemDef.DisplayName}"))
                                 {
                                     inventory.RemoveItemsAt(i, (MyFixedPoint)(int)item.Amount);
-                                    _logger?.Debug(MODULE, $"Despawned blacklisted item {category}:{itemDef.DisplayName}");
+                                    _logger?.Log(MODULE, $"Despawned blacklisted item {category}:{itemDef.DisplayName}", 1);
                                 }
                                 break;
                             }
@@ -1274,7 +1274,7 @@ namespace PhantombiteEconomy.Modules
                 }
 
                 if (removedCount > 0)
-                    _logger?.Debug(MODULE, $"Removed {removedCount} non-whitelisted {category} items");
+                    _logger?.Log(MODULE, $"Removed {removedCount} non-whitelisted {category} items", 1);
             }
             catch (Exception ex)
             {
@@ -1324,7 +1324,7 @@ namespace PhantombiteEconomy.Modules
                 }
 
                 if (removedCount > 0)
-                    _logger?.Debug(MODULE, $"Removed {removedCount} non-whitelisted {category} orders");
+                    _logger?.Log(MODULE, $"Removed {removedCount} non-whitelisted {category} orders", 1);
             }
             catch (Exception ex)
             {
@@ -1350,15 +1350,15 @@ namespace PhantombiteEconomy.Modules
             try
             {
                 block.Enabled = false;
-                _logger?.Debug(MODULE, 
+                _logger?.Log(MODULE, 
                     $"'{block.CustomName}' ERROR: {errorMessage}"
-                );
+                , 1);
             }
             catch (Exception ex)
             {
-                _logger?.Debug(MODULE, 
+                _logger?.Log(MODULE, 
                     $"in EnterErrorMode:\n{ex}"
-                );
+                , 1);
             }
         }
 
