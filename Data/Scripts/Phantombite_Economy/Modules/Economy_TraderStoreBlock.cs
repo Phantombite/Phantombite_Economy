@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 using Sandbox.ModAPI;
+using VRage;
+using VRage.Game;
 using VRage.Game.GUI.TextPanel;
 using VRage.Game.ModAPI;
+using VRage.ModAPI;
+using VRage.ObjectBuilders;
 using VRage.Game.ObjectBuilders.Definitions; // For StoreItemTypes
 using VRageMath;
 using VRage.Utils;
