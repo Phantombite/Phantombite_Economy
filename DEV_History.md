@@ -4,6 +4,10 @@
 - Compile-Fehler behoben: fehlende `using`-Zeilen (`VRage`, `VRage.Game`, `VRage.ModAPI`, `VRage.ObjectBuilders`) in
   `Economy_TraderStoreBlock.cs`, `Economy_TraderVendingMachine.cs` und `Economy_command.cs`. Der Code kompiliert jetzt
   fehlerfrei und ohne Warnungen.
+- Aus dem Mods-Ordner übernommen (später als der GitHub-Stand, nie committet): `Data/Factions.sbc` (SPT: Typ `Trader`,
+  Startguthaben 1.000.000.000, Gründer `Dingoner`, Icon `TraderIcon_2`) und `Data/Textures/FactionLogo/Traders/TraderIcon_2.dds`.
+- Nicht übernommen: `QuestManager.cs` und `ContractTypes_Economy.sbc` aus dem Mods-Ordner. Sie sind identisch mit den
+  `.disabled`-Dateien im Repo `Phantombite_Encounter_System` (dorthin ausgelagert).
 - Die Handels- und Preislogik (ca. 8.000 Zeilen) wurde nicht verändert. Hinweis: Das Economy-System von Space
   Engineers ist nie fertig geworden und hartcodiert, der Mod arbeitet bewusst mit Umwegen (Custom-Data-Vorlagen,
   Store- und Vending-Blöcke, eigene Preislisten).

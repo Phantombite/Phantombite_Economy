@@ -32,7 +32,7 @@
 	</Faction>
 		-->
     <Factions>
-        <Faction Tag="SPT" Founder="Gonner">
+        <Faction Tag="SPT" Founder="Dingoner">
             <Id>
                 <TypeId>MyObjectBuilder_FactionDefinition</TypeId>
                 <SubtypeId>SpaceTraders</SubtypeId>
@@ -41,15 +41,15 @@
             <IsDefault>true</IsDefault>
             <AcceptHumans>false</AcceptHumans>
             <AutoAcceptMember>false</AutoAcceptMember>
-            <StartingBalance>100000</StartingBalance>
-            <Type>None</Type>
+            <StartingBalance>1000000000</StartingBalance>
+            <Type>Trader</Type>
             <DiscoveredByDefault>false</DiscoveredByDefault>
-            <FactionIcon>Textures\FactionLogo\Traders\Tradericon_1.dds</FactionIcon>
+            <FactionIcon>Textures\FactionLogo\Traders\TraderIcon_2.dds</FactionIcon>
             <StaticReputation>true</StaticReputation>
-            <StartingReputation>0</StartingReputation>
-            <Description>Space Traders is a Friendly faction</Description>
-            <BackgroundColor R="0" G="0" B="0" />
-            <IconColor R="0" G="255" B="0" />
+            <StartingReputation>1500</StartingReputation>
+            <Description>Space Traders ihre Freundliche Handels Station aus der Nachtbarschaft</Description>
+            <BackgroundColor R="0" G="0" B="0"  />
+            <IconColor R="0" G="150" B="150" />
         </Faction>
     </Factions>
 </Definitions>
