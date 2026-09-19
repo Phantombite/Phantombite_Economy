@@ -1,5 +1,10 @@
 # DEV Funktion — PhantomBite Economy
 
+> **Achtung, teilweise überholt (Stand 2026-09-19).** Die Commands laufen inzwischen über den Core: `!pbc economy forcerefresh`
+> und `!pbc economy pricelist reload` (beide Admin). Das frühere `!sem`-Präfix und das eingebaute AutoTransfer (M07) gibt es
+> nicht mehr, AutoTransfer ist der eigene Mod `Phantombite_AutoTransfer`. Aktuelle Übersicht: `README.md`. Die Modul-Übersicht und
+> die Abschnitte zu Preisen und Kategorien unten gelten weiter.
+
 ## Zweck
 MMO-artiges Wirtschaftssystem für Space Engineers Server. Trader-Blöcke spawnen dynamisch Items mit wechselnden Preisen. Spieler können über AutoTransfer Waren ein- und auslagern ohne die GUI zu verlassen.
 
