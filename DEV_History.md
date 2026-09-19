@@ -1,5 +1,13 @@
 # DEV History — PhantomBite Economy
 
+## 2026-09-19 — Bereinigung
+- Compile-Fehler behoben: fehlende `using`-Zeilen (`VRage`, `VRage.Game`, `VRage.ModAPI`, `VRage.ObjectBuilders`) in
+  `Economy_TraderStoreBlock.cs`, `Economy_TraderVendingMachine.cs` und `Economy_command.cs`. Der Code kompiliert jetzt
+  fehlerfrei und ohne Warnungen.
+- Die Handels- und Preislogik (ca. 8.000 Zeilen) wurde nicht verändert. Hinweis: Das Economy-System von Space
+  Engineers ist nie fertig geworden und hartcodiert, der Mod arbeitet bewusst mit Umwegen (Custom-Data-Vorlagen,
+  Store- und Vending-Blöcke, eigene Preislisten).
+
 ## 2026-03-22 — v1.0.0 — Umbenennung und Namespace-Änderung
 
 - Mod von SpaceEconomy zu Phantombite_Economy umbenannt
